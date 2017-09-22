@@ -1,2 +1,3 @@
-FAVOR ANOTAR AQUÍ TODO CAMBIO REALIZADO EN EL PROYECTO, CON RESPECTIVA FECHA Y HORA DEL ÚLTIMO UPDATE.
+﻿FAVOR ANOTAR AQUÍ TODO CAMBIO REALIZADO EN EL PROYECTO, CON RESPECTIVA FECHA Y HORA DEL ÚLTIMO UPDATE.
 ---------------------------------------------- LOG SISAE ----------------------------------------------------------------------
+Se actualizó el documento del dashboard el día 22 de septiembre a las 11:10 horas. La plantilla se encuentra vacía. Actualizado por José Molina Cascante.
