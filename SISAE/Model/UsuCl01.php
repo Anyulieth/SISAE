@@ -4,24 +4,24 @@ include 'Conexion.php';
 class UsuCl01 
 {
 	protected $PStCl01_Cedula;
-	protected $PStCL01_Nombre;
-	protected $PStCL01_Apellido1;
-	protected $PStCL01_Apellido2;
-	protected $PStCL01_Direccion;
-	protected $PCrCL01_Sexo;
-	protected $PStCL01_Telefono;
-	protected $PStCL01_Email;
+	protected $PStCl01_Nombre;
+	protected $PStCl01_Apellido1;
+	protected $PStCl01_Apellido2;
+	protected $PStCl01_Direccion;
+	protected $PCrCl01_Sexo;
+	protected $PStCl01_Telefono;
+	protected $PStCl01_Email;
 
 	public function UsuCl01($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema)
 	{
 		$this->PStCl01_Cedula = $ced;
-		$this->PStCL01_Nombre = $Nom;
-		$this->PStCL01_Apellido1 = $Ap1;
-		$this->PStCL01_Apellido2 = $Ap2;
-		$this->PStCL01_Direccion = $Dir;
-		$this->PCrCL01_Sexo = $Sex;
-		$this->PStCL01_Telefono = $Tel;
-		$this->PStCL01_Email = $Ema;
+		$this->PStCl01_Nombre = $Nom;
+		$this->PStCl01_Apellido1 = $Ap1;
+		$this->PStCl01_Apellido2 = $Ap2;
+		$this->PStCl01_Direccion = $Dir;
+		$this->PCrCl01_Sexo = $Sex;
+		$this->PStCl01_Telefono = $Tel;
+		$this->PStCl01_Email = $Ema;
 	}
 	public function UsuCl01()
 	{
@@ -36,67 +36,67 @@ class UsuCl01
 		return $this->PStCl01_Cedula;	 
 	}
 	
-	public function setPStCL01_Nombre($Nom)
+	public function setPStCl01_Nombre($Nom)
 	{
-		$this->PStCL01_Nombre = $Nom;
+		$this->PStCl01_Nombre = $Nom;
 	}
-	public function getPStCL01_Nombre()
+	public function getPStCl01_Nombre()
 	{
-		return $this->PStCL01_Nombre;
-	}
-	
-	public function setPStCL01_Apellido1($Ap1)
-	{
-		$this->PStCL01_Apellido1 = $Ap1;
-	}
-	public function getPStCL01_Apellido1()
-	{
-		return $this->PStCL01_Apellido1;
+		return $this->PStCl01_Nombre;
 	}
 	
-	public function setPStCL01_Apellido2($Ap2)
+	public function setPStCl01_Apellido1($Ap1)
 	{
-		$this->PStCL01_Apellido2 = $Ap2;
+		$this->PStCl01_Apellido1 = $Ap1;
 	}
-	public function getPStCL01_Apellido2()
+	public function getPStCl01_Apellido1()
 	{
-		return $this->PStCL01_Apellido2;
+		return $this->PStCl01_Apellido1;
 	}
 	
-	public function setPStCL01_Direccion($Dir)
+	public function setPStCl01_Apellido2($Ap2)
+	{
+		$this->PStCl01_Apellido2 = $Ap2;
+	}
+	public function getPStCl01_Apellido2()
+	{
+		return $this->PStCl01_Apellido2;
+	}
+	
+	public function setPStCl01_Direccion($Dir)
 	{
 		$this->PStCL01_Direccion = $Dir;
 	}
-	public function getPStCL01_Direccion()
+	public function getPStCl01_Direccion()
 	{
-		return $this->PStCL01_Direccion;
+		return $this->PStCl01_Direccion;
 	}
 	
-	public function setPCrCL01_Sexo($Sex)
+	public function setPCrCl01_Sexo($Sex)
 	{
-		$this->PCrCL01_Sexo = $Sex;
+		$this->PCrCl01_Sexo = $Sex;
 	}
-	public function getPCrCL01_Sexo()
+	public function getPCrCl01_Sexo()
 	{
-		return $this->PCrCL01_Sexo;
+		return $this->PCrCl01_Sexo;
 	}
 	
-	public function setPStCL01_Telefono($Tel)
+	public function setPStCl01_Telefono($Tel)
 	{
 		$this->PStCL01_Telefono = $Tel;
 	}
-	public function getPStCL01_Telefono()
+	public function getPStCl01_Telefono()
 	{
-		return $this->PStCL01_Telefono;
+		return $this->PStCl01_Telefono;
 	}
 	
-	public function setPStCL01_Email($Ema)
+	public function setPStCl01_Email($Ema)
 	{
-		$this->PStCL01_Email = $Ema;
+		$this->PStCl01_Email = $Ema;
 	}
-	public function getPStCL01_Email()
+	public function getPStCl01_Email()
 	{
-		return $this->PStCL01_Email;
+		return $this->PStCl01_Email;
 	}
 }
 ?>
