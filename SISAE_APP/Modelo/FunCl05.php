@@ -58,5 +58,23 @@ class FunCl05
 	{
 		return $this->PStCl05__Estado;
 	}
+	public function FunCl05_GuardarFun(){
+		if(!$query = $con->prepare("CALL PaFunTb06_GuardarFunc(?,?,?,?,?,?,?,?,?,?,?)")){
+			$query->bind_param("sbsssssssss",$id,$fecha,$clave,$estado,$nombre,$apell1,$apell2,$direccion,$sexo,$telefono,$email);
+			$id = $IdFunc;
+			$fecha = $FeN;
+			$clave = $Cla;
+			$estado = $ESt;
+			$nombre = $Nom;
+			$apell1 = $Ap1;
+			$apell2 = $Ap2;
+			$direccion = $Dir;
+			$sexo = $Sex;
+			$telefono = $Tel;
+			$email = $Ema;
+			$query->execute();
+		}else{print "<script>alert(\"No se pudo agregar.\");window.location='C:/xampp/htdocs/SISAE/Vista/Funcionario.php';</script>";}
+	}
+
 }
 ?>
