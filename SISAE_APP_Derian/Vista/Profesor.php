@@ -8,7 +8,7 @@
 
          <form class="form-inline" role="search" id="buscar">
       <div class="form-group">
-        <input type="text" name="s" class="form-control" placeholder="Buscar">
+        <input type="text" name="busqueda" class="form-control" placeholder="Buscar">
       </div>
       <button type="submit" class="btn btn-default">&nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;</button>
   <a data-toggle="modal" href="#Modal" class="btn btn-default">Agregar</a>
@@ -108,6 +108,11 @@ function CargarTabla(){
   $('#tabla').load('Vista/TablaProf.php');
 }
 CargarTabla();
+
+$('#buscar').submit(function(e){
+  e.preventDefault();
+  $.get('Controlador/BuscarProf.php',$('#buscar').serialize(),function(data){$('#tabla').html(data);});
+});
 
 </script>
 
