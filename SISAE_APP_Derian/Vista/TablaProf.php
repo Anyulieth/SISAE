@@ -26,17 +26,17 @@ if($result->num_rows>0):?>
   <td><?php echo $r["Telefono"]; ?></td>
   <td><?php echo $r["Email"]; ?></td>
   <td><?php echo $r["Clave"]; ?></td>
-  <td><?php echo $r["Fecha Nac"]; ?></td>
+  <td><?php echo $r["Fecha_Nac"]; ?></td>
   <td><?php echo $r["Estado"]; ?></td>
   
   <td style="width:150px;">
-    <a data-id="<?php echo $r["id"];?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
+    <a data-id="<?php echo $r["Cedula"];?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
     <a href="#" id="bor-<?php echo $r["Cedula"];?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
     <script>
     $('#bor-'+<?php echo $r['Cedula']?>).click(function(e){
       e.preventDefault();
       p = confirm('Esta Seguro??');
-      if(p){$.get('Controlador/EliminarProf.php','ced='+<?php echo $r['Cedula']?>,function(data){
+      if(p){$.get('Controlador/EliminarProf.php','ced='+<?php echo $r['Cedula']?>,function(status){
         $('#tabla').html('');
         CargarTabla();
       });}
@@ -49,3 +49,27 @@ if($result->num_rows>0):?>
 <?php else:?>
   <p class="alert alert-warning">No hay resultados</p>
 <?php endif;?>
+<script>
+$(".btn-edit").click(function(){
+      id = $(this).data("id");
+      $.get("Controlador/Formulario_Editar_Prof.php","ced="+id,function(data){
+        $("#form-Editar").html(data);
+      });
+      $('#Modal_Editar').modal('show');
+    });
+</script>
+
+<div class="modal fade" id="Modal_Editar" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Actualizar</h4>
+        </div>
+        <div class="modal-body">
+        <div id="form-Editar"></div>
+        </div>
+
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
