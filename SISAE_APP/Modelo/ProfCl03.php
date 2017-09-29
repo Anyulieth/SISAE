@@ -1,25 +1,25 @@
 <?php
-include 'C:/xampp/htdocs/SISAE/Controlador/conexion.php';
-include 'UsuCl01.php';
+include "../Controlador/conexion.php";
+include "../Modelo/UsuCl01.php";
 
-class ProfCl03
+class ProfCl03 extends UsuCl01
 {
 	private $PStCl03_IdProfesor;
 	private $PStCl03_Clave;
 	private $PStCl03_FechaNac;  
 	private $PStCl03_Estado;
 	
-	public function ProfCl03($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema,
+	public function __construct($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema,
 	$IdP, $Cla, $FeN, $Est)
 	{
-		parent::UsuCl01($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema);
+		parent::__construct($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema);
 		$this->PStCl03_IdProfesor = $IdP;
 		$this->PStCl03_Clave = $Cla;
 		$this->PStCl03_FechaNac = $FeN;
 		$this->PStCl03_Estado = $Est;
 	}
 	
-	public function ProfCl03()
+	public function __construct()
 	{
 	}
 	
@@ -64,7 +64,7 @@ class ProfCl03
 			$id = $IdP;
 			$fecha = $FeN;
 			$clave = $Cla;
-			$estado = $ESt;
+			$estado = $Est;
 			$nombre = $Nom;
 			$apell1 = $Ap1;
 			$apell2 = $Ap2;

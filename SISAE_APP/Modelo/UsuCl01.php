@@ -1,5 +1,5 @@
 <?php
-include 'Conexion.php';
+include "../Controlador/conexion.php";
 
 class UsuCl01 
 {
@@ -12,7 +12,7 @@ class UsuCl01
 	protected $PStCL01_Telefono;
 	protected $PStCL01_Email;
 
-	public function UsuCl01($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema)
+	function __construct($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema)
 	{
 		$this->PStCl01_Cedula = $ced;
 		$this->PStCL01_Nombre = $Nom;
@@ -23,9 +23,7 @@ class UsuCl01
 		$this->PStCL01_Telefono = $Tel;
 		$this->PStCL01_Email = $Ema;
 	}
-	public function UsuCl01()
-	{
-	}
+	function __construct(){}
 	
 	public function setPStCL01_Cedula($Ced)
 	{

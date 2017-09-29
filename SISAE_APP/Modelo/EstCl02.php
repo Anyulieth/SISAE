@@ -1,6 +1,6 @@
 <?php
-include 'Conexion.php';
-include 'UsuCl01.php';
+include "../Controlador/conexion.php";
+include "../Modelo/UsuCl01.php";
 
 class EstCl02 extends UsuCl01
 {
@@ -11,10 +11,10 @@ class EstCl02 extends UsuCl01
 	private $PStCl03_IdGrado;
 	private $PStCl03_IdEspecialidad;
 	
-	public function EstCl03 ($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema,
+	public function __construct($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema,
 	$IdE, $FeN, $Ade, $Est, $IdG, $IdE)
 	{
-	parent::UsuCl01($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema);
+	parent::__construct($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema);
 		$this->PStCl03_IdEst = $IdE;
 		$this->PDtCl03_FechaNac = $FeN;
 		$this->PStCl03_Adecuacion = $Ade;
@@ -22,7 +22,7 @@ class EstCl02 extends UsuCl01
 		$this->PStCl03_IdGrado = $IdG;
 		$this->PStCl03_IdEspecialidad = $IdE;
 	}
-	public function EstCl03 ()
+	public function __construct ()
 	{		
 	}
 	

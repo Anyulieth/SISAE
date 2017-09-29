@@ -1,6 +1,6 @@
 <?php
-include 'Conexion.php';
-include 'UsuCl01.php';
+include "../Controlador/conexion.php";
+include "../Modelo/UsuCl01.php";
 
 class FunCl05
 {
@@ -9,17 +9,17 @@ class FunCl05
 	private $PDtCl05__FechaNac;
     private $PStCl05__Estado;
 	
-	public function FunCl05($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema,
+	public function __construct($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema,
 	$IdFunc, $Cla, $FeN, $Est)
 	{
-		parent::UsuCl01($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema);
+		parent:: __construct($ced, $Nom, $Ap1, $Ap2, $Dir, $Sex, $Tel, $Ema);
 		$this->PStCl05_IdFuncionario = $IdFunc;
 		$this->PStCl05__Clave = $Cla;
 		$this->PDtCl05__FechaNac = $FeN;
 		$this->PStCl05__Estado = $Est;
 	}
 	
-	public function FunCl05()
+	public function __construct()
 	{
 	}
 	
