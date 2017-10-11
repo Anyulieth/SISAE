@@ -4,3 +4,6 @@ Gracias!
 
 SISAE->Archivos de ayuda.
 SISAE_APP_DERIAN->Archivos actuales de la aplicación web
+
+***Importante:***
+Favor subir los archivos en su correspondiente ubicación.
