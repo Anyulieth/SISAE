@@ -1,4 +1,4 @@
-<?php include "../Controlador/Profesor/ListarProf.php";
+<?php include "../Controlador/Encargado/ListarEnc.php";
 if($result->num_rows>0):?>
 <table class="table table-bordered table-hover">
 <thead>
@@ -11,38 +11,34 @@ if($result->num_rows>0):?>
   <th>Telefono</th>
   <th>Email</th>
   <th>Clave</th>
-  <th>Fecha Nacimiento </th>
-  <th>Estado</th>
   <th></th>
 </thead>
 <?php while ($r=$result->fetch_array()):?>
 <tr>
   <td><?php echo $r["Cedula"]; ?></td>
   <td><?php echo $r["Nombre"]; ?></td>
-  <td><?php echo $r["Apellido1"]; ?></td>
+  <td><?php echo $r["Apellido1"]; ?></td>  
   <td><?php echo $r["Apellido2"]; ?></td>
   <td><?php echo $r["Direccion"]; ?></td>
   <td><?php echo $r["Genero"]; ?></td>
   <td><?php echo $r["Telefono"]; ?></td>
   <td><?php echo $r["Email"]; ?></td>
   <td><?php echo $r["Clave"]; ?></td>
-  <td><?php echo $r["Fecha_Nac"]; ?></td>
-  <td><?php echo $r["Estado"]; ?></td>
   
-    <td style="width:150px;">
+ <td style="width:150px;">
     <a data-id="<?php echo $r["Cedula"];?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
     <a href="#" id="bor-<?php echo $r["Cedula"];?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
     <script>
     $('#bor-'+<?php echo $r['Cedula']?>).click(function(e){
       e.preventDefault();
       p = confirm('¿Está Seguro?');
-      if(p){$.get('./Controlador/Profesor/EliminarProf.php','ced='+<?php echo $r['Cedula']?>,function(status){
+      if(p){$.get('./Controlador/Encargado/EliminarEnc.php','ced='+<?php echo $r['Cedula']?>,function(status){
         $('#tabla').html('');
         CargarTabla();
       });}
     });
-    </script>
-    </td>
+</script>
+      </td>
 </tr>
 <?php endwhile;?>
 </table>
@@ -52,11 +48,11 @@ if($result->num_rows>0):?>
 <script>
 $(".btn-edit").click(function(){
       id = $(this).data("id");
-      $.get("./Controlador/Profesor/Formulario_Editar_Prof.php","ced="+id,function(data){
-        $("#form-Editar").html(data); 
+      $.get("./Controlador/Encargado/Formulario_Editar_Enc.php","ced="+id,function(data){
+        $("#form-Editar").html(data);
       });
-      $('#Modal_Editar').modal('show');      
-    }); 
+      $('#Modal_Editar').modal('show');
+    });
 </script>
 
 <div class="modal fade" id="Modal_Editar" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
