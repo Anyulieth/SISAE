@@ -18,10 +18,6 @@ class AsistClaseCl17
 			$this->PStCl17_IdMateria = $IdM;
 	}
 	
-	public function AsistClaseCl17()
-	{	
-	}
-	
 	public function setPStCl17_IdAsistClase($IdA)
 	{
 		$this->PStCl17_IdAsistClase = $IdA;
@@ -66,6 +62,11 @@ class AsistClaseCl17
 	public function getPStCl17_IdMateria()
 	{
 		return $this->PStCl17_IdMateria;
+	}
+	
+	public function GuardarAsistClase(){
+		$query = $con->query("CALL PaAsistClaseTb18_GuardarAsistClase($IdA,$Fec,$Hora,$Est,$IdM)");
+		if(!$query){echo 'No se ejecuto';}
 	}
 }
 ?>
