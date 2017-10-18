@@ -8,7 +8,10 @@ if(!empty($_POST)){
 		{			
 			$sql = "CALL PaMateriaTb17_ActualizarMateria(\"$_POST[id]\",\"$_POST[nombre]\")";
 			$query = $con->query($sql);
-			if(!$query){print 'No se pudo actualizar!!';}
+			if(!$query)
+			{
+				print 'No se pudo actualizar!!';
+			}
 		}
 	}
 }

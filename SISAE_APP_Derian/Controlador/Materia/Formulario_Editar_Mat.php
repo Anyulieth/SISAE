@@ -17,11 +17,11 @@ if ($query -> num_rows > 0) {
 <form role="form" id="actualizar" method="post">
 	<div class="form-group">
 		<label for="id">Id Materia</label>
-		<input type="text" class="form-control" name="id" value="<?php echo $mat -> id; ?>" readonly>
+		<input type="text" class="form-control" name="id" value="<?php echo $mat -> Id; ?>" readonly>
 	</div>
 	<div class="form-group">
 		<label for="nombre">Nombre</label>
-		<input type="text" class="form-control" name="nombre" value="<?php echo $mat -> nombre; ?>">
+		<input type="text" class="form-control" name="nombre" value="<?php echo $mat -> Nombre; ?>">
 	</div>
 	<input type="hidden" name="id" value="<?php echo $mat -> id; ?>">
 	<button type="submit" class="btn btn-default">
