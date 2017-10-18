@@ -32,6 +32,9 @@
 			function asistClase(){
 				$("#contenido").load('Vista/AsistClase.php');
 			}
+			function matricula(){
+				$("#contenido").load('Vista/Matricula.php');
+			}
 		</script>
 		
 	</head>
@@ -41,7 +44,7 @@
 			<ul class="nav nav-sidebar">
 				<li class="active">
 					<a href="index.php">Inicio <span class="sr-only">(current)</span></a>
-				</li>
+	            </li>
 				<li>
 					<a href="#" onclick="profesor();">Profesores</a>
 				</li>
@@ -63,7 +66,7 @@
 					<a href="#" onclick="asistClase();">Asistencia Clase</a>
 				</li>
 				<li>
-					<a href="">One more nav</a>
+					<a href="" onclick="matricula();">Matricula</a>
 				</li>
 				<li>
 					<a href="">Another nav item</a>
