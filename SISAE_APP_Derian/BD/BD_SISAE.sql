@@ -486,6 +486,17 @@ CREATE INDEX `FK_Prof_S_idx` ON `SISAE`.`SeccionProfTb27` (`VcProfTb04_IdProfeso
 
 CREATE INDEX `FK_Sec_P_idx` ON `SISAE`.`SeccionProfTb27` (`VcSeccionTb20_IdSeccion` ASC);
 
+-- -----------------------------------------------------
+-- Table `SISAE`.`HorarioTb28`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SISAE`.`HorarioTb28` (
+  `VcHorarioTb28_IdHorario` VARCHAR(20) NOT NULL,
+  `VcMateriaTb17_IdMateria` varchar(20) not null,
+  `VcHorarioTb28_Dia` varchar(20) not null,
+  `VcHorarioTb28_HoraInicio` time not null,
+  `VcHorarioTb28_HoraFin` time not null,
+  PRIMARY KEY (`VcHorarioTb28_IdHorario`))
+  ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -515,13 +526,14 @@ call PaEstTb03_GuardarEst('503580535','1995/10/12','No','Activo','E01','Derian',
 /* Actualizar Estudiante */
 delimiter $
 create procedure PaEstTb03_ActualizarEst(in IdEst varchar(20), in FecNacEst Date, in Adecuacion varchar(20),
-in Estado varchar(20),in IdEspecialidad varchar(20),in NomEst varchar(20), 
-in Ape1 varchar(20), in Ape2 varchar(20), in Direccion varchar(100), in Sexo char(1), in Telefono varchar(8), in Email varchar(100))
+in IdEspecialidad varchar(20),in NomEst varchar(20), 
+in Ape1 varchar(20), in Ape2 varchar(20), in Direccion varchar(100), in Telefono varchar(8), in Email varchar(100))
 begin
 	update usutb01,esttb03
     set usutb01.VcUsuTb01_Nombre = NomEst,
-    usutb01.VcUsuTb01_Ape1 = Ape1,usutb01.VcUsuTb01_Ape2 = Ape2,usutb01.VcUsuTb01_Direccion = Direccion,usutb01.CrUsuTb01_Sexo = sexo,
-    usutb01.VcUsuTb01_Telefono = Telefono,usutb01.VcUsuTb01_Email = Email,esttb03.DtEstTb03_FechaNac = FecNacEst,esttb03.VcEstTb03_Adecuacion = Adecuacion,
+    usutb01.VcUsuTb01_Ape1 = Ape1,usutb01.VcUsuTb01_Ape2 = Ape2,usutb01.VcUsuTb01_Direccion = Direccion,
+    usutb01.VcUsuTb01_Telefono = Telefono,usutb01.VcUsuTb01_Email = Email,
+    esttb03.DtEstTb03_FechaNac = FecNacEst,esttb03.VcEstTb03_Adecuacion = Adecuacion,
     esttb03.VcEstTb03_Estado = Estado,esttb03.VcEspecialidadTb16_IdEspecialidad = IdEspecialidad
     where esttb03.VcEstTb03_IdEstudiante = IdEst and usutb01.VcUsuTb01_Cedula = IdEst;
 end $;
@@ -534,24 +546,45 @@ CREATE PROCEDURE PaEstTb03_Listar ()
 begin
  select UsuTb01.VcUsuTb01_Cedula as 'Cedula', UsuTb01.VcUsuTb01_Nombre  as 'Nombre', UsuTb01.VcUsuTb01_Ape1  as 'Apellido1',
  UsuTb01.VcUsuTb01_Ape2  as 'Apellido2', UsuTb01.VcUsuTb01_Direccion as 'Direccion', UsuTb01.CrUsuTb01_Sexo as 'Genero', 
- UsuTb01.VcUsuTb01_Telefono as 'Telefono', UsuTb01.VcUsuTb01_Email as 'Email', EstTb03.VcEstTb03_IdEstudiante as 'IdEstudiante',
- EstTb03.DtEstTb03_FechaNac as 'FechaNac', EstTb03.VcEstTb03_Adecuacion as 'Adecuacion', EstTb03.VcEstTb03_Estado as 'Estado', 
-EstTb03.VcEspecialidadTb16_IdEspecialidad as 'IdEspecialidad'
+ UsuTb01.VcUsuTb01_Telefono as 'Telefono', UsuTb01.VcUsuTb01_Email as 'Email', EstTb03.DtEstTb03_FechaNac as 'FechaNac', 
+ EstTb03.VcEstTb03_Adecuacion as 'Adecuacion', EstTb03.VcEstTb03_Estado as 'Estado', EstTb03.VcEspecialidadTb16_IdEspecialidad as 'IdEspecialidad'
     from UsuTb01, EstTb03
     where EstTb03.VcEstTb03_IdEstudiante = UsuTb01.VcUsuTb01_Cedula
 	order by EstTb03.VcEstTb03_IdEstudiante;
 end $
 /*call PaEstTb03_Listar();*/
 
+/* Listar Estudiante Activos*/
+delimiter $
+CREATE PROCEDURE PaEstTb03_ListarActivos ()
+begin
+ select UsuTb01.VcUsuTb01_Cedula as 'Cedula', UsuTb01.VcUsuTb01_Nombre  as 'Nombre', UsuTb01.VcUsuTb01_Ape1  as 'Apellido1',
+ UsuTb01.VcUsuTb01_Ape2  as 'Apellido2', UsuTb01.VcUsuTb01_Direccion as 'Direccion', UsuTb01.CrUsuTb01_Sexo as 'Genero', 
+ UsuTb01.VcUsuTb01_Telefono as 'Telefono', UsuTb01.VcUsuTb01_Email as 'Email', EstTb03.DtEstTb03_FechaNac as 'FechaNac', 
+ EstTb03.VcEstTb03_Adecuacion as 'Adecuacion', EstTb03.VcEstTb03_Estado as 'Estado', EstTb03.VcEspecialidadTb16_IdEspecialidad as 'IdEspecialidad'
+    from UsuTb01, EstTb03
+    where EstTb03.VcEstTb03_IdEstudiante = UsuTb01.VcUsuTb01_Cedula and esttb03.VcEstTb03_Estado = 'A'
+	order by EstTb03.VcEstTb03_IdEstudiante;
+end $
 
-/* Eliminar Estudiante */
-
+/* Buscar Estudiante */
+delimiter $
+CREATE PROCEDURE PaEstTb03_BuscarEst(in cedula varchar(20))
+begin
+	select u.VcUsuTb01_Cedula as 'Cedula', u.VcUsuTb01_Nombre as 'Nombre', u.VcUsuTb01_Ape1 as 'Apellido1',
+    u.VcUsuTb01_Ape2 as 'Apellido2', u.VcUsuTb01_Direccion as 'Direccion', u.CrUsuTb01_Sexo as 'Genero',
+    u.VcUsuTb01_Telefono as 'Telefono', u.VcUsuTb01_Email as 'Email', e.DtEstTb03_FechaNac as 'Fecha_Nac',
+	e.VcEstTb03_Adecuacion as 'Adecuacion',
+    e.VcEstTb03_Estado as 'Estado', e.VcEspecialidadTb16_IdEspecialidad as 'IdEspecialidad'
+    from esttb03 as e inner join usutb01 as u on e.VcEstTb03_IdEstudiante = u.VcUsuTb01_Cedula
+  where e.VcEstTb03_IdEstudiante = cedula;
+end $
 
 /* Borrar Estudiante*/
 delimiter $
 create procedure PaEstTb03_BorrarEst(in IdEst varchar(20))
 begin
-update esttb03 set VcEstTb03_Estado = 'Inactivo' where VcEstTb03_IdEstudiante = IdEst;
+update esttb03 set VcEstTb03_Estado = 'I' where VcEstTb03_IdEstudiante = IdEst;
 end $
 /*call PaEstTb03_BorrarEst('504070289');*/
 
@@ -561,17 +594,25 @@ end $
 /* Guardar Profesor */
 delimiter $
 create procedure PaProfTb04_GuardarProf(in IdProf varchar(20),  in FecNacProf date, in Clave varchar(20), in Estado varchar(20),
-in NomEst varchar(20), in Ape1 varchar(20), in Ape2 varchar(20), in Direccion varchar(100), 
+in NomProf varchar(20), in Ape1 varchar(20), in Ape2 varchar(20), in Direccion varchar(100), 
 in Sexo char(1), in Telefono varchar(8), in Email varchar(100))
 begin
 	insert into UsuTb01(VcUsuTb01_Cedula, VcUsuTb01_Nombre, VcUsuTb01_Ape1, VcUsuTb01_Ape2, VcUsuTb01_Direccion, 
     CrUsuTb01_Sexo, VcUsuTb01_Telefono, VcUsuTb01_Email)
-    values(IdProf, NomEst, Ape1, Ape2, Direccion, Sexo, Telefono, Email);
+    values(IdProf, NomProf, Ape1, Ape2, Direccion, Sexo, Telefono, Email);
      insert into ProfTb04 (VcProfTb04_IdProfesor, VcProfTb04_Clave, DtProfTb04_FechaNac, VcProfTb04_Estado)
     values (IdProf, Clave, FecNacProf, Estado);
 end $ 
-call PaProfTb04_GuardarProf('116000070','1990/10/12','1234','Activo','Jose','Lopez','Venegas',
-'Hojancha','M','60918664','deresquivel@outlook.com');
+call PaProfTb04_GuardarProf('116000071','1990/10/12','1234','A','Ana','Fernández','Esquivel',
+'Corralillo','F','60918664','ana@hotmail.com');
+call PaProfTb04_GuardarProf('116000072','1995/11/12','1234','A','Jose','Lopez','Venegas',
+'Hojancha','M','60918664','jose@outlook.com');
+call PaProfTb04_GuardarProf('116000073','1994/07/11','1234','A','Jesus','Lobo','Vargas',
+'Alajuela','M','60918664','jesus@gmail.com');
+call PaProfTb04_GuardarProf('116000074','1991/03/12','1234','A','Henry','Chavarría','Picado',
+'Heredia','M','60918664','henry@yahoo.es');
+call PaProfTb04_GuardarProf('116000075','1993/10/04','1234','A','Josefina','Montero','Rojas',
+'Santa Clara','F','60918664','fina@outlook.com');
 
 /* Determina si es profesor */
 delimiter $
@@ -634,10 +675,9 @@ call sisae.PaValidaUsuario('503580527', '4567', @tipo);
 delimiter $
 create procedure PaProfTb04_BuscarProf(in cedula varchar(20))
 begin
-	select u.VcUsuTb01_Cedula as 'Cedula', u.VcUsuTb01_Nombre as 'Nombre', u.VcUsuTb01_Ape1 as '1° Apellido',
-    u.VcUsuTb01_Ape2 as '2° Apellido', u.VcUsuTb01_Direccion as 'Direccion', u.CrUsuTb01_Sexo as 'Sexo',
-    u.VcUsuTb01_Telefono as 'Telefono', u.VcUsuTb01_Email as 'Correo electronico',
-    p.VcProfTb04_IdProfesor as 'Id Profesor', p.DtProfTb04_FechaNac as 'Fecha de nacimiento',
+	select u.VcUsuTb01_Cedula as 'Cedula', u.VcUsuTb01_Nombre as 'Nombre', u.VcUsuTb01_Ape1 as 'Apellido1',
+    u.VcUsuTb01_Ape2 as 'Apellido2', u.VcUsuTb01_Direccion as 'Direccion', u.CrUsuTb01_Sexo as 'Genero',
+    u.VcUsuTb01_Telefono as 'Telefono', u.VcUsuTb01_Email as 'Email', p.DtProfTb04_FechaNac as 'Fecha_Nac',
     p.VcProfTb04_Clave as 'Clave', p.VcProfTb04_Estado as 'Estado'
     from ProfTb04 as p inner join usutb01 as u on p.VcProfTb04_IdProfesor = u.VcUsuTb01_Cedula
   where p.VcProfTb04_IdProfesor = cedula;
@@ -646,20 +686,19 @@ end $
 
 /* Actualizar Profesor */
 delimiter $
-create procedure PaProfTb04_ActualizarProf(in IdProf varchar(20),  in FecNac Date, in Clave varchar(20),
-in Estado varchar(20),in Nom varchar(20), 
-in Ape1 varchar(20), in Ape2 varchar(20), in Direccion varchar(100), in Sexo char(1), in Telefono varchar(8), in Email varchar(100))
+create procedure PaProfTb04_ActualizarProf(in IdProf varchar(20),  in FecNac Date, in Clave varchar(20),in Nom varchar(20), 
+in Ape1 varchar(20), in Ape2 varchar(20), in Direccion varchar(100), in Telefono varchar(8), in Email varchar(100))
 begin
 	update usutb01, ProfTb04
     set usutb01.VcUsuTb01_Nombre = Nom,
-    usutb01.VcUsuTb01_Ape1 = Ape1,usutb01.VcUsuTb01_Ape2 = Ape2,usutb01.VcUsuTb01_Direccion = Direccion,usutb01.CrUsuTb01_Sexo = sexo,
+    usutb01.VcUsuTb01_Ape1 = Ape1,usutb01.VcUsuTb01_Ape2 = Ape2,usutb01.VcUsuTb01_Direccion = Direccion,
     usutb01.VcUsuTb01_Telefono = Telefono,usutb01.VcUsuTb01_Email = Email,
     ProfTb04.VcProfTb04_IdProfesor = IdProf, ProfTb04.VcProfTb04_Clave = Clave,
-    ProfTb04.DtProfTb04_FechaNac = FecNac, ProfTb04.VcProfTb04_Estado = Estado
+    ProfTb04.DtProfTb04_FechaNac = FecNac
     where ProfTb04.VcProfTb04_IdProfesor = IdProf and usutb01.VcUsuTb01_Cedula = IdProf;
 end $;
-/*call PaProfTb04_ActualizarProf('116000070','1987/10/12','4567','Activo','Jose','Lopez','Zuñiga',
-'Nicoya','M','60918664','jlopez@outlook.com');*/
+/*call PaProfTb04_ActualizarProf('116000070','1987/10/12','4567','Jo','Lopez','Zuñiga',
+'Nicoya','60918664','jlopez@outlook.com');*/
 
 /* Listar Profesor */
 delimiter $
@@ -667,20 +706,33 @@ CREATE PROCEDURE PaProfTb04_Listar ()
 begin
 select UsuTb01.VcUsuTb01_Cedula as 'Cedula', UsuTb01.VcUsuTb01_Nombre  as 'Nombre', UsuTb01.VcUsuTb01_Ape1  as 'Apellido1',
  UsuTb01.VcUsuTb01_Ape2  as 'Apellido2', UsuTb01.VcUsuTb01_Direccion as 'Direccion', UsuTb01.CrUsuTb01_Sexo as 'Genero', 
- UsuTb01.VcUsuTb01_Telefono as 'Telefono', UsuTb01.VcUsuTb01_Email as 'Email', 
- ProfTb04.VcProfTb04_IdProfesor as 'Id Profesor', ProfTb04.VcProfTb04_Clave as 'Clave', 
- ProfTb04.DtProfTb04_FechaNac as 'Fecha Nac', ProfTb04.VcProfTb04_Estado as 'Estado'
+ UsuTb01.VcUsuTb01_Telefono as 'Telefono', UsuTb01.VcUsuTb01_Email as 'Email',ProfTb04.VcProfTb04_Clave as 'Clave', 
+ ProfTb04.DtProfTb04_FechaNac as 'Fecha_Nac', ProfTb04.VcProfTb04_Estado as 'Estado'
     from UsuTb01, ProfTb04
     where ProfTb04.VcProfTb04_IdProfesor = UsuTb01.VcUsuTb01_Cedula
 	order by ProfTb04.VcProfTb04_IdProfesor;
 end $
 /*call PaProfTb04_Listar();*/
 
+/* Listar Profesor activo */
+delimiter $
+CREATE PROCEDURE PaProfTb04_ListarActivos ()
+begin
+select UsuTb01.VcUsuTb01_Cedula as 'Cedula', UsuTb01.VcUsuTb01_Nombre  as 'Nombre', UsuTb01.VcUsuTb01_Ape1  as 'Apellido1',
+ UsuTb01.VcUsuTb01_Ape2  as 'Apellido2', UsuTb01.VcUsuTb01_Direccion as 'Direccion', UsuTb01.CrUsuTb01_Sexo as 'Genero', 
+ UsuTb01.VcUsuTb01_Telefono as 'Telefono', UsuTb01.VcUsuTb01_Email as 'Email',ProfTb04.VcProfTb04_Clave as 'Clave', 
+ ProfTb04.DtProfTb04_FechaNac as 'Fecha_Nac', ProfTb04.VcProfTb04_Estado as 'Estado'
+    from UsuTb01, ProfTb04
+    where ProfTb04.VcProfTb04_IdProfesor = UsuTb01.VcUsuTb01_Cedula and ProfTb04.VcProfTb04_Estado = 'A'
+	order by ProfTb04.VcProfTb04_IdProfesor;
+end $
+/*call PaProfTb04_ListarActivos();*/
+
 /* Borrar Profesor*/
 delimiter $
 create procedure PaProfTb04_BorrarProf(in IdProf varchar(20))
 begin
-update proftb04 set VcProfTb04_Estado = 'Inactivo' where VcProfTb04_IdProfesor = IdProf;
+update proftb04 set VcProfTb04_Estado = 'I' where VcProfTb04_IdProfesor = IdProf;
 end $
 /*call PaProfTb04_BorrarProf('116000070');*/
 
@@ -689,27 +741,31 @@ end $
 		/* EncTb05 */
 /* Guardar Encargado */
 delimiter $
-create procedure PaEncTb05_GuardarEnc(in IdEnc varchar(20), in Clave varchar(20),in NomEnc varchar(20), in Ape1 varchar(20), in Ape2 varchar(20), in Direccion varchar(100), 
-in Sexo char(1), in Telefono varchar(8), in Email varchar(100))
+create procedure PaEncTb05_GuardarEnc(in IdEnc varchar(20),in NomEnc varchar(20), in Ape1 varchar(20), in Ape2 varchar(20), in Direccion varchar(100), 
+in Sexo char(1), in Telefono varchar(8), in Email varchar(100), in Clave varchar(20))
 begin
 	insert into UsuTb01(VcUsuTb01_Cedula, VcUsuTb01_Nombre, VcUsuTb01_Ape1, VcUsuTb01_Ape2, VcUsuTb01_Direccion, CrUsuTb01_Sexo, VcUsuTb01_Telefono, VcUsuTb01_Email)
     values(IdEnc, NomEnc, Ape1, Ape2, Direccion, Sexo, Telefono, Email);
 	insert into EncTb05(VcEncTb05_IdEncargado, VcEncTb05_Clave)
     values (IdEnc, Clave);
 end $
-call PaEncTb05_GuardarEnc('402370069','1234','Fernanda','Herrera','Villalobos','Hojancha','F','62001746',
-'nose@gmail.com');
+call sisae.PaEncTb05_GuardarEnc('60780543', 'Luis', 'Herra', 'Torres', 'Nandayure', 'M', '88888888', 'lu@outlook.com', '1234');
+call sisae.PaEncTb05_GuardarEnc('60780544', 'Antonio', 'Pérez', 'Pérez', 'Nicoya', 'M', '88888888', 'an@hotmail.com', '1234');
+call sisae.PaEncTb05_GuardarEnc('60780545', 'María', 'Hernández', 'Gutiérrez', 'Samara', 'F', '88888888', 'ma@yahoo.es', '1234');
+call sisae.PaEncTb05_GuardarEnc('60780546', 'Angela', 'Alvarado', 'Gómez', 'Tamarindo', 'F', '88888888', 'angk@hotmail.com', '1234');
+call sisae.PaEncTb05_GuardarEnc('60780547', 'Lucía', 'Chacón', 'Sequeira', 'San José', 'F', '88888888', 'luci@gmail.com', '1234');
+
 
 /* Actualizar Encargado */
 delimiter $
 create procedure PaEncTb05_ActualizarEnc( in IdEnc varchar(20),in NomEnc varchar(20), in Ape1 varchar(20), 
-in Ape2 varchar(20), in Direccion varchar(100), in Sexo char(1), in Telefono varchar(8), in Email varchar(100), in Clave varchar(20))
+in Ape2 varchar(20), in Direccion varchar(100), in Telefono varchar(8), in Email varchar(100))
 begin
 	update enctb05,usutb01
-    set enctb05.VcEncTb05_Clave = Clave, usutb01.VcUsuTb01_Nombre = NomEnc, usutb01.VcUsuTb01_Ape1 = Ape1, usutb01.VcusuTb01_Ape2 = Ape2,
-    usutb01.VcUsutb01_Direccion = Direccion, usutb01.CrUsuTb01_Sexo = Sexo, usutb01.VcUsuTb01_Telefono = Telefono,
+    set usutb01.VcUsuTb01_Nombre = NomEnc, usutb01.VcUsuTb01_Ape1 = Ape1, usutb01.VcusuTb01_Ape2 = Ape2,
+    usutb01.VcUsutb01_Direccion = Direccion, usutb01.VcUsuTb01_Telefono = Telefono,
 	usutb01.VcUsuTb01_Email = Email
-    where enctb05.VcEncTb05_IdEncargado = IdEnc  and IdEnc = usutb01.VcUsuTb01_Cedula;
+    where enctb05.VcEncTb05_IdEncargado = IdEnc  and usutb01.VcUsuTb01_Cedula=IdEnc;
 end $
 /*call PaEncTb05_ActualizarEnc('402370069','Fernanda','Gonzalez','Villalobos','Samara','F','62001746',
 'fer@gmail.com','1233');*/
@@ -718,10 +774,9 @@ end $
 delimiter $
 create procedure PaEncTb05_BuscarEnc(in cedula varchar(20))
 begin
-	select u.VcUsuTb01_Cedula as 'Cedula', u.VcUsuTb01_Nombre as 'Nombre', u.VcUsuTb01_Ape1 as '1° Apellido',
-    u.VcUsuTb01_Ape2 as '2° Apellido', u.VcUsuTb01_Direccion as 'Direccion', u.CrUsuTb01_Sexo as 'Sexo',
-    u.VcUsuTb01_Telefono as 'Telefono', u.VcUsuTb01_Email as 'Correo electronico',
-    e.VcEncTb05_IdEncargado as 'Id Encargado', e.VcEncTb05_Clave as 'Clave'
+	select u.VcUsuTb01_Cedula as 'Cedula', u.VcUsuTb01_Nombre as 'Nombre', u.VcUsuTb01_Ape1 as 'Apellido1',
+    u.VcUsuTb01_Ape2 as 'Apellido2', u.VcUsuTb01_Direccion as 'Direccion', u.CrUsuTb01_Sexo as 'Genero',
+    u.VcUsuTb01_Telefono as 'Telefono', u.VcUsuTb01_Email as 'Email', e.VcEncTb05_Clave as 'Clave'
     from EncTb05 as e inner join usutb01 as u on e.VcEncTb05_IdEncargado = u.VcUsuTb01_Cedula
   where e.VcEncTb05_IdEncargado = cedula;
 end $
@@ -740,6 +795,14 @@ begin
 	order by enctb05.VcEncTb05_IdEncargado;
 end $
 call PaEncTb05_Listar();
+
+/* Eliminar Encargado */
+delimiter $
+create procedure `PaEncTb05_Eliminar`(in id varchar(20))
+begin
+	delete from enctb05 where VcEncTb05_IdEncargado = id;
+end $
+call PaEncTb05_Eliminar('60890453');
 
 /**************************************************************************************************************************************************************/
 		/* FunTb06 */
@@ -1009,7 +1072,8 @@ end $
 delimiter $
 CREATE PROCEDURE PaEspecialidadTb16_Listar()
 begin
-	select * from especialidadtb16
+	select VcEspecialidadTb16_IdEspecialidad as 'Id', VcEspecialidadTb16_Nombre as 'Nombre',InEspecialidadTb16_Cupo  as 'Cupo' 
+    from especialidadtb16
 	order by especialidadtb16.VcEspecialidadTb16_IdEspecialidad;
 end $
 /*call sisae.PaEspecialidadTb16_Listar();*/
@@ -1078,13 +1142,19 @@ begin
 	insert into AsistClaseTb18 (VcAsistClaseTb18_IdAsistClase, DtAsistClaseTb18_Fecha, TmAsistClaseTb18_Hora, VcAsistClaseTb18_Estado, VcMateriaTb17_IdMateria)
     values (IdAsist, Fec, Hora, Estado, IdMa);
 end $
-call sisae.PaAsistClaseTb18_GuardarAsistClase('AC03', '2017/07/05', '8:00', 'Presente', 'M01');
+call sisae.PaAsistClaseTb18_GuardarAsistClase('AC01', '2017/07/05', '7:00', 'Presente', 'M01');
+call sisae.PaAsistClaseTb18_GuardarAsistClase('AC02', '2017/07/06', '7:00', 'Presente', 'M02');
+call sisae.PaAsistClaseTb18_GuardarAsistClase('AC03', '2017/07/07', '8:00', 'Ausente', 'M02');
+call sisae.PaAsistClaseTb18_GuardarAsistClase('AC04', '2017/07/08', '7:00', 'Presente', 'M04');
+call sisae.PaAsistClaseTb18_GuardarAsistClase('AC05', '2017/07/09', '9:00', 'Tardía', 'M03');
 
 /* Buscar Asistencia Clase */
 delimiter $
 create procedure PaAsistClaseTb18_BuscarAsistClase(in IdAsis varchar(20))
 begin
-	select * from AsistClaseTb18
+	select VcAsistClaseTb18_IdAsistClase AS 'Id', DtAsistClaseTb18_Fecha as 'Fecha', 
+    TmAsistClaseTb18_Hora as 'Hora', VcAsistClaseTb18_Estado as 'Estado', VcMateriaTb17_IdMateria as 'Id_Materia' 
+    from AsistClaseTb18
      where asistclasetb18.VcAsistClaseTb18_IdAsistClase = IdAsis;
 end $
 /*call sisae.PaAsistClaseTb18_BuscarAsistClase('AC03');*/
@@ -1167,10 +1237,57 @@ end $
 /*call sisae.PaSeccionTb20_EliminarSeccion('7-1');*/
 
 /**************************************************************************************************************************************************************/
+	/* HorarioTb28 */
+/* Guardar Horario */
+delimiter $
+create procedure PaHorarioTb28_GuardarHorario(in IdHorario varchar(20), in IdMat varchar(20),
+in Dia varchar(20), in HoraIni time, in HoraFin time)
+begin
+	insert into HorarioTb28 (VcHorarioTb28_IdHorario, VcMateriaTb17_IdMateria,
+    VcHorarioTb28_Dia,VcHorarioTb28_HoraInicio,VcHorarioTb28_HoraFin)
+    values (IdHorario, IdMat,Dia,HoraIni,HoraFin);
+end $
+call sisae.PaHorarioTb28_GuardarHorario('H01', 'M02', 'Lunes', '8:00', '10:00');
 
+/* Listar Horario */
+delimiter $
+CREATE PROCEDURE PaHorarioTb28_Listar()
+begin
+	select h.VcHorarioTb28_IdHorario as 'Id', h.VcMateriaTb17_IdMateria as 'Id_Materia', h.VcHorarioTb28_Dia as 'Dia',
+    h.VcHorarioTb28_HoraInicio as 'Hora_Inicio', h.VcHorarioTb28_HoraFin as 'Hora_Fin' from HorarioTb28 h
+	order by h.VcHorarioTb28_IdHorario;
+end $
+/*call sisae.PaHorarioTb28_Listar();*/
 
+/* Buscar Horario */
+delimiter $
+create procedure PaHorarioTb28_BuscarHorario(in IdHo varchar(20))
+begin
+	select h.VcHorarioTb28_IdHorario as 'Id', h.VcMateriaTb17_IdMateria as 'Id_Materia', h.VcHorarioTb28_Dia as 'Dia',
+    h.VcHorarioTb28_HoraInicio as 'Hora_Inicio', h.VcHorarioTb28_HoraFin as 'Hora_Fin' from HorarioTb28 h
+     where h.VcHorarioTb28_IdHorario = IdHo;
+end $
+/*call sisae.PaHorarioTb28_BuscarHorario('H01');*/
 
+/* Actualizar Horario */
+delimiter $
+create procedure PaHorarioTb28_ActualizarHorario(in IdHorario varchar(20), in IdMat varchar(20),
+in Dia varchar(20), in HoraIni time, in HoraFin time)
+begin
+	update HorarioTb28 h
+    set   h.VcMateriaTb17_IdMateria = IdMat, h.VcHorarioTb28_Dia = Dia, 
+    h.VcHorarioTb28_HoraInicio = HoraIni, h.VcHorarioTb28_HoraFin = HoraFin
+    where h.VcHorarioTb28_IdHorario = IdHorario;
+end $
+/*call sisae.PaHorarioTb28_ActualizarHorario('H01', 'M03', 'Viernes', '8:00', '10:00');*/
 
+/* Eliminar Horario */
+delimiter $
+create procedure PaHorarioTb28_EliminarHorario(in IdHo varchar(20))
+begin
+	delete from HorarioTb28  where HorarioTb28.VcHorarioTb28_IdHorario = IdHo;
+end $
+/*call sisae.PaHorarioTb28_EliminarHorario('H01');*/
 /**************************************************************************************************************************************************************/
 
 
