@@ -5,7 +5,7 @@ $sql1= "CALL PaAsistClaseTb18_BuscarAsistClase($_GET[busqueda])";
 $query = $con->query($sql1);
 ?>
 
-<?php if($query->num_rows>0):?>
+<?php if($query->num_rows > 0):?>
 <table class="table table-bordered table-hover">
 <thead>
   <th>Id</th>

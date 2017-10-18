@@ -1,3 +1,4 @@
-<?php include "../Controlador/conexion.php";
+<?php 
+require '../Controlador/conexion.php';
 $result = $con->query("CALL PaAsistClaseTb18_Listar()");
 ?>

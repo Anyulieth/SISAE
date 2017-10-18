@@ -8,7 +8,10 @@ if(!empty($_POST)){
 		{			
 			$sql = "CALL PaAsistClaseTb18_ActualizarAsistClase(\"$_POST[IdAC]\",\"$_POST[Fecha]\",\"$_POST[Hora]\",\"$_POST[Estado]\",\"$_POST[IdMateria]\")";
 			$query = $con->query($sql);
-			if(!$query){print 'No se pudo actualizar!!';}
+			if(!$query)
+			{
+				print 'No se pudo actualizar!!';
+			}
 		}
 	}
 }
