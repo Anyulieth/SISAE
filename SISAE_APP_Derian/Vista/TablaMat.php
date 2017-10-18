@@ -19,13 +19,13 @@ if($result->num_rows>0):?>
     $('#bor-'+<?php echo $r['Id']?>).click(function(e){
       e.preventDefault();
       p = confirm('¿Está Seguro?');
-      if(p){$.get('./Controlador/Materia/EliminarMat.php','ced='+<?php echo $r['Id']?>,function(status){
+      if(p){$.get('./Controlador/Materia/EliminarMat.php','idm='+<?php echo $r['Id']?>,function(status){
         $('#tabla').html('');
         CargarTabla();
       });}
     });
-</script>
-	</td>
+    </script>
+    </td>
 </tr>
 <?php endwhile;?>
 </table>
@@ -35,14 +35,14 @@ if($result->num_rows>0):?>
 <script>
 $(".btn-edit").click(function(){
       id = $(this).data("id");
-      $.get("./Controlador/Materia/Formulario_Editar_Mat.php","id="+id,function(data){
-        $("#form-Editar").html(data);
+      $.get("./Controlador/Materia/Formulario_Editar_Mat.php","idm="+id,function(data){
+        $("#form-Editar").html(data); 
       });
-      $('#ModalEditar').modal('show');
-    });
+      $('#Modal_Editar').modal('show');      
+    }); 
 </script>
 
-<div class="modal fade" id="ModalEditar" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_Editar" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

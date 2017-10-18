@@ -12,13 +12,13 @@
 					<button type="submit" class="btn btn-default">
 						&nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;
 					</button>
-					<a data-toggle="modal" href="#AddModal" class="btn btn-default">Agregar</a>
+					<a data-toggle="modal" href="#Modal" class="btn btn-default">Agregar</a>
 				</form>
 
 				<br>
 				<!-- Modal -->
 				<!-- Modal -->
-				<div class="modal fade" id="AddModal" role="dialog" >
+				<div class="modal fade" id="Modal" role="dialog" >
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -35,21 +35,32 @@
 									</div>
 									<div class="form-group">
 										<label for="Fecha">Fecha</label>
-										<input type="text" class="form-control" name="Fecha" >
+										<div class='input-group date' id='Fecha'>
+											<input type='date' class="form-control" name="Fecha"/>
+											<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+										</div>
 									</div>
 									<div class="form-group">
 										<label for="Hora">Hora</label>
-										<input type="text" class="form-control" name="Hora">
+										<input type="time" class="form-control" name="Hora">
 									</div>
 									<div class="form-group">
 										<label for="Estado">Estado</label>
 										<input type="text" class="form-control" name="Estado">
 									</div>
-									<div class="form-group">
-										<label for="IdMateria">Id Materia</label>
-										<input type="text" class="form-control" name="IdMateria">
+									<div class="form-group"> 
+										<label for="Materia">Materia: </label>
+										<select name="IdMateria">	
+											<?php
+											include "../Controlador/conexion.php";
+											$query = $con -> query("CALL PaMateriaTb17_Listar()");
+											while ($valores = mysqli_fetch_array($query)) 
+											{ 
+												echo '<option value="' . $valores["Id"] . '">' . $valores["Nombre"] . '</option>';
+											}
+											?>
+										</select>
 									</div>
-
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-success">
 											Agregar
@@ -76,7 +87,7 @@
 				$.post('Controlador/AsistClase/AgregarAsistClase.php', $('#agregar').serialize(), function(status) {
 				});
 				$('#agregar')[0].reset();
-				$('#AddModal').modal('hide');
+				$('#Modal').modal('hide');
 				$('#tabla').html('');
 				CargarTabla();
 			});

@@ -7,7 +7,7 @@ if($result->num_rows>0):?>
   <th>Fecha</th>
   <th>Hora</th>
   <th>Estado</th>
-  <th>Id Materia</th>
+  <th>Materia</th>
 	<th></th>
 </thead>
 <?php while ($r=$result->fetch_array()):?>
@@ -17,7 +17,7 @@ if($result->num_rows>0):?>
   <td><?php echo $r["Hora"]; ?></td>  
   <td><?php echo $r["Estado"]; ?></td>
   <td><?php echo $r["Id_Materia"]; ?></td>
-	
+
 	<td style="width:150px;">
     <a data-id="<?php echo $r["Id"];?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
     <a href="#" id="bor-<?php echo $r["Id"];?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>

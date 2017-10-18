@@ -12,13 +12,13 @@
 					<button type="submit" class="btn btn-default">
 						&nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;
 					</button>
-					<a data-toggle="modal" href="#AddModal" class="btn btn-default">Agregar</a>
+					<a data-toggle="modal" href="#Modal" class="btn btn-default">Agregar</a>
 				</form>
 
 				<br>
 				<!-- Modal -->
 				<!-- Modal -->
-				<div class="modal fade" id="AddModal" role="dialog">
+				<div class="modal fade" id="Modal" role="dialog">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -61,7 +61,7 @@
 				$.post('Controlador/Materia/AgregarMat.php', $('#agregar').serialize(), function(status) {
 				});
 				$('#agregar')[0].reset();
-				$('#AddModal').modal('hide');
+				$('#Modal').modal('hide');
 				$('#tabla').html('');
 				CargarTabla();
 			});
