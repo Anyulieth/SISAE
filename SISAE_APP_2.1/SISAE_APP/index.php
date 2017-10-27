@@ -35,6 +35,12 @@ $("#contenido").load('Vista/Seg_Nivel/Nivel_1/AsistClase.php');
 function matricula(){
 $("#contenido").load('Vista/Seg_Nivel/Nivel_1/Matricula.php');
 }
+function asistCole(){
+$("#contenido").load('Vista/Seg_Nivel/Nivel_1/AsistCole.php');
+}
+function especialidad(){
+$("#contenido").load('Vista/Seg_Nivel/Nivel_1/Especialidad.php');
+}
 </script>
   </head>
 
@@ -69,6 +75,8 @@ $("#contenido").load('Vista/Seg_Nivel/Nivel_1/Matricula.php');
   <a href="#" onclick="encargado();">Padres</a>
   <a href="#" onclick="seccion();">Secciones</a>
   <a href="#" onclick="materia();">Materias</a>
+  <a href="#" onclick="asistCole();">Asistencia Colegio</a>
+  <a href="#" onclick="especialidad();">Especialidad</a>
   <a href="">Horarios</a>
   <a href="">Comunicados</a>
   <a href="">Reportes</a>
