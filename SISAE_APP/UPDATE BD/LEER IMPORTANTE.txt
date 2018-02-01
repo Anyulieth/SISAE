@@ -1,0 +1,2 @@
+Por favor cada vez que realice un cambio en la Base de Datos,
+dumpearla e introducirla aquí para poder hacer el update y trabajar todos juntos.
