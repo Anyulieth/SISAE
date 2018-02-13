@@ -11,33 +11,6 @@ class SeccionCl19 extends conexion
 	{
 		$con = new conexion();
 	}
-	
-	public function setPInCl19_IdSeccion($IdS)
-	{
-		$this->PInCl19_IdSeccion = $IdS;
-	}
-	public function getPInCl19_IdSeccion()
-	{
-		return $this->PStCl19_IdSeccion;
-	}
-	
-	public function setPInCl17_Cupo($Cupo)
-	{
-		$this->PInCl17_Cupo = $Cupo;
-	}
-	public function getPInCl17_Cupo()
-	{
-		return $this->PInCl17_Cupo;
-	}
-
-	public function setPInCl17_Num_Grupo($Num_Grupo)
-	{
-		$this->PInCl17_Num_Grupo = $Num_Grupo;
-	}
-	public function getPInCl17_Num_Grupo()
-	{
-		return $this->PInCl17_Num_Grupo;
-	}
 
 	public function SeccionCl19_AddSec($PInCl17_Cupo, $PInCl17_Num_Grupo, $grado)
 	{
@@ -120,6 +93,34 @@ class SeccionCl19 extends conexion
 		$sql = "CALL PaProfTb04_Listar_Asigna();";
 		$result = $con->query($sql);
 		return $result;
+	}
+	
+	public function SeccionCl19_ListaNumSec()
+	{
+		$con = new conexion();
+		$sql = "CALL PaSeccionTb20_ListaNumSec();";
+		$result = $con->query($sql);
+		return $result;
+	}
+	
+	public function SeccionCl19_ListaEstSec($gra,$sec)
+	{
+		$con = new conexion();
+		$sql = "CALL PaEstTb03_VerPorSeccion('".$gra."','".$sec."');";
+		$result = $con->query($sql);
+		return $result;
+	}
+	
+	public function SeccionCl19_BuscaSecCompleta($PStCl19_NumGrado,$PStCl19_NumSeccion)
+	{
+		$con = new conexion();
+		$sql = "CALL PaSeccionTb20_BuscarSecCompleta('".$PStCl19_NumGrado."','".$PStCl19_NumSeccion."');";
+		$result = $con->query($sql);
+		$r = $result->fetch_all(MYSQLI_ASSOC);
+		if ($r) 
+		{
+		 return $r;
+		}
 	}
 }
 ?>

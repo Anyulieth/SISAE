@@ -1,7 +1,8 @@
-<?php require_once '../../../Modelo/conexion.php'; 
+<?php
+require_once '../../../Modelo/conexion.php';
 $id_est = $_REQUEST['est'];
 $con = new conexion();
-$resultado = $con->query("CALL PaAsistEstTb23_Listar_Est(\"$id_est\")");
+$resultado = $con -> query("CALL PaAsistEstTb23_Listar_Est(\"$id_est\")");
 ?>
 
 <div class="col-md-4">
@@ -19,24 +20,30 @@ $resultado = $con->query("CALL PaAsistEstTb23_Listar_Est(\"$id_est\")");
 </thead>
 <?php foreach($resultado as $r):?>
 <tr>
-  <td<?php if($r["Estado"]=='Ausente'){echo ' style="background-color:#ef401c"';}elseif($r["Estado"]=='Justificado'){echo ' style="background-color:#9f26b7"';}else{echo ' style="background-color:#4caf4c"';}?> > <?php echo $r["Estado"];?> </td>
+  <td<?php
+	if ($r["Estado"] == 'Ausente') {echo ' style="background-color:#ef401c"';
+	} elseif ($r["Estado"] == 'Justificado') {echo ' style="background-color:#9f26b7"';
+	} else {echo ' style="background-color:#4caf4c"';
+	}
+?> > <?php echo $r["Estado"]; ?> </td>
   <td><?php echo $r["Hora"]; ?></td>
   <td><?php echo $r["Fecha"]; ?></td>
   <td><?php echo $r["Materia"]; ?></td>
 </tr>
-<?php endforeach;?>
+<?php endforeach; ?>
 </table>
 
 <script type="text/javascript">
-	$('#filtro').submit(function(e){
+		$('#filtro').submit(function(e){
     e.preventDefault();
-    var pa = {'fech':$('#fech').val(),'id_est':'<?php echo $id_est;?>'}
-    $.ajax({
-      url:'Vista/Seg_Nivel/Nivel_3/BuscarFecha.php',
-      data:pa,
-      success:function(data){
-        $('#tb').html(data);
-      }
-    });
-  });
+    var pa = {'fech':$('#fech').val(),'id_est':'<?php echo $id_est; ?>
+		'}
+		$.ajax({
+		url:'Vista/Seg_Nivel/Nivel_3/BuscarFecha.php',
+		data:pa,
+		success:function(data){
+		$('#tb').html(data);
+		}
+		});
+		});
 </script>

@@ -108,10 +108,10 @@ $(".btn-agreS").click(function(){
 
 $(".btn-ver").click(function(){
   ids = $(this).data("id");
-   $.get("Controlador/Profesor/Tabla_Info.php","Id_sec="+ids,function(data){
+   $.get("Controlador/Sec-Grupo/Tabla_VerEst.php","Id_sec="+ids,function(data){
         $("#tabla-info").html(data); 
       });
-      $('#Modal_Info').modal('show'); 
+      $('#Modal_Ver').modal('show'); 
 });
 </script>
 

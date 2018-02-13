@@ -103,5 +103,13 @@ class MateriaCl16 extends conexion
 		$result = $con->query($sql);
 		return $result;
 	}
+	
+	public function MateriaCl16_Asignacion()
+	{
+		$con = new conexion();
+		$sql = "CALL PaMateriaTb17_Listar_Asigna();";
+		$result = $con->query($sql);
+		return $result;
+	}
 }
 ?>

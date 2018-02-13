@@ -49,7 +49,7 @@
 									<input type="text" class="form-control" name="direccion">
 								</div>
 								<div class="form-group">
-									<label for="Genero">Genero</label>
+									<label for="Genero">Género</label>
 									<label>
 										<input type="radio" name="genero" value="F">
 										Femenino</label>
@@ -58,11 +58,11 @@
 										Masculino</label>
 								</div>
 								<div class="form-group">
-									<label for="Telefono">Telefono</label>
+									<label for="Telefono">Teléfono</label>
 									<input type="text" class="form-control" name="telefono">
 								</div>
 								<div class="form-group">
-									<label for="email">Correo electronico</label>
+									<label for="email">Correo electrónico</label>
 									<input type="text" class="form-control" name="email">
 								</div>
 								<div class="form-group">

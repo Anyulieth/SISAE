@@ -18,7 +18,7 @@ $busq =$_GET['ced'];
 ?>
 
 <?php foreach ($result as $r): ?> 
-<form role="form" id="actualizar" method="post">
+<form role="form" id="infoEst" method="post">
 	<h2> Estudiante: <?php echo $r["Cedula"];?> </h2>
 	<div class="form-group">
 		<label for="nombre">Nombre Completo</label>
@@ -84,7 +84,7 @@ $result = $mat->MateriaCl16_ListaTodo();
 <tr>
   <td><?php echo $r["Id"]; ?></td>
   <td><?php echo $r["Nombre"]; ?></td>
-  <td><label><input type="checkbox" value="Justificado:<?php echo $r['Id'];?>" id="" name="<?php echo $cont;?>"></label></td>
+  <td><label><input type="checkbox" value="<?php echo $r['Id'];?>" id="" name=""></label></td>
 </tr>
 <?php endforeach;?>
 </table>
@@ -97,23 +97,47 @@ $result = $mat->MateriaCl16_ListaTodo();
     <?php 
 require_once '../../Modelo/SeccionCl19.php';
 $sec = new SeccionCl19(); 
-$idSec= $_GET['sec'];
+/*$idSec= $_GET['sec'];*/
 $result = $sec->SeccionCl19_ListaTodo();
 ?>
 <?php if($result):?>
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead> 
-  <th>Id</th>
   <th>Cupo</th>
-  <th>Sección</th>
+  <th>Grado</th>
+  <th>Grupo</th>
   <th>Asignar</th>
 </thead>
 <?php foreach ($result as $r):?>
 <tr>
-  <td><?php echo $r["ID_Seccion"]; ?></td>
   <td><?php echo $r["Cupo"]; ?></td>
-  <td><?php echo $r["Seccion"]; ?></td>
-  <td><label><input type="checkbox" value="Justificado:<?php echo $r['ID_Seccion'];?>" id="" name="<?php echo $cont;?>"></label></td>
+  <td><?php echo $r["Grado"]; ?>
+  	<!--<select class="form-control" name="Grado">
+   <?php
+   require_once '../../Modelo/GradoCl12.php';
+                    $gra = new GradoCl12();
+                    $query = $gra -> GradoCl12_ListaTodo();
+                    while ($valores = mysqli_fetch_array($query)) {
+                      echo '<option value="' . $valores["id_grado"] . '">' ;
+                      if ($valores["id_grado"] == $r["ID_Seccion"])
+                      echo 'selected';
+                      echo  $valores["Nombre"] . '</option>';
+                    }
+                    ?>               
+  </select>--></td>
+  <td><?php echo $r["Grupo"]; ?>
+  	<!--<select class="form-control" name="Grupo">
+   <?php
+   require_once '../../Modelo/SeccionCl19.php';
+                    $sec = new SeccionCl19();
+                    $query = $sec -> SeccionCl19_ListaNumSec();
+                    while ($valores = mysqli_fetch_array($query)) {
+                      echo '<option value="' . $valores["ID_Seccion"] . '">' . $valores["Grupo"] . '</option>';
+                    }
+                    ?>               
+  </select>-->
+</td> 
+  <td><label><input type="radio" value="<?php echo $r['ID_Seccion'];?>" name="Seccion"></label></td>
 </tr>
 <?php endforeach;?>
 </table>
@@ -125,9 +149,9 @@ $result = $sec->SeccionCl19_ListaTodo();
   <script type="text/javascript">
 $('.btn-agre').click(function(){
 idMat = $(this).data('id');
-var parametros = {"idEst":"<?php echo $idEst;?>","idMat":idMat};
+var parametros = {"idEst":"<?php echo $idEst;?>","idMat":idMat,"idSec":idSec};
 $.ajax({
-    url:"Controlador/Estudiante/Asignar_Mat.php",
+    url:"Controlador/Estudiante/Asignar_Matri.php",
     data: parametros,
     success:function(data){
        $('#Modal_Matri').modal('hide');
