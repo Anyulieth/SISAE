@@ -1,1 +1,0 @@
-https://www.clickatell.com/developers/api-documentation/rest-api-send-message/
