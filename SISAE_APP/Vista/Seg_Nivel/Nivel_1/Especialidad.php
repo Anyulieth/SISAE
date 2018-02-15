@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<h2 class="page-header" style="background-color:#6b6bec;color:white;">Estudiantes</h2>
+			<h2 class="page-header" style="background-color:#6b6bec;color:white;">Especialidad</h2>
 			<form class="form-inline" role="search" id="buscar" style="float:left;">
 				<div class="form-group">
 					<input type="text" name="busqueda" class="form-control" placeholder="Buscar" onkeyup="bus();" id="busc">
@@ -30,7 +30,7 @@
 						<div class="modal-body">
 							<form role="form" id="agregar" method="post">
 								<div class="form-group">
-									<label for="cedula">Cedula</label>
+									<label for="cedula">ID Especialidad</label>
 									<input type="text" class="form-control" name="cedula">
 								</div>
 								<div class="form-group">
@@ -38,72 +38,10 @@
 									<input type="text" class="form-control" name="nombre">
 								</div>
 								<div class="form-group">
-									<label for="Apellido1">1° Apellido</label>
+									<label for="Apellido1">Cupo</label>
 									<input type="text" class="form-control" name="Apellido1">
 								</div>
-								<div class="form-group">
-									<label for="Apellido2">2° Apellido</label>
-									<input type="text" class="form-control" name="Apellido2">
-								</div>
-								<div class="form-group">
-									<label for="Direccion">Domicilio</label>
-									<input type="text" class="form-control" name="direccion">
-								</div>
-								<div class="form-group">
-									<label for="Genero">Género</label>
-									<label>
-										<input type="radio" name="genero" value="F">
-										Femenino</label>
-									<label>
-										<input type="radio" name="genero" value="M">
-										Masculino</label>
-								</div>
-								<div class="form-group">
-									<label for="Telefono">Teléfono</label>
-									<input type="text" class="form-control" name="telefono">
-								</div>
-								<div class="form-group">
-									<label for="email">Correo electrónico</label>
-									<input type="text" class="form-control" name="email">
-								</div>
-								<div class="form-group">
-									<label for="fecha_nac">Fecha de Nacimiento</label>
-									<div class='input-group date' id='fecha'>
-										<input type='date' class="form-control" name="fecha_nac"/>
-										<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="Adecuacion">Adecuacion: </label>
-									<select name="Adecuacion">
-										<option value="No">No</option>
-										<option value="No_Significativa">No Significativa</option>
-										<option value="Significativa">Significativa</option>
-										<option value="Acceso">Acceso</option>
-									</select>
-								</div>
-								<div class="form-group">
-										<label for="Estado">Estado</label>
-										<label>
-											<input type="radio" name="estado" value="A">
-											Activo</label>
-										<label>
-											<input type="radio" name="estado" value="I">
-											Inactivo</label>
-									</div>
-								<div class="form-group">
-									<label for="Id_Especialidad">Especialidad</label>
-									<select name="Id_Especialidad">
-										<?php
-										require_once '../../../Modelo/EspecialidadCl15.php';
-										$esp = new EspecialidadCl15();
-										$query = $esp -> EspecialidadCl15_ListaTodo();
-										while ($valores = mysqli_fetch_array($query)) {
-											echo '<option value="' . $valores["Id"] . '">' . $valores["Nombre"] . '</option>';
-										}
-										?>
-									</select>
-								</div>
+								
 								<div class="modal-footer">
 									<button type="submit" class="btn btn-success">
 										Agregar
