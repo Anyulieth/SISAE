@@ -8,16 +8,15 @@ $busq =$_GET['Id'];
 
 <?php foreach ($result as $r): ?> 
 <form role="form" id="actualizar" method="post">
-	<h2>Editando Especialidad: <?php echo $r["Id"];?> </h2>
+	<h2>Editando Especialidad: <?php echo $r["Nom_Especialidad"];?> </h2>
 	<div class="form-group">
-		<label for="nombre">Nombre</label>
-		<input type="text" class="form-control" name="nombre" value="<?php echo $r["Nombre"]; ?>">
+		<label for="Nombre">Nombre</label>
+		<input type="text" class="form-control" value="<?php echo $r["Nom_Especialidad"]; ?>" name="Nombre">
 	</div>
 	<div class="form-group">
 		<label for="Apellido1">Cupo</label>
-		<input type="text" class="form-control" name="Cupo" value="<?php echo $r["Cupo"]; ?>">
+		<input type="text" class="form-control" value="<?php echo  $r["Cupo_Especialidad"]; ?>" name="Apellido1">
 	</div>
-	<input type="hidden" name="cedula" value="<?php echo $r['Id']; ?>">
 	<button type="submit" class="btn btn-default">
 		Actualizar
 	</button>

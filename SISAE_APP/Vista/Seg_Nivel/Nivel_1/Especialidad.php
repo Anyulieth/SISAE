@@ -59,7 +59,7 @@
 			$('#agregar').submit(function(e) {
 				e.preventDefault();
 				$.post('Controlador/Especialidad/AgregarEsp.php', $('#agregar').serialize(), function(data) {
-					if (data != 1) {
+					if (!data) {
 						swal('Ups...', 'Algo salió mal!', 'error');
 					} else {
 						$('#agregar')[0].reset();
