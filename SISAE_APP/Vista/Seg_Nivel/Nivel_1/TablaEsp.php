@@ -2,9 +2,9 @@
 $pagina = $_REQUEST['pagina'];
 $por_pagina = 10;
 $inicio = ($pagina -1)*$por_pagina;
-$esp = new EspecialidadCl15_ListaEsp();
+$esp = new EspecialidadCl15();
 $result = $esp->EspecialidadCl15_ListaEsp($inicio,$por_pagina);
-$total = $esp->EspecialidadCl15_cantidad()();
+$total = $esp->EspecialidadCl15_Cantidad();
 $total_botones = ceil($total/$por_pagina);
 if($total>$por_pagina):?>
 <div class="table-pagination pull-right">
@@ -15,7 +15,7 @@ if($total>$por_pagina):?>
   <?php endfor; ?>
 </div>
 </div> 
-<?php endif; ?>
+<?php endif; ?> 
 <label style="float:right;margin-right:8px;">Total <?php echo $total; ?></label>
 
 <table class="table table-bordered table-hover" style="font-size:13px;">

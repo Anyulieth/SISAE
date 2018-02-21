@@ -99,7 +99,7 @@ class EspecialidadCl15 extends conexion
 
 	public function EspecialidadCl15_ListaEsp($inicio,$por_pagina)
 	{
-		$con = new conexion();
+		$con = new conexion(); 
 		$sql = "CALL PaEspecialidadTb16_Listar($inicio,$por_pagina);";
 		$result = $con->query($sql);
 		return $result;
@@ -111,9 +111,9 @@ class EspecialidadCl15 extends conexion
 		$sql = "CALL PaEspecialidadTb16_Listar_Todos();";
 		$result = $con->query($sql);
 		return $result;
-	}
+	} 
 
-	function EspecialidadCl15_cantidad()
+	function EspecialidadCl15_Cantidad()
 	{
 		$con = new conexion();
 		$consulta = $con -> query("select count(*) as cantidad from EspecialidadTb16");
