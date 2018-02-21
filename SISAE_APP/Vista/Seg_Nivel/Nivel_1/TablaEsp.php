@@ -28,7 +28,7 @@ if($total>$por_pagina):?>
 <tr>
   <td><?php echo $r["Nombre"]; ?></td>
   <td><?php echo $r["Cupo"]; ?></td>
-  <td style="width:230px;">
+  <td style="width:200px;">
     <a data-id="<?php echo $r["Id"]; ?>" class="btn btn-edit btn-sm btn-warning" style="width:50px">Editar</a>
     <a href="#" id="bor-<?php echo $r["Id"]; ?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
     <script>
@@ -68,7 +68,6 @@ if($total>$por_pagina):?>
 		});
 		});
 </script> 
-<a href="#" data-id="<?php echo $r["Cedula"]; ?>" style="width:90px" class="btn btn-matri btn-md btn-success">Agregar</a>
       </td>
 </tr>
 <?php } ?>
