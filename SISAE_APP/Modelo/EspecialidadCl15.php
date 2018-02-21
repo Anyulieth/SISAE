@@ -57,7 +57,7 @@ class EspecialidadCl15 extends conexion
 	{
 		$con = new conexion();
 		$sql = "CALL PaEspecialidadTb16_ActualizarEspecialidad('".$PInCl15_IdEspecialidad."',
-		'".$PStCl15_Nombre."','".$PInCl15_Cupo."','".$PStCl01_Email."');";
+		'".$PStCl15_Nombre."','".$PInCl15_Cupo."');";
 		$edit = $con->query($sql);
 		return $edit;
 	}

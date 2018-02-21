@@ -30,16 +30,12 @@
 						<div class="modal-body">
 							<form role="form" id="agregar" method="post">
 								<div class="form-group">
-									<label for="cedula">ID Especialidad</label>
-									<input type="text" class="form-control" name="cedula">
-								</div>
-								<div class="form-group">
 									<label for="nombre">Nombre</label>
-									<input type="text" class="form-control" name="nombre">
+									<input type="text" class="form-control" name="Nombre">
 								</div>
 								<div class="form-group">
 									<label for="Apellido1">Cupo</label>
-									<input type="text" class="form-control" name="Apellido1">
+									<input type="text" class="form-control" name="Cupo">
 								</div>
 								
 								<div class="modal-footer">
@@ -62,7 +58,7 @@
 		<script type="text/javascript">
 			$('#agregar').submit(function(e) {
 				e.preventDefault();
-				$.post('Controlador/Estudiante/AgregarEst.php', $('#agregar').serialize(), function(data) {
+				$.post('Controlador/Especialidad/AgregarEsp.php', $('#agregar').serialize(), function(data) {
 					if (data != 1) {
 						swal('Ups...', 'Algo salió mal!', 'error');
 					} else {
@@ -81,7 +77,7 @@
 				};
 				$("#animacion").fadeIn('slow');
 				$.ajax({
-					url : 'Vista/Seg_Nivel/Nivel_1/TablaEst.php',
+					url : 'Vista/Seg_Nivel/Nivel_1/TablaEsp.php',
 					data : parametros,
 					success : function(data) {
 						$("#tabla").html(data).fadeIn('slow');
@@ -99,7 +95,7 @@
 					'busqueda' : $('#busc').val()
 				};
 				$.ajax({
-					url : "Controlador/Estudiante/BuscarEst.php",
+					url : "Controlador/Especialidad/BuscarEsp.php",
 					data : par,
 					success : function(data) {
 						$('#tabla').html(data);
