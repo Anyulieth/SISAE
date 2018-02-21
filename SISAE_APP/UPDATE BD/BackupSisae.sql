@@ -263,7 +263,7 @@ CREATE TABLE `especialidadtb16` (
   `VcEspecialidadTb16_Nombre` varchar(20) NOT NULL,
   `InEspecialidadTb16_Cupo` int(11) NOT NULL,
   PRIMARY KEY (`InEspecialidadTb16_IdEspecialidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,7 +272,7 @@ CREATE TABLE `especialidadtb16` (
 
 LOCK TABLES `especialidadtb16` WRITE;
 /*!40000 ALTER TABLE `especialidadtb16` DISABLE KEYS */;
-INSERT INTO `especialidadtb16` VALUES (1,'Informatica',30),(2,'Contabilidad',15),(3,'AyB',20);
+INSERT INTO `especialidadtb16` VALUES (1,'Informatica',30),(2,'Contabilidad',15),(3,'AyB',20),(5,'esp',12);
 /*!40000 ALTER TABLE `especialidadtb16` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -503,7 +503,7 @@ CREATE TABLE `horariostb29` (
   `TmHorariosTb29_Hora_Inicio` time NOT NULL,
   `TmHorariosTb29_Hora_Final` time NOT NULL,
   PRIMARY KEY (`InHorariosTb29_IdHorario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -512,7 +512,7 @@ CREATE TABLE `horariostb29` (
 
 LOCK TABLES `horariostb29` WRITE;
 /*!40000 ALTER TABLE `horariostb29` DISABLE KEYS */;
-INSERT INTO `horariostb29` VALUES (1,'Lunes','08:00:00','10:00:00'),(2,'Martes','07:00:00','07:45:00');
+INSERT INTO `horariostb29` VALUES (1,'lunes','09:00:00','11:00:00'),(2,'Martes','07:00:00','07:45:00'),(3,'viernes','07:00:00','08:00:00');
 /*!40000 ALTER TABLE `horariostb29` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -802,7 +802,7 @@ CREATE TABLE `seguridadtb31` (
 
 LOCK TABLES `seguridadtb31` WRITE;
 /*!40000 ALTER TABLE `seguridadtb31` DISABLE KEYS */;
-INSERT INTO `seguridadtb31` VALUES ('function principal(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/principal.php\');}','<li><a class=\"glyphicon glyphicon-home\" style=\"margin-top:25px; \" href=\"index.php\"></a></li>','<a href=\"index.php\">Inicio</a>',1,1),('function profesor(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Profesor.php\');}',' <li><a class=\"glyphicon glyphicon-blackboard\" style=\"margin-top:15px; \" href=\"#\" onclick=\"profesor();\"></a></li>','<a href=\"#\" onclick=\"profesor();\">Profesores</a>',2,1),('function seccion(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Seccion-Grupo.php\');}   ','<li><a class=\"glyphicon glyphicon-sound-7-1\" style=\"margin-top:15px; \" href=\"#\" onclick=\"seccion();\"></a></li>','<a href=\"#\" onclick=\"seccion();\">Secciones</a>',4,1),('function encargado(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Encargado.php\');}','<li><a class=\"glyphicon glyphicon-eye-open\" style=\"margin-top:15px; \" href=\"#\" onclick=\"encargado();\"></a></li>','<a href=\"#\" onclick=\"encargado();\">Padres</a>',5,1),('function funcionario(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Funcionario.php\');}','<li><a class=\"glyphicon glyphicon-user\" style=\"margin-top:15px; \" href=\"#\" onclick=\"funcionario();\"></a></li>','<a href=\"#\" onclick=\"funcionario();\">Funcionarios</a>',6,1),('function estudiante(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Estudiante.php\');}','<li><a class=\"glyphicon glyphicon-education\" style=\"margin-top:15px; \" href=\"#\" onclick=\"estudiante();\"></a></li>','<a href=\"#\" onclick=\"estudiante();\">Estudiantes</a>',7,1),('function materia(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Materia.php\');}',' <li><a class=\"glyphicon glyphicon-book\" style=\"margin-top:15px; \" href=\"#\" onclick=\"materia();\"></a></li>','<a href=\"#\" onclick=\"materia();\">Materias</a>',8,1),('function principal(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_2/Asistencia.php\');\r\n}','nada','nada',9,2),('function principal(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_3/Encargado.php\');\r\n}',' ',' ',10,3),('function grado(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Grado.php\');}','<li><a class=\"glyphicon glyphicon-file\" style=\"margin-top:15px; \" href=\"#\" onclick=\"grado();\"></a></li>',' <a href=\"#\" onclick=\"grado();\">Grado</a>',11,1),('function bachiller(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Bachiller.php\');}','<li><a class=\"glyphicon glyphicon-list-alt\" style=\"margin-top:15px; \" href=\"#\" onclick=\"bachiller();\"></a></li>','<a href=\"#\" onclick=\"bachiller();\">Bachiller</a>',12,1),('function horario(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Horarios.php\');}','<li><a class=\"glyphicon glyphicon-tasks\" style=\"margin-top:15px; \" href=\"#\" onclick=\"horario();\"></a></li>','<a href=\"#\" onclick=\"horario();\">Horarios</a>',13,1),('function Usuario(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Usuario.php\');}','<li><a class=\"glyphicon glyphicon-wrench\" style=\"margin-top:15px; \"href=\"#\" onclick=\"Usuario();\"></a></li>','<a href=\"#\" onclick=\"Usuario();\">Usuarios</a>',14,1);
+INSERT INTO `seguridadtb31` VALUES ('function principal(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/principal.php\');}','<li><a class=\"glyphicon glyphicon-home\" style=\"margin-top:25px; \" href=\"index.php\"></a></li>','<a href=\"index.php\">Inicio</a>',1,1),('function profesor(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Profesor.php\');}',' <li><a class=\"glyphicon glyphicon-blackboard\" style=\"margin-top:15px; \" href=\"#\" onclick=\"profesor();\"></a></li>','<a href=\"#\" onclick=\"profesor();\">Profesores</a>',2,1),('function especialidad(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Especialidad.php\');}',' <li><a class=\"glyphicon glyphicon-blackboard\" style=\"margin-top:15px; \" href=\"#\" onclick=\"especialidad();\"></a></li>','<a href=\"#\" onclick=\"especialidad();\">Especilidad</a>',3,1),('function seccion(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Seccion-Grupo.php\');}   ','<li><a class=\"glyphicon glyphicon-sound-7-1\" style=\"margin-top:15px; \" href=\"#\" onclick=\"seccion();\"></a></li>','<a href=\"#\" onclick=\"seccion();\">Secciones</a>',4,1),('function encargado(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Encargado.php\');}','<li><a class=\"glyphicon glyphicon-eye-open\" style=\"margin-top:15px; \" href=\"#\" onclick=\"encargado();\"></a></li>','<a href=\"#\" onclick=\"encargado();\">Padres</a>',5,1),('function funcionario(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Funcionario.php\');}','<li><a class=\"glyphicon glyphicon-user\" style=\"margin-top:15px; \" href=\"#\" onclick=\"funcionario();\"></a></li>','<a href=\"#\" onclick=\"funcionario();\">Funcionarios</a>',6,1),('function estudiante(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Estudiante.php\');}','<li><a class=\"glyphicon glyphicon-education\" style=\"margin-top:15px; \" href=\"#\" onclick=\"estudiante();\"></a></li>','<a href=\"#\" onclick=\"estudiante();\">Estudiantes</a>',7,1),('function materia(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Materia.php\');}',' <li><a class=\"glyphicon glyphicon-book\" style=\"margin-top:15px; \" href=\"#\" onclick=\"materia();\"></a></li>','<a href=\"#\" onclick=\"materia();\">Materias</a>',8,1),('function principal(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_2/Asistencia.php\');\r\n}','nada','nada',9,2),('function principal(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_3/Encargado.php\');\r\n}',' ',' ',10,3),('function grado(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Grado.php\');}','<li><a class=\"glyphicon glyphicon-file\" style=\"margin-top:15px; \" href=\"#\" onclick=\"grado();\"></a></li>',' <a href=\"#\" onclick=\"grado();\">Grado</a>',11,1),('function bachiller(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Bachiller.php\');}','<li><a class=\"glyphicon glyphicon-list-alt\" style=\"margin-top:15px; \" href=\"#\" onclick=\"bachiller();\"></a></li>','<a href=\"#\" onclick=\"bachiller();\">Bachiller</a>',12,1),('function horario(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Horarios.php\');}','<li><a class=\"glyphicon glyphicon-tasks\" style=\"margin-top:15px; \" href=\"#\" onclick=\"horario();\"></a></li>','<a href=\"#\" onclick=\"horario();\">Horarios</a>',13,1),('function Usuario(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Usuario.php\');}','<li><a class=\"glyphicon glyphicon-wrench\" style=\"margin-top:15px; \"href=\"#\" onclick=\"Usuario();\"></a></li>','<a href=\"#\" onclick=\"Usuario();\">Usuarios</a>',14,1);
 /*!40000 ALTER TABLE `seguridadtb31` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2390,18 +2390,18 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_ActualizarHorario`(in Dia varchar(20), in HoraIni time, in HoraFin time)
-begin
-	update HorariosTb29 h
-    set  h.VcHorariosTb29_Dia = Dia, h.TmHorariosTb29_Hora_Inicio = HoraIni, h.TmHorariosTb29_Hora_Final = HoraFin
-    where h.InHorariosTb29_IdHorario = IdHorario;
-end ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_ActualizarHorario`(IN id int, IN Dia VARCHAR(20), IN HoraIni TIME, IN HoraFin TIME)
+BEGIN
+	UPDATE HorariosTb29 h
+    SET  h.VcHorariosTb29_Dia = Dia, h.TmHorariosTb29_Hora_Inicio = HoraIni, h.TmHorariosTb29_Hora_Final = HoraFin
+    WHERE h.InHorariosTb29_IdHorario = id;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2417,7 +2417,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_AgregarHorario`(IN dia varchar(20), in ini time, in fin time)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_AgregarHorario`(in dia varchar(20), in ini time, in fin time)
 BEGIN
 	insert into horariostb29 (VcHorariosTb29_Dia, TmHorariosTb29_Hora_Inicio, TmHorariosTb29_Hora_Final)
     values (dia, ini, fin);
@@ -2452,40 +2452,90 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_BuscarHorario`(in IdHo int)
-begin
-	select h.InHorariosTb29_IdHorario as 'Id', h.InMateriaTb17_IdMateria as 'Id_Materia', 
-    h.VcHorariosTb29_Dia as 'Dia', h.TmHorariosTb29_Hora_Inicio as 'Hora_Inicio', 
-    h.TmHorariosTb29_Hora_Final as 'Hora_Fin' 
-    from HorariosTb29 h
-	where h.InHorariosTb29_IdHorario = IdHo;
-end ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_BuscarHorario`(IN IdHo INT)
+BEGIN
+	SELECT h.InHorariosTb29_IdHorario AS 'Id', 
+    h.VcHorariosTb29_Dia AS 'Dia', h.TmHorariosTb29_Hora_Inicio AS 'Hora_Inicio', 
+    h.TmHorariosTb29_Hora_Final AS 'Hora_Fin' 
+    FROM HorariosTb29 h
+	WHERE h.InHorariosTb29_IdHorario = IdHo;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `PaHorarioTb28_EliminarHorario` */;
+/*!50003 DROP PROCEDURE IF EXISTS `PaHorariosTb29_BuscarHorarioD` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorarioTb28_EliminarHorario`(in IdHo int)
-begin
-	delete from HorariosTb29  
-    where HorariosTb29.InHorarioTb28_IdHorario = IdHo;
-end ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_BuscarHorarioD`(IN dato varchar(20))
+BEGIN
+	SELECT h.InHorariosTb29_IdHorario AS 'Id', h.VcHorariosTb29_Dia AS 'Dia', 
+    h.TmHorariosTb29_Hora_Inicio AS 'Hora_Inicio', h.TmHorariosTb29_Hora_Final AS 'Hora_Fin' 
+    FROM HorariosTb29 h
+	WHERE h.InHorariosTb29_IdHorario like concat('%',dato,'%')
+    or h.VcHorariosTb29_Dia like concat('%',dato,'%')
+    or h.TmHorariosTb29_Hora_Inicio like concat('%',dato,'%')
+    or h.TmHorariosTb29_Hora_Final like concat('%',dato,'%');
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaHorariosTb29_Listar` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_Listar`(IN `inicio` INT, IN `final` INT)
+BEGIN
+	SELECT HorariosTb29.InHorariosTb29_IdHorario AS 'Id', 
+    HorariosTb29.VcHorariosTb29_Dia AS 'Dia',
+    HorariosTb29.TmHorariosTb29_Hora_Inicio AS 'Hora_Inicio', 
+    HorariosTb29.TmHorariosTb29_Hora_Final AS 'Hora_Fin' 
+FROM  
+ HorariosTb29 
+ ORDER BY 'date added' LIMIT inicio,final;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaHorarioTb29_EliminarHorario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorarioTb29_EliminarHorario`(IN IdHo INT)
+BEGIN
+	DELETE FROM HorariosTb29  
+    WHERE InHorariosTb29_IdHorario = IdHo;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -3322,13 +3372,13 @@ THEN
     SeguridadTb31.VcSeguridadTb31_SideNav AS 'SideNav' FROM SeguridadTb31 
     WHERE SeguridadTb31.InSeguridadTb31_Nivel = 2;
 ELSEIF EXISTS(SELECT enctb05.VcEncTb05_IdEncargado FROM EncTb05 /*Encargado*/
-	WHERE EncTb05.VcEncTb05_IdEncargado = USER AND EncTb05.Vcenctb05_Clave = pass)
+	WHERE EncTb05.VcEncTb05_IdEncargado = usu AND EncTb05.Vcenctb05_Clave = pass)
 THEN 
 	SELECT SeguridadTb31.VcSeguridadTb31_Funcion AS 'Funcion',SeguridadTb31.VcSeguridadTb31_Glyphicons AS 'Iconos',
 	SeguridadTb31.VcSeguridadTb31_SideNav AS 'SideNav' FROM SeguridadTb31 
 	WHERE SeguridadTb31.InSeguridadTb31_Nivel = 3;
 ELSEIF EXISTS(SELECT  funtb06.VcFunTb06_IdFuncionario FROM funtb06 /*Funcionario*/
-	WHERE funtb06.VcFunTb06_IdFuncionario = USER AND funtb06.VcFunTb06_Clave = pass)
+	WHERE funtb06.VcFunTb06_IdFuncionario = usu AND funtb06.VcFunTb06_Clave = pass)
 THEN 
 	SELECT SeguridadTb31.VcSeguridadTb31_Funcion AS 'Funcion',SeguridadTb31.VcSeguridadTb31_Glyphicons AS 'Iconos',
 	SeguridadTb31.VcSeguridadTb31_SideNav AS 'SideNav' FROM SeguridadTb31 
@@ -3407,4 +3457,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-15 14:21:43
+-- Dump completed on 2018-02-21 12:46:40
