@@ -102,9 +102,9 @@ $(".btn-pag").click(function(e){
 $(".btn-asig").click(function(){
   idH = $(this).data("id");
    $.get("Controlador/Horarios/Tabla_Asigna_ProfHora.php","idH="+idH,function(data){
-        $("#tabla-asignar").html(data); 
-      });
-      $('#Modal_Asigna').modal('show'); 
+      $("#tabla-matri").html(data);
+    });
+    $('#Modal_Matri').modal('show');
 });
 </script>
 
@@ -122,7 +122,7 @@ $(".btn-asig").click(function(){
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
-  <div class="modal fade" id="Modal_Asigna" role="dialog" >
+  <div class="modal fade" id="Modal_Matri" role="dialog" >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -130,8 +130,10 @@ $(".btn-asig").click(function(){
           <h4 class="modal-title">Asignar Horario a Profesor</h4>
         </div>
         <div class="modal-body">
-        <div id="tabla-asignar"></div>
-        </div>
-      </div><!-- /.modal-content -->
+          <div id="tabla-matri"></div>
+        </div><div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+      </div>
+      </div><!-- /.modal-content -->  
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
