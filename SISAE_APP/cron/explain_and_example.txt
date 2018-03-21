@@ -1,0 +1,5 @@
+https://www.youtube.com/watch?v=xDxzpVBJ1rY
+
+https://www.codejobs.biz/es/blog/2014/07/17/envio-de-emails-masivos-o-simples-con-php-mysqli-y-phpmailer
+
+https://nideaderedes.urlansoft.com/2006/12/03/introduccion-a-phpmailer/
