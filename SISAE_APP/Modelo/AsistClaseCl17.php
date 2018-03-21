@@ -83,5 +83,13 @@ class AsistClaseCl17 extends conexion
 		$result = $con->query($sql);
 		return $result;
 	}
+    
+    public function AsistClaseCl17_BuscaEst($Id_Est){
+		$con = new conexion();
+		$sql = "call VerificarAsis('".$Id_Est."')";
+		$result = $con->query($sql);
+		return $result;
+	}
+    
 }
 ?>
