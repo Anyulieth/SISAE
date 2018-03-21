@@ -2,11 +2,11 @@
 require_once '../../Modelo/BachillerCl13.php'; 
 
 if(!empty($_POST)){
-	if(isset($_POST["IdB"])  && isset($_POST['NomB'])) 
+	if(isset($_POST["id"])  && isset($_POST['NomB'])) 
 	{
-		if($_POST['IdB']!=""  && $_POST['NomB']!="") 
+		if($_POST['id']!=""  && $_POST['NomB']!="") 
 		{			
-			$id = $_POST['IdB'];
+			$id = $_POST['id'];
 			$nom = $_POST['NomB'];
 
 			$bac = new BachillerCl13(); 

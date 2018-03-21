@@ -5,11 +5,11 @@ $id_Materia = $_GET['idm'];
 if($result->num_rows>0):?>
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead> 
-	<th>Cedula</th>
+	<th>Cédula</th>
 	<th>Nombre</th>
   <th>1° Apellido</th>
   <th>2° Apellido</th> 
-	<th></th>
+	<th>Opciones</th>
 </thead>
 <?php while ($r=$result->fetch_array()):?>
 <tr>
@@ -36,7 +36,7 @@ $.ajax({
        $('#Modal_Asigna').modal('hide');
        $('body').removeClass('modal-open');
        $('.modal-backdrop').remove();
-       alert(data);
+       swal('Agregado!', 'El registro fue exitoso.', 'success')
     }
 });
 });

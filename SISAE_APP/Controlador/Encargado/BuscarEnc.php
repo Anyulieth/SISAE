@@ -26,16 +26,16 @@ require_once '../../Modelo/EncCl04.php';
 
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
-  <th>Cedula</th>
+  <th>Cédula</th>
   <th>Nombre</th>
   <th>1° Apellido</th>
   <th>2° Apellido</th>
-  <th>Direccion</th>
-  <th>Genero</th>
-  <th>Telefono</th>
+  <th>Dirección</th>
+  <th>Género</th>
+  <th>Teléfono</th>
   <th>Email</th>
   <th>Clave</th>
-  <th></th>
+  <th>Opciones</th>
 </thead>
 <tbody>
 <?php foreach ($result as $r){ ?>
@@ -49,9 +49,11 @@ require_once '../../Modelo/EncCl04.php';
   <td><?php echo $r["Telefono"]; ?></td>
   <td><?php echo $r["Email"]; ?></td>
   <td><?php echo $r["Clave"]; ?></td>
-  <td style="width:150px;">
-    <a data-id="<?php echo $r["Cedula"];?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
-    <a href="#" id="bor-<?php echo $r["Cedula"];?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
+  <td style="width:160px;">
+    <a data-id="<?php echo $r["Cedula"]; ?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
+    <a href="#" id="bor-<?php echo $r["Cedula"]; ?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a><br><br>
+    <a href="#" data-id="<?php echo $r["Cedula"]; ?>" style="width:60px" class="btn btn-Ver btn-sm btn-info">Ver</a>
+    <a href="#" data-id="<?php echo $r["Cedula"]; ?>" style="width:60px" class="btn btn-asig btn-sm btn-success">Asignar</a>
       <script>
       $('#bor-'+<?php echo $r['Cedula']?>).click(function(e){
       e.preventDefault();
@@ -81,7 +83,6 @@ require_once '../../Modelo/EncCl04.php';
     if(data!=1){swal('Ups...', 'Algo salió mal!', 'error')}
     else{
     $('#tabla').html('');
-    CargarTabla(<?php echo $pagina; ?>);
     swal('Eliminado!','El registro fue eliminado.','success')    
           } 
       }
@@ -104,18 +105,34 @@ require_once '../../Modelo/EncCl04.php';
 ?>
 
 <script>
-	$(".btn-edit").click(function() {
-		id = $(this).data("id");
-      $.get("./Controlador/Encargado/Formulario_Editar_Enc.php","ced="+id,function(data){
-       $("#form-Editar").html(data);
-		});
-		$('#Modal_Editar').modal('show');
-	});
-  
-  $(".btn-pag").click(function(e){
-  pg = $(this).data("id");
-  CargarTabla(pg);
-});
+  $(".btn-edit").click(function() {
+    id = $(this).data("id");
+    $.get("./Controlador/Encargado/Formulario_Editar_Enc.php", "ced=" + id, function(data) {
+      $("#form-Editar").html(data);
+    });
+    $('#Modal_Editar').modal('show');
+  });
+
+  $(".btn-pag").click(function(e) {
+    pg = $(this).data("id");
+    CargarTabla(pg);
+  });
+
+  $(".btn-asig").click(function() {
+    id = $(this).data("id");
+    $.get("Controlador/Estudiante/Tabla_Asignar_Est.php", "ced=" + id, function(data) { 
+      $("#tabla-asignar").html(data);
+    });
+    $('#Modal_Asigna').modal('show');
+  });
+
+   $(".btn-Ver").click(function() {
+    id = $(this).data("id");
+    $.get("Controlador/Estudiante/Ver.php", "ced=" + id, function(data) { 
+      $("#tabla-ver").html(data);
+    });
+    $('#Modal_Ver').modal('show');
+  });
 </script>
 
 <div class="modal fade" id="Modal_Editar" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -127,6 +144,34 @@ require_once '../../Modelo/EncCl04.php';
         </div>
         <div class="modal-body">
         <div id="form-Editar"></div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<div class="modal fade" id="Modal_Asigna" role="dialog" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Asignar Estudiante al encargado</h4>
+        </div>
+        <div class="modal-body"> 
+        <div id="tabla-asignar"></div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<div class="modal fade" id="Modal_Ver" role="dialog" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Estudiantes asignados al encargado</h4>
+        </div>
+        <div class="modal-body"> 
+        <div id="tabla-ver"></div>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

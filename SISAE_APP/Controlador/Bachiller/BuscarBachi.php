@@ -27,7 +27,7 @@ $bac = new BachillerCl13();
 <thead>
   <th>Id</th>
   <th>Nombre</th> 
-  <th></th>
+  <th>Opciones</th>
 </thead>
 <tbody>
 <?php foreach ($result as $r){ ?>
@@ -66,7 +66,6 @@ $bac = new BachillerCl13();
     if(data!=1){swal('Ups...', 'Algo salió mal!', 'error')}
     else{
     $('#tabla').html('');
-    CargarTabla(<?php echo $pagina; ?>);
     swal('Eliminado!','El registro fue eliminado.','success')    
           } 
       }

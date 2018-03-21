@@ -15,8 +15,8 @@
         </button>
         <a data-toggle="modal" href="#Modal" class="btn btn-default">Agregar</a>
       </form>
-
-<br>
+ 
+ <br>
  <!-- Modal -->
   <div class="modal fade" id="Modal" role="dialog"> 
     <div class="modal-dialog">
@@ -27,7 +27,7 @@
         </div>
         <div class="modal-body">
 <form role="form" id="agregar" method="post">
-  <div class="form-group">
+  <div class="form-group"> 
     <label for="NomB">Nombre Bachiller</label>
     <input type="text" class="form-control" name="NomB">
   </div>

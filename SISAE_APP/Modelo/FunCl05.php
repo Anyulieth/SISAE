@@ -51,7 +51,7 @@ class FunCl05 extends UsuCl01
 		return $this->PStCl05__Estado;
 	}
 
-	public function FunCl05_FunCl05_AddFun($PStCl05_IdFuncionario,$PDtCl05_FechaNac,$PStCl05_Clave,$PStCl05_Estado,$PStCl01_Nombre,
+	public function FunCl05_AddFun($PStCl05_IdFuncionario,$PDtCl05_FechaNac,$PStCl05_Clave,$PStCl05_Estado,$PStCl01_Nombre,
 		$PStCl01_Apellido1,$PStCl01_Apellido2,$PStCl01_Direccion,$PCrCl01_Sexo,$PStCl01_Telefono,$PStCl01_Email)
 	{
 		$con = new conexion();

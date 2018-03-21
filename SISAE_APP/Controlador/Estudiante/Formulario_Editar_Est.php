@@ -27,11 +27,11 @@ $busq =$_GET['ced'];
 		<input type="text" class="form-control" name="direccion" value="<?php echo $r["Direccion"]; ?>">
 	</div>
 	<div class="form-group">
-		<label for="Telefono">Telefono</label>
+		<label for="Telefono">Teléfono</label>
 		<input type="text" class="form-control" name="telefono" value="<?php echo $r["Telefono"]; ?>">
 	</div>
 	<div class="form-group">
-		<label for="email">Correo electronico</label>
+		<label for="email">Correo electrónico</label>
 		<input type="text" class="form-control" name="email" value="<?php echo $r["Email"]; ?>">
 	</div>
 	<div class="form-group">
@@ -40,22 +40,6 @@ $busq =$_GET['ced'];
 			<input type='text' class="form-control" name="fecha_nac" value="<?php echo $r["Fecha_Nac"]; ?>" readonly>
 			<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
 		</div>
-	</div>
-	<div class="form-group">
-		<label for="Id_Especialidad">Especialidad</label>
-		<select name="Id_Especialidad">
-			<?php
-		require_once '../../Modelo/EspecialidadCl15.php';
-		$esp = new EspecialidadCl15();
-		$result = $esp -> EspecialidadCl15_ListaTodo();
-		while ($row = mysqli_fetch_array($result)) {
-		echo '<option value="' . $row["Id"] . '" ';
-		if($row["Id"] == $r["Especialidad"])
-		echo 'selected';
-		echo '>' . $row["Nombre"] . '</option>';
-			}
-			?>
-		</select>
 	</div>
 	<input type="hidden" name="cedula" value="<?php echo $r['Cedula']; ?>">
 	<button type="submit" class="btn btn-default">

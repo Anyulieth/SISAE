@@ -13,14 +13,13 @@ $resultado = $con->query("CALL PaAsistEstTb23_Listar(\"$id_sec\",\"$mater\")");
 </div>
 <table class="table table-bordered table-hover" style="font-size:13px;" id="tb">
 <thead>
-  <th>Cedula</th>
+  <th>Cédula</th>
   <th>Nombre</th>
   <th>1° Apellido</th>
   <th>2° Apellido</th>
   <th>Estado</th>
   <th>Fecha</th>
   <th>Hora</th>
-  <th></th>
 </thead>
 <?php foreach($resultado as $r):?>
 <tr>

@@ -1,128 +1,73 @@
+
+
+<!-- ESTE ARCHIVO DEBE LLAMARSE CORREOPROF.PHP
+	 DEBE ESTAR EN EL NIVEL_2
+	 INTERFAZ QUE PERMITE AL PROFESOR ENVIAR COMUNICADOS A ENCARGADOS -->
+
+
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!--Responsive-->
-	</head>
-	<body>
-		<div class="container">
-			<h2 class="page-header" style="background-color:#6b6bec;color:white;">Administrar Acceso a Usuarios</h2>
-			<form class="form-inline" role="search" id="buscar" style="float:left;">
-				<div class="form-group">
-					<input type="text" name="busqueda" class="form-control" placeholder="Buscar" onkeyup="bus();" id="busc">
-				</div>
-				<button type="submit" class="btn btn-default">
-					<i class="glyphicon glyphicon-search"></i>
-				</button>
-				<a data-toggle="modal" href="#Modal" class="btn btn-default">Agregar</a>
-			</form>
- 
-			<br>
-			<!-- Modal -->
-			<div class="modal fade" id="Modal" role="dialog">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-							</button> 
-							<h4 class="modal-title">Agregar</h4>
-						</div>
-						<div class="modal-body">
-							<form role="form" id="agregar" method="post">
-								<?php require_once '../../../Modelo/UsuCl01.php';
-								$usu = new UsuCl01();
-								$result = $usu->UsuCl01_ListaUsu();
-								if($result->num_rows>0):?>
-							<table class="table table-bordered table-hover" style="font-size:13px;">
-								<thead> 
-									<th>Cédula</th>
-									<th>Nombre</th>
-									<th>Tipo de Usuario</th>
-  									<th>Opciones</th>
-								</thead>
-								<?php while ($r=$result->fetch_array()):?>
-									<tr>
-										<td><?php echo $r["Cedula"]; ?></td>
-										<td><?php echo $r["Nombre"]; ?></td>
-										<td> 
-											<select name="TipoUsu">
-										<option value="1">Administrador</option>
-										<option value="2">Profesor</option>
-										<option value="3">Encargado Familia</option>
-										<option value="4">Funcionario</option>
-											</select>
-										</td>
-  	<td><a href="#" data-id="<?php echo $r["Cedula"]; ?>" class="btn btn-agre btn-md btn-success" style="width:80px;">Asignar</a></td>
-  									</tr>
-						<?php endwhile; ?>
-							</table>
-						<?php else: ?>
-					  <p class="alert alert-warning">No hay resultados</p>
-						<?php endif; ?>
+  <head><meta charset="utf-8"></head>
+  <body>
+    <div class="container">
+      <h1 class="page-header" style="background-color:blue;color:white;">Envío de comunicados a encargados</h1>
+      <form class="form-inline" role="search" id="buscar" style="float:left;">
+        <!-- <div class="form-group">
+          <input type="text" name="busqueda" class="form-control" placeholder="Buscar" id="busc" onkeyup="bus();">
+        </div>
+        <button type="submit" class="btn btn-default">
+          &nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;
+        </button>
+        <a data-toggle="modal" href="#Modal" class="btn btn-default">Agregar</a> -->
+      </form>
 
-								<div class="modal-footer">
-									<button type="submit" class="btn btn-success">
-										Agregar
-									</button>
-									<button type="button" class="btn btn-danger" data-dismiss="modal">
-										Cancelar
-									</button>
-								</div>
-							</form>
-						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div><!-- /.modal -->
+      <div class="panel-group">
+   <div class="panel panel-default">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        <form id="enviar" class="contact-form" method="POST">
+           <div class="form-group">
+              <label>Para *</label>
+              <input type="email" id="email" name="email" class="form-control" >
+           </div> 
+           <div class="form-group">
+               <label>Asunto *</label>
+               <input type="text" id="subject" name="subject" class="form-control" >
+           </div>
+           <div class="form-group">
+                <label>Mensaje *</label>
+                <textarea name="mensaje" id="mensaje" class="form-control" rows="8"></textarea>
+           </div>                        
+           <div class="form-group">
+                <input type="submit" id="submit" name="submit" class="btn btn-primary btn-lg" value="Enviar" />
+           </div>                      
+</form>   
+      </div></div></div></div>
 
-			<div id="tabla"></div>
-		</div>
-		
-		<script type="text/javascript">
-			$('#agregar').submit(function(e) {
-				e.preventDefault();
-				$.post('Controlador/Usuario/AgregarUsu.php', $('#agregar').serialize(), function(data) {
-					if (data != 1) {
-						swal('Ups...', 'Algo salió mal!', 'error');
-					} else {
-						$('#agregar')[0].reset();
-						$('#Modal').modal('hide');
-						$('#tabla').html('');
-						CargarTabla(1);
-						swal('Agregado!', 'El registro fue agregado.', 'success')
-					}
-				});
-			});
+    
+    <script type="text/javascript">
+      $('#enviar').submit(function(e) {
+        e.preventDefault();
+        $.post('Controlador/Profesor/EnviarCorreo.php', $('#enviar').serialize(), function(data) {
+          if (data != 1) {
+            swal('Ups...', 'Algo salió mal!', 'error');
+          } else {
+            swal('Agregado!', 'El registro fue agregado.', 'success')
+          }
+        });
+      });
 
-			function CargarTabla(pagina) {
-				var parametros = {
-					"pagina" : pagina
-				};
-				$("#animacion").fadeIn('slow');
-				$.ajax({
-					url : 'Vista/Seg_Nivel/Nivel_1/TablaUsu.php',
-					data : parametros,
-					success : function(data) {
-						$("#tabla").html(data).fadeIn('slow');
-						$("#animacion").html("");
-					}
-				})
-			}
-
-			$(document).ready(function() {
-				CargarTabla(1);
-			});
-
-			function bus() {
-				var par = {
-					'busqueda' : $('#busc').val()
-				};
-				$.ajax({
-					url : "Controlador/Usuario/BuscarUsu.php",
-					data : par,
-					success : function(data) {
-						$('#tabla').html(data);
-					}
-				})
-			}
-		</script>
-	</body>
+    /*function bus() {
+        var par = {
+          'busqueda' : $('#busc').val()
+        };
+        $.ajax({
+          url : "Controlador/Encargado/BuscarEnc.php",
+          data : par,
+          success : function(data) {
+            $('#tabla').html(data);
+          }
+        })
+      }*/
+    </script>
+  </body>
 </html>

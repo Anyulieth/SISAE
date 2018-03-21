@@ -63,9 +63,7 @@ class ProfCl03 extends UsuCl01
 	    }
 	}
 
-	public function ProfCl03_EditProf($PStProfCl03_IdProfesor,$PStProfCl03_FechaNac,$PStProfCl03_Clave,$PStCl01_Nombre,$PStCl01_Apellido1,
-		$PStCl01_Apellido2,$PStCl01_Direccion,$PStCl01_Telefono,
-		$PStCl01_Email)
+	public function ProfCl03_EditProf($PStProfCl03_IdProfesor,$PStProfCl03_FechaNac,$PStProfCl03_Clave,$PStCl01_Nombre,$PStCl01_Apellido1,$PStCl01_Apellido2,$PStCl01_Direccion,$PStCl01_Telefono, $PStCl01_Email)
 	{
 		$con = new conexion();
 		$sql = "CALL PaProfTb04_ActualizarProf('".$PStProfCl03_IdProfesor."','".$PStProfCl03_FechaNac."','".$PStProfCl03_Clave."','".$PStCl01_Nombre."','".$PStCl01_Apellido1."',
@@ -113,5 +111,53 @@ class ProfCl03 extends UsuCl01
 		$cant = $consulta -> fetch_array();
 		return $cant["cantidad"];
  	} 
+
+ 	public function ProfCl03_ListaMatProf($PStProfCl03_IdProfesor)
+	{
+		$con = new conexion();
+		$sql = "CALL PaProfTb04_ListarMatProf($PStProfCl03_IdProfesor);";
+		$result = $con->query($sql);
+		return $result;
+	}
+
+	public function ProfCl03_ListaProfs()
+	{
+		$con = new conexion();
+		$sql = "CALL PaProfTb04_Listar_Asigna();";
+		$result = $con->query($sql);
+		return $result;
+	}
+
+	public function ProfCl03_InfoProf($PStProfCl03_IdProfesor)
+	{
+		$con = new conexion();
+		$sql = "CALL PaProfTb04_Info('".$PStProfCl03_IdProfesor."');";
+		$result = $con->query($sql);
+		$r = $result->fetch_all(MYSQLI_ASSOC);
+		if ($r) 
+		{
+		 return $r;
+		}
+	}
+
+	public function ProfCl03_SecProf($PStProfCl03_IdProfesor, $idGra)
+	{
+		$con = new conexion();
+		$sql = "CALL PaProfTb04_ListarSecProf('".$PStProfCl03_IdProfesor."','".$idGra."');";
+		$result = $con->query($sql);
+		return $result;
+	}
+
+	public function ProfCl03_ListaMatri($PStProfCl03_IdProfesor)
+	{
+		$con = new conexion();
+		$sql = "CALL PaProfTb04_ListarMatri('".$PStProfCl03_IdProfesor."');";
+		$result = $con->query($sql);
+		$r = $result->fetch_all(MYSQLI_ASSOC);
+		if ($r) 
+		{
+		 return $r;
+		}
+	}
 }
 ?>

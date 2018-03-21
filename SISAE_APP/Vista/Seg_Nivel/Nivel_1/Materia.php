@@ -45,20 +45,6 @@
 					</div><!-- /.modal-dialog -->
 				</div><!-- /.modal -->
 
-  <div class="modal fade" id="ModalA" role="dialog" >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Lista</h4>
-        </div>
-        <div class="modal-body">
-        <div id="tabla-lista"></div>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
 				<div id="tabla"></div> 
 		</div>
 
@@ -75,21 +61,6 @@
 						swal('Éxito!','El registro se ha guardado!','success')
 						CargarTabla(1);
 					}
-				});
-			});
-
-			$('.btn-listado').click(function() {
-				$.get('Controlador/Materia/Tabla_ListaAsignacion.php'),function(data){
-						$("#tabla-lista").html('');
-					};
-					   	$('#ModalA').modal('hide');			
-				});
-			
-			$('#tabla-lista').click(function(e) {
-				e.preventDefault();
-				$.get('Controlador/Materia/Tabla_ListaAsignacion.php', $('#tabla-lista').serialize(), function(data) {
-						$('#ModalA').modal('hide');
-						$('#tabla-lista').html('');
 				});
 			});
 

@@ -61,7 +61,7 @@ CREATE TABLE `asiggradotb12` (
 
 LOCK TABLES `asiggradotb12` WRITE;
 /*!40000 ALTER TABLE `asiggradotb12` DISABLE KEYS */;
-INSERT INTO `asiggradotb12` VALUES (1,'102410145');
+INSERT INTO `asiggradotb12` VALUES (2,'102410145'),(3,'102410145');
 /*!40000 ALTER TABLE `asiggradotb12` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +88,7 @@ CREATE TABLE `asigmateriatb19` (
 
 LOCK TABLES `asigmateriatb19` WRITE;
 /*!40000 ALTER TABLE `asigmateriatb19` DISABLE KEYS */;
-INSERT INTO `asigmateriatb19` VALUES ('116000070',27),('116000070',2),('102410145',2),('102410145',1);
+INSERT INTO `asigmateriatb19` VALUES ('102410145',2),('102410145',32);
 /*!40000 ALTER TABLE `asigmateriatb19` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ CREATE TABLE `asistclasetb18` (
 
 LOCK TABLES `asistclasetb18` WRITE;
 /*!40000 ALTER TABLE `asistclasetb18` DISABLE KEYS */;
-INSERT INTO `asistclasetb18` VALUES (1,'2017-11-17','05:42:44','Presente',1),(2,'2017-11-17','05:42:44','Ausente',2),(3,'2017-11-17','05:42:44','Presente',27),(4,'2017-11-17','05:42:44','Presente',3),(5,'2017-11-17','05:42:44','Presente',28);
+INSERT INTO `asistclasetb18` VALUES (1,'2017-11-17','05:42:44','Presente',1),(2,'2017-11-17','05:42:44','Ausente',1),(3,'2017-11-17','05:42:44','Presente',27),(4,'2017-11-17','05:42:44','Presente',1),(5,'2017-11-17','05:42:44','Presente',28);
 /*!40000 ALTER TABLE `asistclasetb18` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +173,6 @@ CREATE TABLE `asistesttb23` (
 
 LOCK TABLES `asistesttb23` WRITE;
 /*!40000 ALTER TABLE `asistesttb23` DISABLE KEYS */;
-INSERT INTO `asistesttb23` VALUES (1,'102580300'),(2,'102580760'),(3,'102580844');
 /*!40000 ALTER TABLE `asistesttb23` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +187,7 @@ CREATE TABLE `bachillertb14` (
   `InBachillerTb14_IdBachiller` int(11) NOT NULL AUTO_INCREMENT,
   `VcBachillerTb14_NombreBachiller` varchar(50) NOT NULL,
   PRIMARY KEY (`InBachillerTb14_IdBachiller`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -263,7 +262,7 @@ CREATE TABLE `especialidadtb16` (
   `VcEspecialidadTb16_Nombre` varchar(20) NOT NULL,
   `InEspecialidadTb16_Cupo` int(11) NOT NULL,
   PRIMARY KEY (`InEspecialidadTb16_IdEspecialidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,8 +271,35 @@ CREATE TABLE `especialidadtb16` (
 
 LOCK TABLES `especialidadtb16` WRITE;
 /*!40000 ALTER TABLE `especialidadtb16` DISABLE KEYS */;
-INSERT INTO `especialidadtb16` VALUES (1,'Informatica',30),(2,'Contabilidad',15),(3,'AyB',20);
+INSERT INTO `especialidadtb16` VALUES (1,'Informatica',30),(2,'Contabilidad',15),(3,'AyB',20),(5,'esp',12),(6,'-No Aplica-',0),(7,'Administración',10);
 /*!40000 ALTER TABLE `especialidadtb16` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `espeesttb35`
+--
+
+DROP TABLE IF EXISTS `espeesttb35`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `espeesttb35` (
+  `InEspecialidadTb16_IdEspecialidad` int(11) NOT NULL,
+  `VcEstTb03_IdEstudiante` varchar(20) NOT NULL,
+  KEY `Fk_EstEspecialidad` (`InEspecialidadTb16_IdEspecialidad`),
+  KEY `Fk_EspEstudiante` (`VcEstTb03_IdEstudiante`),
+  CONSTRAINT `Fk_EspEstudiante` FOREIGN KEY (`VcEstTb03_IdEstudiante`) REFERENCES `esttb03` (`VcEstTb03_IdEstudiante`),
+  CONSTRAINT `Fk_EstEspecialidad` FOREIGN KEY (`InEspecialidadTb16_IdEspecialidad`) REFERENCES `especialidadtb16` (`InEspecialidadTb16_IdEspecialidad`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `espeesttb35`
+--
+
+LOCK TABLES `espeesttb35` WRITE;
+/*!40000 ALTER TABLE `espeesttb35` DISABLE KEYS */;
+INSERT INTO `espeesttb35` VALUES (6,'123');
+/*!40000 ALTER TABLE `espeesttb35` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -299,7 +325,7 @@ CREATE TABLE `estenctb07` (
 
 LOCK TABLES `estenctb07` WRITE;
 /*!40000 ALTER TABLE `estenctb07` DISABLE KEYS */;
-INSERT INTO `estenctb07` VALUES ('101230816','102580844'),('101074994','102580844'),('101230816','102580844'),('101074994','102580300'),('101074994','102580760');
+INSERT INTO `estenctb07` VALUES ('101074994','123');
 /*!40000 ALTER TABLE `estenctb07` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,10 +367,7 @@ CREATE TABLE `esttb03` (
   `DtEstTb03_FechaNac` date NOT NULL,
   `VcEstTb03_Adecuacion` varchar(20) NOT NULL,
   `VcEstTb03_Estado` varchar(20) NOT NULL,
-  `InEspecialidadTb16_IdEspecialidad` int(11) NOT NULL,
-  PRIMARY KEY (`VcEstTb03_IdEstudiante`),
-  KEY `FK_Especialidad` (`InEspecialidadTb16_IdEspecialidad`),
-  CONSTRAINT `FK_Especialidad` FOREIGN KEY (`InEspecialidadTb16_IdEspecialidad`) REFERENCES `especialidadtb16` (`InEspecialidadTb16_IdEspecialidad`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`VcEstTb03_IdEstudiante`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -354,7 +377,7 @@ CREATE TABLE `esttb03` (
 
 LOCK TABLES `esttb03` WRITE;
 /*!40000 ALTER TABLE `esttb03` DISABLE KEYS */;
-INSERT INTO `esttb03` VALUES ('102580300','1993-10-04','No','A',1),('102580760','1993-10-04','No_significativa','A',2),('102580844','1993-10-04','Acceso','A',3);
+INSERT INTO `esttb03` VALUES ('102620222','1993-10-04','No','A'),('123','1990-03-09','no','A');
 /*!40000 ALTER TABLE `esttb03` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -450,7 +473,7 @@ CREATE TABLE `gradotb13` (
   PRIMARY KEY (`InGradoTb13_IdGrado`),
   KEY `FK_Bac` (`InBachillerTb14_IdBachiller`),
   CONSTRAINT `FK_Bac` FOREIGN KEY (`InBachillerTb14_IdBachiller`) REFERENCES `bachillertb14` (`InBachillerTb14_IdBachiller`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -486,7 +509,7 @@ CREATE TABLE `graesttb26` (
 
 LOCK TABLES `graesttb26` WRITE;
 /*!40000 ALTER TABLE `graesttb26` DISABLE KEYS */;
-INSERT INTO `graesttb26` VALUES ('102580300',1);
+INSERT INTO `graesttb26` VALUES ('123',2);
 /*!40000 ALTER TABLE `graesttb26` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -503,7 +526,7 @@ CREATE TABLE `horariostb29` (
   `TmHorariosTb29_Hora_Inicio` time NOT NULL,
   `TmHorariosTb29_Hora_Final` time NOT NULL,
   PRIMARY KEY (`InHorariosTb29_IdHorario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -512,7 +535,7 @@ CREATE TABLE `horariostb29` (
 
 LOCK TABLES `horariostb29` WRITE;
 /*!40000 ALTER TABLE `horariostb29` DISABLE KEYS */;
-INSERT INTO `horariostb29` VALUES (1,'Lunes','08:00:00','10:00:00'),(2,'Martes','07:00:00','07:45:00');
+INSERT INTO `horariostb29` VALUES (1,'Lunesss','07:00:00','09:00:00'),(2,'Martes','07:00:00','07:45:00'),(3,'Viernessss','07:00:00','08:00:00'),(4,'Lunes','01:45:00','02:25:00');
 /*!40000 ALTER TABLE `horariostb29` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -539,7 +562,7 @@ CREATE TABLE `inscmateriatb11` (
 
 LOCK TABLES `inscmateriatb11` WRITE;
 /*!40000 ALTER TABLE `inscmateriatb11` DISABLE KEYS */;
-INSERT INTO `inscmateriatb11` VALUES ('102580300',1);
+INSERT INTO `inscmateriatb11` VALUES ('123',2);
 /*!40000 ALTER TABLE `inscmateriatb11` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -554,7 +577,7 @@ CREATE TABLE `materiatb17` (
   `InMateriaTb17_IdMateria` int(11) NOT NULL AUTO_INCREMENT,
   `VcMateriaTb17_Nombre` varchar(20) NOT NULL,
   PRIMARY KEY (`InMateriaTb17_IdMateria`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -563,37 +586,112 @@ CREATE TABLE `materiatb17` (
 
 LOCK TABLES `materiatb17` WRITE;
 /*!40000 ALTER TABLE `materiatb17` DISABLE KEYS */;
-INSERT INTO `materiatb17` VALUES (1,'Sociales'),(2,'Español'),(3,'Ciencias'),(27,'ingles'),(28,'Civica'),(30,'Matemáticas'),(32,'Fisica');
+INSERT INTO `materiatb17` VALUES (1,'Socialess'),(2,'Español'),(3,'Ciencias'),(27,'ingles'),(28,'Civica'),(30,'Matemáticas'),(32,'Fisica'),(33,'Química');
 /*!40000 ALTER TABLE `materiatb17` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `matriculatb30`
+-- Table structure for table `matriculaesttb33`
 --
 
-DROP TABLE IF EXISTS `matriculatb30`;
+DROP TABLE IF EXISTS `matriculaesttb33`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `matriculatb30` (
+CREATE TABLE `matriculaesttb33` (
+  `InMatriculaEstTb33_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `DtMatriculaEstTb33_Fecha` datetime NOT NULL,
+  `InPeriodoTb34_Id` int(11) NOT NULL,
+  `InGradoTb13_IdGrado` int(11) NOT NULL,
   `InSeccionTb20_IdSeccion` int(11) NOT NULL,
-  `InHorariosTb29_IdHorario` int(11) NOT NULL,
-  `InMateriaTb17_IdMateria` int(11) NOT NULL,
-  `VcProfTb04_IdProfesor` varchar(20) NOT NULL,
-  UNIQUE KEY `FK_Prof_Matri` (`VcProfTb04_IdProfesor`),
-  KEY `FK_Sec_Matri` (`InSeccionTb20_IdSeccion`),
-  KEY `FK_Hor_Matri` (`InHorariosTb29_IdHorario`),
-  KEY `FK_Mat_Matri` (`InMateriaTb17_IdMateria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `InEspecialidadTb16_IdEspecialidad` int(11) NOT NULL,
+  `VcEstTb03_IdEstudiante` varchar(20) NOT NULL,
+  PRIMARY KEY (`InMatriculaEstTb33_Id`),
+  KEY `Fk_PeriEst` (`InPeriodoTb34_Id`),
+  KEY `Fk_Estu` (`VcEstTb03_IdEstudiante`),
+  KEY `Fk_GraEst` (`InGradoTb13_IdGrado`),
+  KEY `Fk_SecEst` (`InSeccionTb20_IdSeccion`),
+  KEY `Fk_EspeEst` (`InEspecialidadTb16_IdEspecialidad`),
+  CONSTRAINT `Fk_EspeEst` FOREIGN KEY (`InEspecialidadTb16_IdEspecialidad`) REFERENCES `especialidadtb16` (`InEspecialidadTb16_IdEspecialidad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Fk_Estu` FOREIGN KEY (`VcEstTb03_IdEstudiante`) REFERENCES `esttb03` (`VcEstTb03_IdEstudiante`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Fk_GraEst` FOREIGN KEY (`InGradoTb13_IdGrado`) REFERENCES `gradotb13` (`InGradoTb13_IdGrado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Fk_PeriEst` FOREIGN KEY (`InPeriodoTb34_Id`) REFERENCES `periodotb34` (`InPeriodoTb34_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Fk_SecEst` FOREIGN KEY (`InSeccionTb20_IdSeccion`) REFERENCES `secciontb20` (`InSeccionTb20_IdSeccion`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `matriculatb30`
+-- Dumping data for table `matriculaesttb33`
 --
 
-LOCK TABLES `matriculatb30` WRITE;
-/*!40000 ALTER TABLE `matriculatb30` DISABLE KEYS */;
-INSERT INTO `matriculatb30` VALUES (20,1,1,'102410145'),(25,2,2,'116000070');
-/*!40000 ALTER TABLE `matriculatb30` ENABLE KEYS */;
+LOCK TABLES `matriculaesttb33` WRITE;
+/*!40000 ALTER TABLE `matriculaesttb33` DISABLE KEYS */;
+INSERT INTO `matriculaesttb33` VALUES (2,'2018-03-16 12:41:25',1,2,22,6,'123');
+/*!40000 ALTER TABLE `matriculaesttb33` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `matriculaproftb30`
+--
+
+DROP TABLE IF EXISTS `matriculaproftb30`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `matriculaproftb30` (
+  `InMatriculaProfTb30_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `DtMatriculaProfTb30_Fecha` datetime NOT NULL,
+  `InPeriodoTb34_Id` int(11) NOT NULL,
+  `InMateriaTb17_IdMateria` int(11) NOT NULL,
+  `InGradoTb13_IdGrado` int(11) NOT NULL,
+  `InSeccionTb20_IdSeccion` int(11) NOT NULL,
+  `InHorariosTb29_IdHorario` int(11) NOT NULL,
+  `VcProfTb04_IdProfesor` varchar(20) NOT NULL,
+  PRIMARY KEY (`InMatriculaProfTb30_Id`),
+  KEY `Fk_Peri` (`InPeriodoTb34_Id`),
+  KEY `Fk_Mate` (`InMateriaTb17_IdMateria`),
+  KEY `Fk_Sec` (`InSeccionTb20_IdSeccion`),
+  KEY `Fk_Horario` (`InHorariosTb29_IdHorario`),
+  KEY `Fk_Grado` (`InGradoTb13_IdGrado`),
+  KEY `Fk_Profe` (`VcProfTb04_IdProfesor`),
+  CONSTRAINT `Fk_Grado` FOREIGN KEY (`InGradoTb13_IdGrado`) REFERENCES `gradotb13` (`InGradoTb13_IdGrado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Fk_Horario` FOREIGN KEY (`InHorariosTb29_IdHorario`) REFERENCES `horariostb29` (`InHorariosTb29_IdHorario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Fk_Mate` FOREIGN KEY (`InMateriaTb17_IdMateria`) REFERENCES `materiatb17` (`InMateriaTb17_IdMateria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Fk_Peri` FOREIGN KEY (`InPeriodoTb34_Id`) REFERENCES `periodotb34` (`InPeriodoTb34_Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Fk_Profe` FOREIGN KEY (`VcProfTb04_IdProfesor`) REFERENCES `proftb04` (`VcProfTb04_IdProfesor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `Fk_Sec` FOREIGN KEY (`InSeccionTb20_IdSeccion`) REFERENCES `secciontb20` (`InSeccionTb20_IdSeccion`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `matriculaproftb30`
+--
+
+LOCK TABLES `matriculaproftb30` WRITE;
+/*!40000 ALTER TABLE `matriculaproftb30` DISABLE KEYS */;
+/*!40000 ALTER TABLE `matriculaproftb30` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `periodotb34`
+--
+
+DROP TABLE IF EXISTS `periodotb34`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `periodotb34` (
+  `InPeriodoTb34_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `VcPeriodoTb34_Nombre` varchar(20) NOT NULL,
+  PRIMARY KEY (`InPeriodoTb34_Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `periodotb34`
+--
+
+LOCK TABLES `periodotb34` WRITE;
+/*!40000 ALTER TABLE `periodotb34` DISABLE KEYS */;
+INSERT INTO `periodotb34` VALUES (1,'1er Periodo'),(2,'2do Periodo'),(3,'3er Periodo');
+/*!40000 ALTER TABLE `periodotb34` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -698,7 +796,7 @@ CREATE TABLE `seccionproftb27` (
 
 LOCK TABLES `seccionproftb27` WRITE;
 /*!40000 ALTER TABLE `seccionproftb27` DISABLE KEYS */;
-INSERT INTO `seccionproftb27` VALUES ('102410145',20),('116000070',25),('102410877',18),('102410237',18);
+INSERT INTO `seccionproftb27` VALUES ('102410145',22);
 /*!40000 ALTER TABLE `seccionproftb27` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -714,7 +812,7 @@ CREATE TABLE `secciontb20` (
   `InSeccionTb20_Num_Grupo` int(11) NOT NULL,
   `InSeccionTb20_Cupo` int(11) NOT NULL,
   PRIMARY KEY (`InSeccionTb20_IdSeccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -723,7 +821,7 @@ CREATE TABLE `secciontb20` (
 
 LOCK TABLES `secciontb20` WRITE;
 /*!40000 ALTER TABLE `secciontb20` DISABLE KEYS */;
-INSERT INTO `secciontb20` VALUES (18,3,15),(20,4,21),(22,2,12),(25,5,12);
+INSERT INTO `secciontb20` VALUES (18,3,7),(20,4,11),(22,2,12),(25,5,12),(27,2,10);
 /*!40000 ALTER TABLE `secciontb20` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -748,7 +846,7 @@ CREATE TABLE `secesttb28` (
 
 LOCK TABLES `secesttb28` WRITE;
 /*!40000 ALTER TABLE `secesttb28` DISABLE KEYS */;
-INSERT INTO `secesttb28` VALUES ('102580300',18);
+INSERT INTO `secesttb28` VALUES ('123',22);
 /*!40000 ALTER TABLE `secesttb28` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -775,7 +873,7 @@ CREATE TABLE `secgradotb25` (
 
 LOCK TABLES `secgradotb25` WRITE;
 /*!40000 ALTER TABLE `secgradotb25` DISABLE KEYS */;
-INSERT INTO `secgradotb25` VALUES (1,18),(1,20),(2,22),(3,25);
+INSERT INTO `secgradotb25` VALUES (1,18),(1,20),(2,22),(3,25),(1,27);
 /*!40000 ALTER TABLE `secgradotb25` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -802,8 +900,35 @@ CREATE TABLE `seguridadtb31` (
 
 LOCK TABLES `seguridadtb31` WRITE;
 /*!40000 ALTER TABLE `seguridadtb31` DISABLE KEYS */;
-INSERT INTO `seguridadtb31` VALUES ('function principal(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/principal.php\');}','<li><a class=\"glyphicon glyphicon-home\" style=\"margin-top:25px; \" href=\"index.php\"></a></li>','<a href=\"index.php\">Inicio</a>',1,1),('function profesor(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Profesor.php\');}',' <li><a class=\"glyphicon glyphicon-blackboard\" style=\"margin-top:15px; \" href=\"#\" onclick=\"profesor();\"></a></li>','<a href=\"#\" onclick=\"profesor();\">Profesores</a>',2,1),('function seccion(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Seccion-Grupo.php\');}   ','<li><a class=\"glyphicon glyphicon-sound-7-1\" style=\"margin-top:15px; \" href=\"#\" onclick=\"seccion();\"></a></li>','<a href=\"#\" onclick=\"seccion();\">Secciones</a>',4,1),('function encargado(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Encargado.php\');}','<li><a class=\"glyphicon glyphicon-eye-open\" style=\"margin-top:15px; \" href=\"#\" onclick=\"encargado();\"></a></li>','<a href=\"#\" onclick=\"encargado();\">Padres</a>',5,1),('function funcionario(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Funcionario.php\');}','<li><a class=\"glyphicon glyphicon-user\" style=\"margin-top:15px; \" href=\"#\" onclick=\"funcionario();\"></a></li>','<a href=\"#\" onclick=\"funcionario();\">Funcionarios</a>',6,1),('function estudiante(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Estudiante.php\');}','<li><a class=\"glyphicon glyphicon-education\" style=\"margin-top:15px; \" href=\"#\" onclick=\"estudiante();\"></a></li>','<a href=\"#\" onclick=\"estudiante();\">Estudiantes</a>',7,1),('function materia(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Materia.php\');}',' <li><a class=\"glyphicon glyphicon-book\" style=\"margin-top:15px; \" href=\"#\" onclick=\"materia();\"></a></li>','<a href=\"#\" onclick=\"materia();\">Materias</a>',8,1),('function principal(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_2/Asistencia.php\');\r\n}','nada','nada',9,2),('function principal(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_3/Encargado.php\');\r\n}',' ',' ',10,3),('function grado(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Grado.php\');}','<li><a class=\"glyphicon glyphicon-file\" style=\"margin-top:15px; \" href=\"#\" onclick=\"grado();\"></a></li>',' <a href=\"#\" onclick=\"grado();\">Grado</a>',11,1),('function bachiller(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Bachiller.php\');}','<li><a class=\"glyphicon glyphicon-list-alt\" style=\"margin-top:15px; \" href=\"#\" onclick=\"bachiller();\"></a></li>','<a href=\"#\" onclick=\"bachiller();\">Bachiller</a>',12,1),('function horario(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Horarios.php\');}','<li><a class=\"glyphicon glyphicon-tasks\" style=\"margin-top:15px; \" href=\"#\" onclick=\"horario();\"></a></li>','<a href=\"#\" onclick=\"horario();\">Horarios</a>',13,1),('function Usuario(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Usuario.php\');}','<li><a class=\"glyphicon glyphicon-wrench\" style=\"margin-top:15px; \"href=\"#\" onclick=\"Usuario();\"></a></li>','<a href=\"#\" onclick=\"Usuario();\">Usuarios</a>',14,1);
+INSERT INTO `seguridadtb31` VALUES ('function principal(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/principal.php\');}','<li><a class=\"glyphicon glyphicon-home\" style=\"margin-top:25px; \" href=\"index.php\"></a></li>','<a href=\"index.php\">Inicio</a>',1,1),('function profesor(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Profesor.php\');}',' <li><a class=\"glyphicon glyphicon-blackboard\" style=\"margin-top:15px; \" href=\"#\" onclick=\"profesor();\"></a></li>','<a href=\"#\" onclick=\"profesor();\">Profesores</a>',2,1),('function especialidad(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Especialidad.php\');}',' <li><a class=\"glyphicon glyphicon-blackboard\" style=\"margin-top:15px; \" href=\"#\" onclick=\"especialidad();\"></a></li>','<a href=\"#\" onclick=\"especialidad();\">Especilidad</a>',3,1),('function seccion(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Seccion-Grupo.php\');}   ','<li><a class=\"glyphicon glyphicon-sound-7-1\" style=\"margin-top:15px; \" href=\"#\" onclick=\"seccion();\"></a></li>','<a href=\"#\" onclick=\"seccion();\">Secciones</a>',4,1),('function encargado(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Encargado.php\');}','<li><a class=\"glyphicon glyphicon-eye-open\" style=\"margin-top:15px; \" href=\"#\" onclick=\"encargado();\"></a></li>','<a href=\"#\" onclick=\"encargado();\">Padres</a>',5,1),('function funcionario(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Funcionario.php\');}','<li><a class=\"glyphicon glyphicon-user\" style=\"margin-top:15px; \" href=\"#\" onclick=\"funcionario();\"></a></li>','<a href=\"#\" onclick=\"funcionario();\">Funcionarios</a>',6,1),('function estudiante(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Estudiante.php\');}','<li><a class=\"glyphicon glyphicon-education\" style=\"margin-top:15px; \" href=\"#\" onclick=\"estudiante();\"></a></li>','<a href=\"#\" onclick=\"estudiante();\">Estudiantes</a>',7,1),('function materia(){$(\"#contenido\").load(\'Vista/Seg_Nivel/Nivel_1/Materia.php\');}',' <li><a class=\"glyphicon glyphicon-book\" style=\"margin-top:15px; \" href=\"#\" onclick=\"materia();\"></a></li>','<a href=\"#\" onclick=\"materia();\">Materias</a>',8,1),('function principal(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_2/Asistencia.php\');\r\n}','nada','nada',9,2),('function principal(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_3/Encargado.php\');\r\n}',' ',' ',10,3),('function grado(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Grado.php\');}','<li><a class=\"glyphicon glyphicon-file\" style=\"margin-top:15px; \" href=\"#\" onclick=\"grado();\"></a></li>',' <a href=\"#\" onclick=\"grado();\">Grado</a>',11,1),('function bachiller(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Bachiller.php\');}','<li><a class=\"glyphicon glyphicon-list-alt\" style=\"margin-top:15px; \" href=\"#\" onclick=\"bachiller();\"></a></li>','<a href=\"#\" onclick=\"bachiller();\">Bachiller</a>',12,1),('function horario(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Horarios.php\');}','<li><a class=\"glyphicon glyphicon-tasks\" style=\"margin-top:15px; \" href=\"#\" onclick=\"horario();\"></a></li>','<a href=\"#\" onclick=\"horario();\">Horarios</a>',13,1),('function Usuario(){\r\n$(\'#contenido\').load(\'Vista/Seg_Nivel/Nivel_1/Usuario.php\');}','<li><a class=\"glyphicon glyphicon-wrench\" style=\"margin-top:15px; \"href=\"#\" onclick=\"Usuario();\"></a></li>','<a href=\"#\" onclick=\"Usuario();\">Usuarios</a>',14,1);
 /*!40000 ALTER TABLE `seguridadtb31` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `segusuariotb32`
+--
+
+DROP TABLE IF EXISTS `segusuariotb32`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `segusuariotb32` (
+  `VcUsuTb01_Cedula` varchar(20) NOT NULL,
+  `InSeguridadTb31_Id` int(11) NOT NULL,
+  `VcSegusuarioTb32_Estado` varchar(20) NOT NULL DEFAULT 'Inactivo',
+  KEY `Segusu_Seguridad_Ced` (`VcUsuTb01_Cedula`),
+  KEY `Segusu_Seguridad_Id` (`InSeguridadTb31_Id`),
+  CONSTRAINT `Segusu_Seguridad_Ced` FOREIGN KEY (`VcUsuTb01_Cedula`) REFERENCES `usutb01` (`VcUsuTb01_Cedula`),
+  CONSTRAINT `Segusu_Seguridad_Id` FOREIGN KEY (`InSeguridadTb31_Id`) REFERENCES `seguridadtb31` (`InSeguridadTb31_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `segusuariotb32`
+--
+
+LOCK TABLES `segusuariotb32` WRITE;
+/*!40000 ALTER TABLE `segusuariotb32` DISABLE KEYS */;
+/*!40000 ALTER TABLE `segusuariotb32` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -832,7 +957,7 @@ CREATE TABLE `usutb01` (
 
 LOCK TABLES `usutb01` WRITE;
 /*!40000 ALTER TABLE `usutb01` DISABLE KEYS */;
-INSERT INTO `usutb01` VALUES ('101074994','FRANCISCA','ROJAS','UREÑA','Nicoya','F','26453312','fran@gmail.com'),('101141843','SACRAMENTO','MORA','MORALES','Moracia','M','77654423','sacra@outlook.com'),('101230816','VIRGINIA','ROVIRA','PANIAGUA','Nosara','F','65441233','virg@outlook.com'),('102410145','HARRY','JENKINS','CHAVARRIA','Santa Clara','F','60918664','fina@outlook.com'),('102410237','CECILIA','PORTILLA','IBARRA','Santa Clara','F','60918664','fina@outlook.com'),('102410877','FRANCISCA ELENA','PAVON','PAVON','Santa Clara','F','60918664','fina@outlook.com'),('102580300','TERESA','ARCE','VILLEGAS','Santa Clara','F','60918664','fina@outlook.com'),('102580760','MARIA DE LOS ANGELES','CARVAJAL','SABORIO','Santa Clara','F','60918664','fina@outlook.com'),('102580844','CECILIO','BADILLA','GUEVARA','Santa Clara','F','60918664','fina@outlook.com'),('102620342','RIGOBERTO','l','perez','gr','M','88','a@g'),('102620585','JORGE','MORA','SIBAJA','Samara','M','88674699','franc@gmail.com'),('102630207','FILIBERTO','JIMENEZ','JIMENEZ','Samara','M','88674699','franc@gmail.com'),('116000070','Anyu','villa','Peralta','Nandayure','F','88776655','anyuvillalobos@gmail.com');
+INSERT INTO `usutb01` VALUES ('101074994','FRANCISCA','ROJAS','UREÑA','Nicoya','F','26453312','francisca@gmail.com'),('101141843','SACRAMENTO','MORA','MORALES','Moracia','M','77654423','sacra@outlook.com'),('101230816','VIRGINIA','ROVIRA','PANIAGUA','Nosara','F','65441233','virg@outlook.com'),('102410145','HARRYyy','JENKINS','CHAVARRIA','Santa Clara','F','60918664','fina@outlook.com'),('102410237','CECILIA','PORTILLA','IBARRA','Santa Clara','F','60918664','fina@outlook.com'),('102410877','FRANCISCA ELENA','PAVON','PAVON','Santa Clara','F','60918664','fina@outlook.com'),('102580300','TERESA','ARCE','VILLEGAS','Santa Clara','F','60918664','fina@outlook.com'),('102580760','MARIA DE LOS ANGELES','CARVAJAL','SABORIO','Santa Clara','F','60918664','fina@outlook.com'),('102580844','CECILIO','BADILLA','GUEVARA','Santa Clara','F','60918664','fina@outlook.com'),('102620222','ALVARO','CASTRO','RODRIGUEZ','Santa Clara','F','60918664','fina@outlook.com'),('102620342','RIGOBERTO','lopez','perez','gr','M','88','a@g'),('102620585','JORGE','MORA','SIBAJA','Samara','M','88674699','franc@gmail.com'),('102630207','FILIBERTO','JIMENEZ','JIMENEZ','Samara','M','88674699','franc@gmail.com'),('116000070','Anyu','villa','Peralta','Nandayure','F','88776655','anyuvillalobos@gmail.com'),('123','julia','rojas','rojas','nico','f','24356688','a@gmail.com');
 /*!40000 ALTER TABLE `usutb01` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1121,6 +1246,58 @@ begin
     from AsistColeTb08
 	order by 'date added' limit inicio,final;
 end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaAsistEstTb23_BuscarFecha` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaAsistEstTb23_BuscarFecha`(IN fecha date, in idSec int, in IdMater int)
+BEGIN
+select usutb01.VcUsuTb01_Cedula as 'Cedula',usutb01.VcUsuTb01_Nombre as 'Nombre',
+usutb01.VcUsuTb01_Ape1 as 'Apellido1',usutb01.VcUsuTb01_Ape2 as 'Apellido2',
+asistclasetb18.VcAsistClaseTb18_Estado as 'Estado',asistclasetb18.TmAsistClaseTb18_Hora as 'Hora',
+asistclasetb18.DtAsistClaseTb18_Fecha as 'Fecha' 
+from usutb01 inner join esttb03 on usutb01.VcUsuTb01_Cedula = esttb03.VcEstTb03_IdEstudiante 
+join asistesttb23 on esttb03.VcEstTb03_IdEstudiante = asistesttb23.VcEstTb03_IdEstudiante 
+join secesttb28 on esttb03.VcEstTb03_IdEstudiante = secesttb28.VcEstTb03_IdEstudiante 
+join asistclasetb18 on asistesttb23.InAsistClaseTb18_IdAsistClase = asistclasetb18.InAsistClaseTb18_IdAsistClase 
+where asistclasetb18.InMateriaTb17_IdMateria = IdMater and secesttb28.InSeccionTb20_IdSeccion = idSec 
+and asistclasetb18.DtAsistClaseTb18_Fecha = fecha order by asistclasetb18.DtAsistClaseTb18_Fecha desc;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaAsistEstTb23_BuscarFechaEst` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaAsistEstTb23_BuscarFechaEst`(IN fecha date, in idEst varchar(20))
+BEGIN
+	select asistclasetb18.VcAsistClaseTb18_Estado as 'Estado',asistclasetb18.TmAsistClaseTb18_Hora as 'Hora',
+    asistclasetb18.DtAsistClaseTb18_Fecha as 'Fecha',materiatb17.VcMateriaTb17_Nombre as 'Materia' 
+    from asistclasetb18 inner join asistesttb23 on asistclasetb18.InAsistClaseTb18_IdAsistClase = asistesttb23.InAsistClaseTb18_IdAsistClase 
+    join materiatb17 on asistclasetb18.InMateriaTb17_IdMateria = materiatb17.InMateriaTb17_IdMateria 
+    where asistesttb23.VcEstTb03_IdEstudiante = idEst and asistclasetb18.DtAsistClaseTb18_Fecha = fecha 
+    order by asistclasetb18.DtAsistClaseTb18_Fecha desc;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1536,19 +1713,19 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEspecialidadTb16_BuscarEspecialidad`(in IdEsp int)
-begin
-	select InEspecialidadTb16_IdEspecialidad as 'Id_Especialidad', VcEspecialidadTb16_Nombre as 'Nom_Especialidad',
-    InEspecialidadTb16_Cupo as 'Cupo_Especialidad'
-    from EspecialidadTb16
-     where InEspecialidadTb16_IdEspecialidad = IdEsp;
-end ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEspecialidadTb16_BuscarEspecialidad`(IN IdEsp INT)
+BEGIN
+	SELECT InEspecialidadTb16_IdEspecialidad AS 'Id', VcEspecialidadTb16_Nombre AS 'Nombre',
+    InEspecialidadTb16_Cupo AS 'Cupo'
+    FROM EspecialidadTb16
+     WHERE InEspecialidadTb16_IdEspecialidad = IdEsp;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1565,14 +1742,14 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEspecialidadTb16_BuscarEspecialidadD`(in dato varchar(20))
-begin
-	select InEspecialidadTb16_IdEspecialidad as 'Id_Especialidad', VcEspecialidadTb16_Nombre as 'Nom_Especialidad',
-    InEspecialidadTb16_Cupo as 'Cupo_Especialidad'
+BEGIN
+	select InEspecialidadTb16_IdEspecialidad as 'Id', VcEspecialidadTb16_Nombre as 'Nombre',
+    InEspecialidadTb16_Cupo as 'Cupo'
     from EspecialidadTb16
      where InEspecialidadTb16_IdEspecialidad like concat('%',dato,'%')
      or VcEspecialidadTb16_Nombre like concat('%',dato,'%')
      or InEspecialidadTb16_Cupo like concat('%',dato,'%');
-end ;;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1820,25 +1997,57 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaEstEncTb07_Ver` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstEncTb07_Ver`(in idEnc varchar(20))
+BEGIN
+select esttb03.VcEstTb03_IdEstudiante as 'Cedula',
+concat(usutb01.VcUsuTb01_Nombre,' ',usutb01.VcUsuTb01_Ape1,' ',usutb01.VcUsuTb01_Ape2) as 'Estudiante',
+concat(gradotb13.VcGradoTb13_NombreGrado, '-',secciontb20.InSeccionTb20_Num_Grupo) as 'Seccion'
+FROM usutb01 INNER 
+join estenctb07 on  usutb01.VcUsuTb01_Cedula = estenctb07.VcEstTb03_IdEstudiante
+join esttb03 on usutb01.VcUsuTb01_Cedula = EstTb03.VcEstTb03_IdEstudiante
+join enctb05 on estenctb07.VcEncTb05_IdEncargado = enctb05.VcEncTb05_IdEncargado
+join graesttb26 on esttb03.VcEstTb03_IdEstudiante = graesttb26.VcEstTb03_IdEstudiante
+join gradotb13 on graesttb26.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado
+join secesttb28 on esttb03.VcEstTb03_IdEstudiante = secesttb28.VcEstTb03_IdEstudiante
+join secciontb20 on secesttb28.InSeccionTb20_IdSeccion = secciontb20.InSeccionTb20_IdSeccion
+where estenctb07.VcEncTb05_IdEncargado = idEnc;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `PaEstTb03_ActualizarEst` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_ActualizarEst`(IN cedula VARCHAR(20), IN FechaNac DATE, IN idesp int(11),
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_ActualizarEst`(IN cedula VARCHAR(20), IN FechaNac DATE, 
 IN Nombre VARCHAR(20),IN Ape1 VARCHAR(20),IN Ape2 VARCHAR(20), IN Direccion VARCHAR(100), 
 IN Telefono VARCHAR(20), IN email VARCHAR(20))
 BEGIN
-update esttb03,usutb01 set esttb03.DtEstTb03_FechaNac = FechaNac,usutb01.VcUsuTb01_Nombre = Nombre,usutb01.VcUsuTb01_Ape1 = Ape1,
-usutb01.VcUsuTb01_Ape2 = Ape2,esttb03.InEspecialidadTb16_IdEspecialidad = idesp ,usutb01.VcUsuTb01_Direccion = Direccion,
+UPDATE esttb03,usutb01 SET 
+esttb03.DtEstTb03_FechaNac = FechaNac,
+usutb01.VcUsuTb01_Nombre = Nombre,usutb01.VcUsuTb01_Ape1 = Ape1,
+usutb01.VcUsuTb01_Ape2 = Ape2,usutb01.VcUsuTb01_Direccion = Direccion,
 usutb01.VcUsuTb01_Telefono = Telefono,usutb01.VcUsuTb01_Email = email
-where usutb01.VcUsuTb01_Cedula = cedula and esttb03.VcEstTb03_IdEstudiante = cedula;
-end ;;
+WHERE usutb01.VcUsuTb01_Cedula = cedula AND esttb03.VcEstTb03_IdEstudiante = cedula;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1867,22 +2076,21 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_BuscarEst`(in cedula varchar(20))
-begin
-	select u.VcUsuTb01_Cedula as 'Cedula', u.VcUsuTb01_Nombre as 'Nombre', u.VcUsuTb01_Ape1 as 'Apellido1',
-    u.VcUsuTb01_Ape2 as 'Apellido2', s.VcEspecialidadTb16_Nombre as 'Especialidad', u.VcUsuTb01_Direccion as 'Direccion',
-    u.CrUsuTb01_Sexo as 'Genero', u.VcUsuTb01_Telefono as 'Telefono', u.VcUsuTb01_Email as 'Email', 
-    e.DtEstTb03_FechaNac as 'Fecha_Nac', e.VcEstTb03_Adecuacion as 'Adecuacion', e.VcEstTb03_Estado as 'Estado'
-  from esttb03 as e inner join usutb01 as u on e.VcEstTb03_IdEstudiante = u.VcUsuTb01_Cedula 
-  join especialidadtb16 as s on e.InEspecialidadTb16_IdEspecialidad = s.InEspecialidadTb16_IdEspecialidad
-  where e.VcEstTb03_IdEstudiante = cedula;
-end ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_BuscarEst`(IN cedula VARCHAR(20))
+BEGIN
+	SELECT u.VcUsuTb01_Cedula AS 'Cedula', u.VcUsuTb01_Nombre AS 'Nombre', u.VcUsuTb01_Ape1 AS 'Apellido1',
+    u.VcUsuTb01_Ape2 AS 'Apellido2', u.VcUsuTb01_Direccion AS 'Direccion',
+    u.CrUsuTb01_Sexo AS 'Genero', u.VcUsuTb01_Telefono AS 'Telefono', u.VcUsuTb01_Email AS 'Email', 
+    e.DtEstTb03_FechaNac AS 'Fecha_Nac', e.VcEstTb03_Adecuacion AS 'Adecuacion', e.VcEstTb03_Estado AS 'Estado'
+  FROM esttb03 AS e INNER JOIN usutb01 AS u ON e.VcEstTb03_IdEstudiante = u.VcUsuTb01_Cedula 
+  WHERE e.VcEstTb03_IdEstudiante = cedula;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1892,32 +2100,30 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_BuscarEstD`(in dato varchar(20))
-begin
-	select u.VcUsuTb01_Cedula as 'Cedula', u.VcUsuTb01_Nombre as 'Nombre', u.VcUsuTb01_Ape1 as 'Apellido1',
-    u.VcUsuTb01_Ape2 as 'Apellido2', s.VcEspecialidadTb16_Nombre as 'Especialidad', u.VcUsuTb01_Direccion as 'Direccion', u.CrUsuTb01_Sexo as 'Genero',
-    u.VcUsuTb01_Telefono as 'Telefono', u.VcUsuTb01_Email as 'Email', e.DtEstTb03_FechaNac as 'Fecha_Nac',
-	e.VcEstTb03_Adecuacion as 'Adecuacion', e.VcEstTb03_Estado as 'Estado'
-  from esttb03 as e inner join usutb01 as u on e.VcEstTb03_IdEstudiante = u.VcUsuTb01_Cedula 
-  join especialidadtb16 as s on e.InEspecialidadTb16_IdEspecialidad = s.InEspecialidadTb16_IdEspecialidad
-  where e.VcEstTb03_IdEstudiante like concat('%',dato,'%') 
-  or u.VcUsuTb01_Nombre like concat('%',dato,'%')
-  or u.VcUsuTb01_Ape1 like concat('%',dato,'%')
-  or  u.VcUsuTb01_Ape2 like concat('%',dato,'%')
-  or s.VcEspecialidadTb16_Nombre like concat('%',dato,'%')
-  or u.VcUsuTb01_Direccion like concat('%',dato,'%')
-  or u.VcUsuTb01_Telefono like concat('%',dato,'%')
-  or u.VcUsuTb01_Email like concat('%',dato,'%')
-  or  e.DtEstTb03_FechaNac like concat('%',dato,'%')
-  or e.VcEstTb03_Adecuacion like concat('%',dato,'%')
-  or e.VcEstTb03_Estado ;
-end ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_BuscarEstD`(IN dato VARCHAR(20))
+BEGIN
+	SELECT u.VcUsuTb01_Cedula AS 'Cedula', u.VcUsuTb01_Nombre AS 'Nombre', u.VcUsuTb01_Ape1 AS 'Apellido1',
+    u.VcUsuTb01_Ape2 AS 'Apellido2', u.VcUsuTb01_Direccion AS 'Direccion', u.CrUsuTb01_Sexo AS 'Genero',
+    u.VcUsuTb01_Telefono AS 'Telefono', u.VcUsuTb01_Email AS 'Email', e.DtEstTb03_FechaNac AS 'Fecha_Nac',
+	e.VcEstTb03_Adecuacion AS 'Adecuacion', e.VcEstTb03_Estado AS 'Estado'
+  FROM esttb03 AS e INNER JOIN usutb01 AS u ON e.VcEstTb03_IdEstudiante = u.VcUsuTb01_Cedula 
+  WHERE e.VcEstTb03_IdEstudiante LIKE CONCAT('%',dato,'%') 
+  OR u.VcUsuTb01_Nombre LIKE CONCAT('%',dato,'%')
+  OR u.VcUsuTb01_Ape1 LIKE CONCAT('%',dato,'%')
+  OR  u.VcUsuTb01_Ape2 LIKE CONCAT('%',dato,'%')
+  OR u.VcUsuTb01_Direccion LIKE CONCAT('%',dato,'%')
+  OR u.VcUsuTb01_Telefono LIKE CONCAT('%',dato,'%')
+  OR u.VcUsuTb01_Email LIKE CONCAT('%',dato,'%')
+  OR  e.DtEstTb03_FechaNac LIKE CONCAT('%',dato,'%')
+  OR e.VcEstTb03_Adecuacion LIKE CONCAT('%',dato,'%')
+  OR e.VcEstTb03_Estado ;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1927,21 +2133,21 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_GuardarEst`(in IdEst varchar(20),  in FecNacEst date, in Adecuacion varchar(20), 
-in Estado varchar(20), in IdEspecialidad int, in NomEst varchar(20), in Ape1 varchar(20), in Ape2 varchar(20), 
-in Direccion varchar(20), in Sexo char(1), in Telefono varchar(8), in Email varchar(100))
-begin
-	insert into UsuTb01(VcUsuTb01_Cedula, VcUsuTb01_Nombre, VcUsuTb01_Ape1, VcUsuTb01_Ape2, VcUsuTb01_Direccion, CrUsuTb01_Sexo, VcUsuTb01_Telefono, VcUsuTb01_Email)
-    values(IdEst, NomEst, Ape1, Ape2, Direccion, Sexo, Telefono, Email);
-     insert into EstTb03 (VcEstTb03_IdEstudiante, DtEstTb03_FechaNac, VcEstTb03_Adecuacion, VcEstTb03_Estado, InEspecialidadTb16_IdEspecialidad)
-    values (IdEst, FecNacEst, Adecuacion, Estado, IdEspecialidad);
-end ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_GuardarEst`(IN IdEst VARCHAR(20),  IN FecNacEst DATE, IN Adecuacion VARCHAR(20), 
+IN Estado VARCHAR(20), IN NomEst VARCHAR(20), IN Ape1 VARCHAR(20), IN Ape2 VARCHAR(20), 
+IN Direccion VARCHAR(20), IN Sexo CHAR(1), IN Telefono VARCHAR(8), IN Email VARCHAR(100))
+BEGIN
+	INSERT INTO UsuTb01(VcUsuTb01_Cedula, VcUsuTb01_Nombre, VcUsuTb01_Ape1, VcUsuTb01_Ape2, VcUsuTb01_Direccion, CrUsuTb01_Sexo, VcUsuTb01_Telefono, VcUsuTb01_Email)
+    VALUES(IdEst, NomEst, Ape1, Ape2, Direccion, Sexo, Telefono, Email);
+     INSERT INTO EstTb03 (VcEstTb03_IdEstudiante, DtEstTb03_FechaNac, VcEstTb03_Adecuacion, VcEstTb03_Estado)
+    VALUES (IdEst, FecNacEst, Adecuacion, Estado);
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1961,10 +2167,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_Info`(IN IdEst VARCHAR(20
 BEGIN
 	select esttb03.VcEstTb03_IdEstudiante as 'Cedula', 
     concat(usutb01.VcUsuTb01_Nombre , ' ' , usutb01.VcUsuTb01_Ape1, ' ' , usutb01.VcUsuTb01_Ape2) as 'Nombre_Est',
-    usutb01.VcUsuTb01_Direccion as 'Direccion',usutb01.CrUsuTb01_Sexo as 'Genero',
-    usutb01.VcUsuTb01_Telefono AS 'Telefono',
-    usutb01.VcUsuTb01_Email AS 'Email', 
-    esttb03.DtEstTb03_FechaNac AS 'Nacimiento',
     esttb03.VcEstTb03_Adecuacion AS 'Adecuacion',
     esttb03.VcEstTb03_Estado AS 'Estado',
     enctb05.VcEncTb05_IdEncargado as 'Encargado'/*,
@@ -1986,22 +2188,25 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_Listar`(IN inicio INT, IN final INT)
-begin
- select UsuTb01.VcUsuTb01_Cedula as 'Cedula', UsuTb01.VcUsuTb01_Nombre  as 'Nombre', UsuTb01.VcUsuTb01_Ape1  as 'Apellido1',
- UsuTb01.VcUsuTb01_Ape2  as 'Apellido2', especialidadtb16.VcEspecialidadTb16_Nombre as 'Especialidad', 
- UsuTb01.VcUsuTb01_Direccion as 'Direccion', UsuTb01.CrUsuTb01_Sexo as 'Genero', UsuTb01.VcUsuTb01_Telefono as 'Telefono', 
- UsuTb01.VcUsuTb01_Email as 'Email', EstTb03.DtEstTb03_FechaNac as 'FechaNac',EstTb03.VcEstTb03_Adecuacion as 'Adecuacion', EstTb03.VcEstTb03_Estado as 'Estado'
-    from UsuTb01, EstTb03,especialidadtb16
-    where EstTb03.VcEstTb03_IdEstudiante = UsuTb01.VcUsuTb01_Cedula and esttb03.InEspecialidadTb16_IdEspecialidad = especialidadtb16.InEspecialidadTb16_IdEspecialidad
-	order by 'date added' limit inicio,final;
-end ;;
+BEGIN
+ SELECT UsuTb01.VcUsuTb01_Cedula AS 'Cedula', UsuTb01.VcUsuTb01_Nombre  AS 'Nombre',
+ UsuTb01.VcUsuTb01_Ape1  AS 'Apellido1',
+ UsuTb01.VcUsuTb01_Ape2  AS 'Apellido2',
+ UsuTb01.VcUsuTb01_Direccion AS 'Direccion', UsuTb01.CrUsuTb01_Sexo AS 'Genero', 
+ UsuTb01.VcUsuTb01_Telefono AS 'Telefono', 
+ UsuTb01.VcUsuTb01_Email AS 'Email', EstTb03.DtEstTb03_FechaNac AS 'FechaNac',
+ EstTb03.VcEstTb03_Adecuacion AS 'Adecuacion', EstTb03.VcEstTb03_Estado AS 'Estado'
+    FROM UsuTb01, EstTb03
+    WHERE EstTb03.VcEstTb03_IdEstudiante = UsuTb01.VcUsuTb01_Cedula and EstTb03.VcEstTb03_Estado = 'A'
+	ORDER BY 'date added' LIMIT inicio,final;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2011,22 +2216,59 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_ListarActivos`()
-begin
- select UsuTb01.VcUsuTb01_Cedula as 'Cedula', UsuTb01.VcUsuTb01_Nombre  as 'Nombre', UsuTb01.VcUsuTb01_Ape1  as 'Apellido1',
- UsuTb01.VcUsuTb01_Ape2  as 'Apellido2', EspecialidadTb16.VcEspecialidadTb16_Nombre as 'Especialidad', 
- UsuTb01.VcUsuTb01_Direccion as 'Direccion', UsuTb01.CrUsuTb01_Sexo as 'Genero', UsuTb01.VcUsuTb01_Telefono as 'Telefono', 
- UsuTb01.VcUsuTb01_Email as 'Email', EstTb03.DtEstTb03_FechaNac as 'FechaNac', EstTb03.VcEstTb03_Adecuacion as 'Adecuacion', EstTb03.VcEstTb03_Estado as 'Estado'
-    from UsuTb01, EstTb03, EspecialidadTb16
-    where EstTb03.VcEstTb03_IdEstudiante = UsuTb01.VcUsuTb01_Cedula and esttb03.VcEstTb03_Estado = 'A' and EspecialidadTb16.InEspecialidadTb16_IdEspecialidad = EstTb03.InEspecialidadTb16_IdEspecialidad
-	order by EstTb03.VcEstTb03_IdEstudiante;
-end ;;
+BEGIN
+ SELECT UsuTb01.VcUsuTb01_Cedula AS 'Cedula', UsuTb01.VcUsuTb01_Nombre  AS 'Nombre', UsuTb01.VcUsuTb01_Ape1  AS 'Apellido1',
+ UsuTb01.VcUsuTb01_Ape2  AS 'Apellido2', 
+ UsuTb01.VcUsuTb01_Direccion AS 'Direccion', UsuTb01.CrUsuTb01_Sexo AS 'Genero', UsuTb01.VcUsuTb01_Telefono AS 'Telefono', 
+ UsuTb01.VcUsuTb01_Email AS 'Email', EstTb03.DtEstTb03_FechaNac AS 'FechaNac', EstTb03.VcEstTb03_Adecuacion AS 'Adecuacion', EstTb03.VcEstTb03_Estado AS 'Estado'
+    FROM UsuTb01, EstTb03
+    WHERE EstTb03.VcEstTb03_IdEstudiante = UsuTb01.VcUsuTb01_Cedula AND esttb03.VcEstTb03_Estado = 'A'
+	ORDER BY EstTb03.VcEstTb03_IdEstudiante;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaEstTb03_ListarMatri` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_ListarMatri`(IN cedula VARCHAR(20))
+BEGIN  
+  select matriculaesttb33.InMatriculaEstTb33_Id as 'Id', matriculaesttb33.VcEstTb03_IdEstudiante as 'Cedula',
+  concat(usutb01.VcUsuTb01_Nombre,' ',usutb01.VcUsuTb01_Ape1,' ',usutb01.VcUsuTb01_Ape2) as 'Estudiante',
+  periodotb34.VcPeriodoTb34_Nombre as 'Periodo', matriculaesttb33.DtMatriculaEstTb33_Fecha as 'Fecha',
+  concat(gradotb13.VcGradoTb13_NombreGrado,'-', secciontb20.InSeccionTb20_Num_Grupo) as 'Seccion',
+materiatb17.VcMateriaTb17_Nombre  as 'Materia', especialidadtb16.VcEspecialidadTb16_Nombre as 'Especialidad'
+  from  esttb03 inner 
+ join usutb01 on esttb03.VcEstTb03_IdEstudiante = usutb01.VcUsuTb01_Cedula
+ join matriculaesttb33 on esttb03.VcEstTb03_IdEstudiante = matriculaesttb33.VcEstTb03_IdEstudiante
+ join periodotb34 on matriculaesttb33.InPeriodoTb34_Id = periodotb34.InPeriodoTb34_Id
+ join inscmateriatb11 on esttb03.VcEstTb03_IdEstudiante = inscmateriatb11.VcEstTb03_IdEstudiante
+ join materiatb17 on inscmateriatb11.InMateriaTb17_IdMateria = materiatb17.InMateriaTb17_IdMateria
+ join secesttb28 on matriculaesttb33.InSeccionTb20_IdSeccion = secesttb28.InSeccionTb20_IdSeccion
+ join secciontb20 on secesttb28.InSeccionTb20_IdSeccion = secciontb20.InSeccionTb20_IdSeccion
+ join secgradotb25 on secesttb28.InSeccionTb20_IdSeccion = secgradotb25.InSeccionTb20_IdSeccion
+ join gradotb13 on secgradotb25.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado
+ join espeesttb35 on matriculaesttb33.InEspecialidadTb16_IdEspecialidad = espeesttb35.InEspecialidadTb16_IdEspecialidad
+ join especialidadtb16 on espeesttb35.InEspecialidadTb16_IdEspecialidad = especialidadtb16.InEspecialidadTb16_IdEspecialidad
+where matriculaesttb33.VcEstTb03_IdEstudiante = cedula
+  order by matriculaesttb33.InPeriodoTb34_Id,matriculaesttb33.InMatriculaEstTb33_Id;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2042,14 +2284,37 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_Matricula`(in idEst varchar(20), IN mat int,in gra int, in sec int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_Matricula`(in idPeri int,in idEsp int,in idEst varchar(20), in gra int, in sec int)
 BEGIN
+insert into matriculaesttb33(DtMatriculaEstTb33_Fecha,InPeriodoTb34_Id,InGradoTb13_IdGrado,
+InSeccionTb20_IdSeccion,InEspecialidadTb16_IdEspecialidad,VcEstTb03_IdEstudiante)
+values(now(),idPeri,gra,sec,idEsp,idEst);
 insert into graesttb26 (VcEstTb03_IdEstudiante, InGradoTb13_IdGrado)
 values (idEst, gra);
 insert into secesttb28 (VcEstTb03_IdEstudiante,InSeccionTb20_IdSeccion)
 values (idEst, sec);
+insert into espeesttb35(InEspecialidadTb16_IdEspecialidad,VcEstTb03_IdEstudiante)
+values (idEsp,idEst);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaEstTb03_MatriculaMat` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_MatriculaMat`(in idEst varchar(20), in mat int)
+BEGIN
 insert into inscmateriatb11 (VcEstTb03_IdEstudiante,InMateriaTb17_IdMateria)
-values (idEst, mat); 
+values (idEst, mat);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -2069,15 +2334,13 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PaEstTb03_VerPorSeccion`(in idGra int,in idSec int)
 BEGIN
 SELECT concat(gradotb13.VcGradoTb13_NombreGrado, '-',secciontb20.InSeccionTb20_Num_Grupo) as 'Seccion',
-usutb01.VcUsuTb01_Cedula AS 'Cedula', 
-concat(usutb01.VcUsuTb01_Nombre, ' ',usutb01.VcUsuTb01_Ape1, ' ', usutb01.VcUsuTb01_Ape2) AS 'Estudiante',
-e.VcEspecialidadTb16_Nombre AS 'Especialidad'
+esttb03.VcEstTb03_IdEstudiante AS 'Cedula', 
+concat(usutb01.VcUsuTb01_Nombre, ' ',usutb01.VcUsuTb01_Ape1, ' ', usutb01.VcUsuTb01_Ape2) AS 'Estudiante'
 from 
-especialidadtb16 as e inner join esttb03 as es on e.InEspecialidadTb16_IdEspecialidad = es.InEspecialidadTb16_IdEspecialidad
-join usutb01 on es.VcEstTb03_IdEstudiante = usutb01.VcUsuTb01_Cedula
-join graesttb26 on es.VcEstTb03_IdEstudiante = graesttb26.VcEstTb03_IdEstudiante
+esttb03 inner join usutb01 on esttb03.VcEstTb03_IdEstudiante = usutb01.VcUsuTb01_Cedula
+join graesttb26 on esttb03.VcEstTb03_IdEstudiante = graesttb26.VcEstTb03_IdEstudiante
 join gradotb13 on graesttb26.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado
-join secesttb28 on es.VcEstTb03_IdEstudiante = secesttb28.VcEstTb03_IdEstudiante
+join secesttb28 on esttb03.VcEstTb03_IdEstudiante = secesttb28.VcEstTb03_IdEstudiante
 join secciontb20 on secesttb28.InSeccionTb20_IdSeccion = secciontb20.InSeccionTb20_IdSeccion
     where gradotb13.InGradoTb13_IdGrado = idGra and secciontb20.InSeccionTb20_IdSeccion = idSec;
 END ;;
@@ -2220,15 +2483,15 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PaFunTb06_Listar`(IN `inicio` INT, IN `final` INT)
-begin
-select UsuTb01.VcUsuTb01_Cedula as 'Cedula', UsuTb01.VcUsuTb01_Nombre  as 'Nombre', UsuTb01.VcUsuTb01_Ape1  as 'Apellido1',
- UsuTb01.VcUsuTb01_Ape2  as 'Apellido2', UsuTb01.VcUsuTb01_Direccion as 'Direccion', UsuTb01.CrUsuTb01_Sexo as 'Genero', 
- UsuTb01.VcUsuTb01_Telefono as 'Telefono', UsuTb01.VcUsuTb01_Email as 'Email', funtb06.VcFunTb06_Clave as 'Clave', 
- funtb06.DtFunTb06_FechaNac as 'Fecha_Nac', funtb06.VcFunTb06_Estado as 'Estado'
-    from UsuTb01, funtb06
-    where funtb06.VcFunTb06_IdFuncionario = usutb01.VcUsuTb01_Cedula
-	order by 'date added' limit inicio,final;
-end ;;
+BEGIN
+SELECT UsuTb01.VcUsuTb01_Cedula AS 'Cedula', UsuTb01.VcUsuTb01_Nombre  AS 'Nombre', UsuTb01.VcUsuTb01_Ape1  AS 'Apellido1',
+ UsuTb01.VcUsuTb01_Ape2  AS 'Apellido2', UsuTb01.VcUsuTb01_Direccion AS 'Direccion', UsuTb01.CrUsuTb01_Sexo AS 'Genero', 
+ UsuTb01.VcUsuTb01_Telefono AS 'Telefono', UsuTb01.VcUsuTb01_Email AS 'Email', funtb06.VcFunTb06_Clave AS 'Clave', 
+ funtb06.DtFunTb06_FechaNac AS 'Fecha_Nac', funtb06.VcFunTb06_Estado AS 'Estado'
+    FROM UsuTb01, funtb06
+    WHERE funtb06.VcFunTb06_IdFuncionario = usutb01.VcUsuTb01_Cedula and funtb06.VcFunTb06_Estado = 'A'
+	ORDER BY 'date added' LIMIT inicio,final;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2307,16 +2570,16 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaGradoTb13_BuscarGradoD`(in dato varchar(20))
-begin
-	select gradotb13.InGradoTb13_IdGrado as 'id_grado' , gradotb13.VcGradoTb13_NombreGrado as 'Nombre', 
-    bachillertb14.VcBachillerTb14_NombreBachiller as 'Bachiller'
-    from gradotb13 inner join bachillertb14 
-    on bachillertb14.InBachillerTb14_IdBachiller = gradotb13.InBachillerTb14_IdBachiller
-     where InGradoTb13_IdGrado like concat('%',dato,'%')
-     or VcGradoTb13_NombreGrado like concat('%',dato,'%')
-     or  bachillertb14.VcBachillerTb14_NombreBachiller like concat('%',dato,'%');
-end ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaGradoTb13_BuscarGradoD`(IN dato VARCHAR(20))
+BEGIN
+	SELECT gradotb13.InGradoTb13_IdGrado AS 'id_grado' , gradotb13.VcGradoTb13_NombreGrado AS 'Nombre', 
+    bachillertb14.VcBachillerTb14_NombreBachiller AS 'Bachiller',bachillertb14.InBachillerTb14_IdBachiller as 'idBachiller'
+    FROM gradotb13 INNER JOIN bachillertb14 
+    ON bachillertb14.InBachillerTb14_IdBachiller = gradotb13.InBachillerTb14_IdBachiller
+     WHERE InGradoTb13_IdGrado LIKE CONCAT('%',dato,'%')
+     OR VcGradoTb13_NombreGrado LIKE CONCAT('%',dato,'%')
+     OR  bachillertb14.VcBachillerTb14_NombreBachiller LIKE CONCAT('%',dato,'%');
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2375,12 +2638,36 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PaGradoTb13_Listar_Todo`()
-begin
-	select gradotb13.InGradoTb13_IdGrado as 'id_grado' , gradotb13.VcGradoTb13_NombreGrado as 'Nombre', 
-    bachillertb14.VcBachillerTb14_NombreBachiller as 'Bachiller'
-    from gradotb13 inner join bachillertb14 on bachillertb14.InBachillerTb14_IdBachiller = gradotb13.InBachillerTb14_IdBachiller
-    order by InGradoTb13_IdGrado;
-end ;;
+BEGIN
+	SELECT gradotb13.InGradoTb13_IdGrado AS 'id_grado' , gradotb13.VcGradoTb13_NombreGrado AS 'Nombre', 
+    bachillertb14.VcBachillerTb14_NombreBachiller AS 'Bachiller'
+    FROM gradotb13 INNER JOIN bachillertb14 ON bachillertb14.InBachillerTb14_IdBachiller = gradotb13.InBachillerTb14_IdBachiller
+    ORDER BY InGradoTb13_IdGrado;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaGradoTb13_Prof` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaGradoTb13_Prof`(in idProf varchar(20))
+BEGIN
+	SELECT gradotb13.InGradoTb13_IdGrado AS 'id_grado' , gradotb13.VcGradoTb13_NombreGrado AS 'Nombre'
+    FROM asiggradotb12 inner join
+    proftb04 on asiggradotb12.VcProfTb04_IdProf = proftb04.VcProfTb04_IdProfesor
+    inner join gradotb13 on asiggradotb12.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado
+    where proftb04.VcProfTb04_IdProfesor = idProf
+    ORDER BY gradotb13.VcGradoTb13_NombreGrado;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2390,18 +2677,18 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_ActualizarHorario`(in Dia varchar(20), in HoraIni time, in HoraFin time)
-begin
-	update HorariosTb29 h
-    set  h.VcHorariosTb29_Dia = Dia, h.TmHorariosTb29_Hora_Inicio = HoraIni, h.TmHorariosTb29_Hora_Final = HoraFin
-    where h.InHorariosTb29_IdHorario = IdHorario;
-end ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_ActualizarHorario`(IN id int, IN Dia VARCHAR(20), IN HoraIni TIME, IN HoraFin TIME)
+BEGIN
+	UPDATE HorariosTb29 h
+    SET  h.VcHorariosTb29_Dia = Dia, h.TmHorariosTb29_Hora_Inicio = HoraIni, h.TmHorariosTb29_Hora_Final = HoraFin
+    WHERE h.InHorariosTb29_IdHorario = id;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2417,7 +2704,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_AgregarHorario`(IN dia varchar(20), in ini time, in fin time)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_AgregarHorario`(in dia varchar(20), in ini time, in fin time)
 BEGIN
 	insert into horariostb29 (VcHorariosTb29_Dia, TmHorariosTb29_Hora_Inicio, TmHorariosTb29_Hora_Final)
     values (dia, ini, fin);
@@ -2439,7 +2726,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_AsignarHorario`(in idsec int,in idHo int, in idmat int, in idprof varchar(20))
 BEGIN
-	insert into matriculatb30 (InSeccionTb20_IdSeccion,InHorariosTb29_IdHorario,
+	insert into matriculaproftb30 (InSeccionTb20_IdSeccion,InHorariosTb29_IdHorario,
     InMateriaTb17_IdMateria,VcProfTb04_IdProfesor)
     values(idsec, idHo, idmat, idprof);
 END ;;
@@ -2452,40 +2739,90 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_BuscarHorario`(in IdHo int)
-begin
-	select h.InHorariosTb29_IdHorario as 'Id', h.InMateriaTb17_IdMateria as 'Id_Materia', 
-    h.VcHorariosTb29_Dia as 'Dia', h.TmHorariosTb29_Hora_Inicio as 'Hora_Inicio', 
-    h.TmHorariosTb29_Hora_Final as 'Hora_Fin' 
-    from HorariosTb29 h
-	where h.InHorariosTb29_IdHorario = IdHo;
-end ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_BuscarHorario`(IN IdHo INT)
+BEGIN
+	SELECT h.InHorariosTb29_IdHorario AS 'Id', 
+    h.VcHorariosTb29_Dia AS 'Dia', h.TmHorariosTb29_Hora_Inicio AS 'Hora_Inicio', 
+    h.TmHorariosTb29_Hora_Final AS 'Hora_Fin' 
+    FROM HorariosTb29 h
+	WHERE h.InHorariosTb29_IdHorario = IdHo;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `PaHorarioTb28_EliminarHorario` */;
+/*!50003 DROP PROCEDURE IF EXISTS `PaHorariosTb29_BuscarHorarioD` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorarioTb28_EliminarHorario`(in IdHo int)
-begin
-	delete from HorariosTb29  
-    where HorariosTb29.InHorarioTb28_IdHorario = IdHo;
-end ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_BuscarHorarioD`(IN dato varchar(20))
+BEGIN
+	SELECT h.InHorariosTb29_IdHorario AS 'Id', h.VcHorariosTb29_Dia AS 'Dia', 
+    h.TmHorariosTb29_Hora_Inicio AS 'Hora_Inicio', h.TmHorariosTb29_Hora_Final AS 'Hora_Fin' 
+    FROM HorariosTb29 h
+	WHERE h.InHorariosTb29_IdHorario like concat('%',dato,'%')
+    or h.VcHorariosTb29_Dia like concat('%',dato,'%')
+    or h.TmHorariosTb29_Hora_Inicio like concat('%',dato,'%')
+    or h.TmHorariosTb29_Hora_Final like concat('%',dato,'%');
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaHorariosTb29_Listar` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorariosTb29_Listar`(IN `inicio` INT, IN `final` INT)
+BEGIN
+	SELECT HorariosTb29.InHorariosTb29_IdHorario AS 'Id', 
+    HorariosTb29.VcHorariosTb29_Dia AS 'Dia',
+    HorariosTb29.TmHorariosTb29_Hora_Inicio AS 'Hora_Inicio', 
+    HorariosTb29.TmHorariosTb29_Hora_Final AS 'Hora_Fin' 
+FROM  
+ HorariosTb29 
+ ORDER BY  HorariosTb29.VcHorariosTb29_Dia LIMIT inicio,final;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaHorarioTb29_EliminarHorario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaHorarioTb29_EliminarHorario`(IN IdHo INT)
+BEGIN
+	DELETE FROM HorariosTb29  
+    WHERE InHorariosTb29_IdHorario = IdHo;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2680,7 +3017,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `PaMatriculaTb30_CargarSeccion` */;
+/*!50003 DROP PROCEDURE IF EXISTS `PaMatriculaProfTb30_CargarSeccion` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2690,20 +3027,22 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaMatriculaTb30_CargarSeccion`(IN idMater INT, IN idProf VARCHAR(20))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaMatriculaProfTb30_CargarSeccion`(IN idMater INT, IN idProf VARCHAR(20))
 BEGIN
-select secciontb20.InSeccionTb20_IdSeccion as 'Id_Seccion',gradotb13.VcGradoTb13_NombreGrado as 'Grado' ,secciontb20.InSeccionTb20_Num_Grupo as 'num_grupo'
-from secciontb20 inner join secgradotb25 on secciontb20.InSeccionTb20_IdSeccion = secgradotb25.InSeccionTb20_IdSeccion 
+select secciontb20.InSeccionTb20_IdSeccion as 'Id_Seccion',gradotb13.VcGradoTb13_NombreGrado as 'Grado',
+secciontb20.InSeccionTb20_Num_Grupo as 'num_grupo'
+from secciontb20 inner 
+join secgradotb25 on secciontb20.InSeccionTb20_IdSeccion = secgradotb25.InSeccionTb20_IdSeccion 
 join gradotb13 on secgradotb25.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado 
-join matriculatb30 on secciontb20.InSeccionTb20_IdSeccion = matriculatb30.InSeccionTb20_IdSeccion 
-where matriculatb30.InMateriaTb17_IdMateria = idMater and matriculatb30.VcProfTb04_IdProfesor = idProf;
+join MatriculaProfTb30 on secciontb20.InSeccionTb20_IdSeccion = MatriculaProfTb30.InSeccionTb20_IdSeccion 
+where MatriculaProfTb30.InMateriaTb17_IdMateria = idMater and MatriculaProfTb30.VcProfTb04_IdProfesor = idProf;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `PaMatriculaTb30_MatriculaProf` */;
+/*!50003 DROP PROCEDURE IF EXISTS `PaPeriodoTb33_Listar_Todos` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -2713,11 +3052,31 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaMatriculaTb30_MatriculaProf`(in sec int, in horario int, in mat int, in prof varchar(20))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaPeriodoTb33_Listar_Todos`()
 BEGIN
-	insert into matriculatb30 (InSeccionTb20_IdSeccion,InHorariosTb29_IdHorario,InMateriaTb17_IdMateria,VcProfTb04_IdProfesor)
-    values(sec, horario, mat, prof);
-end ;;
+	SELECT InPeriodoTb33_Id AS 'Id', VcPeriodoTb33_Nombre AS 'Periodo' 
+    FROM PeriodoTb33;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaPeriodoTb34_Listar_Todos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaPeriodoTb34_Listar_Todos`()
+BEGIN
+	SELECT InPeriodoTb34_Id AS 'Id', VcPeriodoTb34_Nombre AS 'Periodo' 
+    FROM PeriodoTb34;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -2869,6 +3228,32 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaProfTb04_Info` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaProfTb04_Info`(IN IdProf VARCHAR(20))
+BEGIN
+	select proftb04.VcProfTb04_IdProfesor as 'Cedula', 
+    concat(usutb01.VcUsuTb01_Nombre , ' ' , usutb01.VcUsuTb01_Ape1, ' ' , usutb01.VcUsuTb01_Ape2) as 'Nombre_Prof',
+    usutb01.VcUsuTb01_Telefono AS 'Telefono',
+    usutb01.VcUsuTb01_Email AS 'Email',
+    proftb04.VcProfTb04_Estado AS 'Estado'
+    FROM 
+    usutb01 INNER JOIN proftb04 ON usutb01.VcUsuTb01_Cedula = proftb04.VcProfTb04_IdProfesor
+  WHERE proftb04.VcProfTb04_IdProfesor = IdProf;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `PaProfTb04_Listar` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2919,6 +3304,119 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaProfTb04_ListarMatProf` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaProfTb04_ListarMatProf`(IN cedula VARCHAR(20))
+BEGIN  
+  select materiatb17.InMateriaTb17_IdMateria as 'Id', materiatb17.VcMateriaTb17_Nombre as 'Materia'
+  from asigmateriatb19 inner join materiatb17  on materiatb17.InMateriaTb17_IdMateria = asigmateriatb19.InMateriaTb17_IdMateria
+  join proftb04 on asigmateriatb19.VcProfTb04_IdProfesor = proftb04.VcProfTb04_IdProfesor
+  where proftb04.VcProfTb04_IdProfesor = cedula;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaProfTb04_ListarMatri` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaProfTb04_ListarMatri`(IN cedula VARCHAR(20))
+BEGIN  
+  select matriculaproftb30.InMatriculaProfTb30_Id as 'Id', matriculaproftb30.VcProfTb04_IdProfesor as 'Cedula',
+  concat(usutb01.VcUsuTb01_Nombre,' ',usutb01.VcUsuTb01_Ape1,' ',usutb01.VcUsuTb01_Ape2) as 'Profesor',
+  periodotb34.VcPeriodoTb34_Nombre as 'Periodo', matriculaproftb30.DtMatriculaProfTb30_Fecha as 'Fecha',
+  concat(gradotb13.VcGradoTb13_NombreGrado,'-', secciontb20.InSeccionTb20_Num_Grupo) as 'Seccion',
+materiatb17.VcMateriaTb17_Nombre  as 'Materia', 
+concat(horariostb29.VcHorariosTb29_Dia,' ',horariostb29.TmHorariosTb29_Hora_Inicio,'-',horariostb29.TmHorariosTb29_Hora_Final) as 'Horario'
+ from  proftb04 inner 
+ join usutb01 on proftb04.VcProfTb04_IdProfesor = usutb01.VcUsuTb01_Cedula
+ join matriculaproftb30 on proftb04.VcProfTb04_IdProfesor = matriculaproftb30.VcProfTb04_IdProfesor
+ join periodotb34 on matriculaproftb30.InPeriodoTb34_Id = periodotb34.InPeriodoTb34_Id
+ join horariostb29 on matriculaproftb30.InHorariosTb29_IdHorario = horariostb29.InHorariosTb29_IdHorario
+ join asigmateriatb19 on matriculaproftb30.InMateriaTb17_IdMateria = asigmateriatb19.InMateriaTb17_IdMateria
+ join materiatb17 on asigmateriatb19.InMateriaTb17_IdMateria = materiatb17.InMateriaTb17_IdMateria
+join seccionproftb27 on matriculaproftb30.InSeccionTb20_IdSeccion = seccionproftb27.InSeccionTb20_IdSeccion
+ join secciontb20 on seccionproftb27.InSeccionTb20_IdSeccion = secciontb20.InSeccionTb20_IdSeccion
+  join secgradotb25 on seccionproftb27.InSeccionTb20_IdSeccion = secgradotb25.InSeccionTb20_IdSeccion
+ join gradotb13 on secgradotb25.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado
+where matriculaproftb30.VcProfTb04_IdProfesor = cedula
+  order by matriculaproftb30.InPeriodoTb34_Id,matriculaproftb30.InMatriculaProfTb30_Id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaProfTb04_ListarSecProf` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaProfTb04_ListarSecProf`(IN cedula VARCHAR(20),IN idGra int)
+BEGIN  
+  select secciontb20.InSeccionTb20_IdSeccion as 'Id', 
+  concat(gradotb13.VcGradoTb13_NombreGrado,'-', secciontb20.InSeccionTb20_Num_Grupo) as 'Seccion'
+  from  seccionproftb27 inner 
+join secciontb20  on seccionproftb27.InSeccionTb20_IdSeccion = secciontb20.InSeccionTb20_IdSeccion
+join proftb04 on seccionproftb27.VcProfTb04_IdProfesor = proftb04.VcProfTb04_IdProfesor 
+join secgradotb25 on secciontb20.InSeccionTb20_IdSeccion =secgradotb25.InSeccionTb20_IdSeccion
+join gradotb13 on secgradotb25.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado 
+  join asiggradotb12 on gradotb13.InGradoTb13_IdGrado = asiggradotb12.InGradoTb13_IdGrado
+  where proftb04.VcProfTb04_IdProfesor = cedula and gradotb13.InGradoTb13_IdGrado = idGra;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaProfTb04_ListarSecProf2` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaProfTb04_ListarSecProf2`(IN cedula VARCHAR(20))
+BEGIN  
+  select secciontb20.InSeccionTb20_IdSeccion as 'Id', 
+  concat(gradotb13.VcGradoTb13_NombreGrado,'-', secciontb20.InSeccionTb20_Num_Grupo) as 'Seccion'
+  from  seccionproftb27 inner 
+join secciontb20  on seccionproftb27.InSeccionTb20_IdSeccion = secciontb20.InSeccionTb20_IdSeccion
+join proftb04 on seccionproftb27.VcProfTb04_IdProfesor = proftb04.VcProfTb04_IdProfesor 
+join secgradotb25 on secciontb20.InSeccionTb20_IdSeccion =secgradotb25.InSeccionTb20_IdSeccion
+join gradotb13 on secgradotb25.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado 
+  join asiggradotb12 on gradotb13.InGradoTb13_IdGrado = asiggradotb12.InGradoTb13_IdGrado
+  where proftb04.VcProfTb04_IdProfesor = cedula;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `PaProfTb04_Listar_Asigna` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2941,6 +3439,27 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaProfTb04_Matricula` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaProfTb04_Matricula`(in idPeri int,in idMat int, in idGra int, in idSec int,in idHo int,in idProf varchar(20))
+BEGIN
+insert into matriculaproftb30(DtMatriculaProfTb30_Fecha,InPeriodoTb33_Id,InMateriaTb17_IdMateria,
+InGradoTb13_IdGrado,InSeccionTb20_IdSeccion,InHorariosTb29_IdHorario,VcProfTb04_IdProfesor)
+values(now(),idPeri,idMat,idGra,idSec,idHo,idProf);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `PaSeccionprofTb27_Asignar` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2951,10 +3470,12 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaSeccionprofTb27_Asignar`(in ids int, in idp varchar(20))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaSeccionprofTb27_Asignar`(in idg int,in ids int, in idp varchar(20))
 BEGIN
 insert into seccionproftb27(InSeccionTb20_IdSeccion,VcProfTb04_IdProfesor) 
     values(ids,idp);
+    insert into asiggradotb12(InGradoTb13_IdGrado,VcProfTb04_IdProf)
+    values(idg,idp);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3108,72 +3629,24 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `PaSeccionTb20_ListaNumSec` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaSeccionTb20_ListaNumSec`()
-BEGIN
-select secciontb20.InSeccionTb20_IdSeccion as 'ID_Seccion',
-secciontb20.InSeccionTb20_Num_Grupo as 'Grupo' 
-from secciontb20 inner join secgradotb25 on secgradotb25.InSeccionTb20_IdSeccion = secciontb20.InSeccionTb20_IdSeccion 
-join gradotb13 on secgradotb25.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado   
-ORDER BY 'date added';
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `PaSeccionTb20_Listar` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ALLOW_INVALID_DATES,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaSeccionTb20_Listar`(IN inicio INT, IN final INT)
-begin
-select secciontb20.InSeccionTb20_IdSeccion as 'ID_Seccion',secciontb20.InSeccionTb20_Cupo as 'cupo',
-secciontb20.InSeccionTb20_Num_Grupo as 'Num_grupo',gradotb13.VcGradoTb13_NombreGrado as 'Grado'
-from secciontb20 inner join secgradotb25 on secgradotb25.InSeccionTb20_IdSeccion = secciontb20.InSeccionTb20_IdSeccion 
-join gradotb13 on secgradotb25.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado
-order by 'date addeed' limit inicio,final;
-end ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `PaSeccionTb20_ListarEst` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8 */ ;
 /*!50003 SET character_set_results = utf8 */ ;
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PaSeccionTb20_ListarEst`(in idsec int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaSeccionTb20_Listar`(IN inicio INT, IN final INT)
 BEGIN
-    select usutb01.VcUsuTb01_Cedula AS 'Cedula',
-   concat(usutb01.VcUsuTb01_Nombre, ' ' ,usutb01.VcUsuTb01_Ape1, ' ', usutb01.VcUsuTb01_Ape2) as 'Estudiante',
-concat(gradotb13.VcGradoTb13_NombreGrado,'-', secciontb20.InSeccionTb20_Num_Grupo) as 'Seccion'
-from usutb01, esttb03, secciontb20 inner join secgradotb25 on secgradotb25.InSeccionTb20_IdSeccion = secciontb20.InSeccionTb20_IdSeccion 
-join gradotb13 on secgradotb25.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado
-where secciontb20.InSeccionTb20_IdSeccion = idsec
-and  usutb01.VcUsuTb01_Cedula = esttb03.VcEstTb03_IdEstudiante
-ORDER BY esttb03.VcEstTb03_IdEstudiante ASC;
+SELECT secciontb20.InSeccionTb20_IdSeccion AS 'ID_Seccion',secciontb20.InSeccionTb20_Cupo AS 'cupo',
+secciontb20.InSeccionTb20_Num_Grupo AS 'Num_grupo',
+gradotb13.VcGradoTb13_NombreGrado AS 'Grado',gradotb13.InGradoTb13_IdGrado as 'IdGra'
+FROM secciontb20 INNER JOIN secgradotb25 ON secgradotb25.InSeccionTb20_IdSeccion = secciontb20.InSeccionTb20_IdSeccion 
+JOIN gradotb13 ON secgradotb25.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado
+ORDER BY gradotb13.VcGradoTb13_NombreGrado,secciontb20.InSeccionTb20_Num_Grupo LIMIT inicio,final;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3193,6 +3666,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PaSeccionTb20_Listar_Todos`()
 BEGIN
 select 
+secciontb20.InSeccionTb20_IdSeccion as 'IdSeccion',
 secciontb20.InSeccionTb20_Cupo as 'Cupo',
 gradotb13.VcGradoTb13_NombreGrado as 'Grado',
 secciontb20.InSeccionTb20_Num_Grupo as 'Grupo' 
@@ -3245,6 +3719,30 @@ secciontb20.InSeccionTb20_Num_Grupo as 'Num_grupo'
 from secciontb20 inner join secgradotb25 on secgradotb25.InSeccionTb20_IdSeccion = secciontb20.InSeccionTb20_IdSeccion 
 join gradotb13 on secgradotb25.InGradoTb13_IdGrado = gradotb13.InGradoTb13_IdGrado 
 order by 'date added';
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `PaSeccionTb20_SecGra` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PaSeccionTb20_SecGra`(in idGra int)
+BEGIN
+select secciontb20.InSeccionTb20_IdSeccion as 'id',
+concat(gradotb13.VcGradoTb13_NombreGrado, '-',secciontb20.InSeccionTb20_Num_Grupo) as 'Seccion'
+from secgradotb25 inner 
+join secciontb20 on secciontb20.InSeccionTb20_IdSeccion = secgradotb25.InSeccionTb20_IdSeccion
+join gradotb13 on gradotb13.InGradoTb13_IdGrado = secgradotb25.InGradoTb13_IdGrado
+where secgradotb25.InGradoTb13_IdGrado =  idGra;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -3322,13 +3820,13 @@ THEN
     SeguridadTb31.VcSeguridadTb31_SideNav AS 'SideNav' FROM SeguridadTb31 
     WHERE SeguridadTb31.InSeguridadTb31_Nivel = 2;
 ELSEIF EXISTS(SELECT enctb05.VcEncTb05_IdEncargado FROM EncTb05 /*Encargado*/
-	WHERE EncTb05.VcEncTb05_IdEncargado = USER AND EncTb05.Vcenctb05_Clave = pass)
+	WHERE EncTb05.VcEncTb05_IdEncargado = usu AND EncTb05.Vcenctb05_Clave = pass)
 THEN 
 	SELECT SeguridadTb31.VcSeguridadTb31_Funcion AS 'Funcion',SeguridadTb31.VcSeguridadTb31_Glyphicons AS 'Iconos',
 	SeguridadTb31.VcSeguridadTb31_SideNav AS 'SideNav' FROM SeguridadTb31 
 	WHERE SeguridadTb31.InSeguridadTb31_Nivel = 3;
 ELSEIF EXISTS(SELECT  funtb06.VcFunTb06_IdFuncionario FROM funtb06 /*Funcionario*/
-	WHERE funtb06.VcFunTb06_IdFuncionario = USER AND funtb06.VcFunTb06_Clave = pass)
+	WHERE funtb06.VcFunTb06_IdFuncionario = usu AND funtb06.VcFunTb06_Clave = pass)
 THEN 
 	SELECT SeguridadTb31.VcSeguridadTb31_Funcion AS 'Funcion',SeguridadTb31.VcSeguridadTb31_Glyphicons AS 'Iconos',
 	SeguridadTb31.VcSeguridadTb31_SideNav AS 'SideNav' FROM SeguridadTb31 
@@ -3407,4 +3905,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-15 14:21:43
+-- Dump completed on 2018-03-20 12:31:31

@@ -21,13 +21,13 @@ if($total>$por_pagina):?>
 
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
-  <th>Cedula</th>
+  <th>Cédula</th>
   <th>Nombre</th>
   <th>1° Apellido</th>
   <th>2° Apellido</th> 
-  <th>Direccion</th>
-  <th>Genero</th>
-  <th>Telefono</th>
+  <th>Dirección</th>
+  <th>Género</th>
+  <th>Teléfono</th>
   <th>Email</th>
   <th>Clave</th>
   <th>Opciones</th>
@@ -46,9 +46,11 @@ if($total>$por_pagina):?>
   <td><?php echo $r["Telefono"]; ?></td>
   <td><?php echo $r["Email"]; ?></td>
   <td><?php echo $r["Clave"]; ?></td>
-  <td style="width:280px;">
+  <td style="width:160px;"> 
     <a data-id="<?php echo $r["Cedula"]; ?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
-    <a href="#" id="bor-<?php echo $r["Cedula"]; ?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
+    <a href="#" id="bor-<?php echo $r["Cedula"]; ?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a><br><br>
+    <a href="#" data-id="<?php echo $r["Cedula"]; ?>" style="width:60px" class="btn btn-Ver btn-sm btn-info">Ver</a>
+    <a href="#" data-id="<?php echo $r["Cedula"]; ?>" style="width:60px" class="btn btn-asig btn-sm btn-success">Asignar</a>
     <script>
    $('#bor-'+<?php echo $r['Cedula']?>).click(function(e){
       e.preventDefault();
@@ -86,7 +88,6 @@ if($total>$por_pagina):?>
    });
 	});
 </script>
-      <a href="#" data-id="<?php echo $r["Cedula"]; ?>" style="width:135px" class="btn btn-asig btn-md btn-success">Asignar Estudiante</a>
    </td>
 </tr>
  <?php
@@ -116,6 +117,14 @@ if($total>$por_pagina):?>
     });
     $('#Modal_Asigna').modal('show');
   });
+
+   $(".btn-Ver").click(function() {
+    id = $(this).data("id");
+    $.get("Controlador/Encargado/Ver.php", "ced=" + id, function(data) { 
+      $("#tabla-ver").html(data);
+    });
+    $('#Modal_Ver').modal('show');
+  });
 </script>
 
 <div class="modal fade" id="Modal_Editar" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -137,10 +146,24 @@ if($total>$por_pagina):?>
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Asignar Estudiante</h4>
+          <h4 class="modal-title">Asignar Estudiante al encargado</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body"> 
         <div id="tabla-asignar"></div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<div class="modal fade" id="Modal_Ver" role="dialog" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Estudiantes asignados al encargado</h4>
+        </div>
+        <div class="modal-body"> 
+        <div id="tabla-ver"></div>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

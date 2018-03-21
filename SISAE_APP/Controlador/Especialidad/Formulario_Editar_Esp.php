@@ -2,21 +2,22 @@
 require_once '../../Modelo/EspecialidadCl15.php';
 $busq =$_GET['Id'];
   $esp = new EspecialidadCl15(); 
-  $result = $esp->EspecialidadCl15_BuscaEsp($busq);
+  $result = $esp->EspecialidadCl15_Busca($busq);
   if($result){
 ?>
 
 <?php foreach ($result as $r): ?> 
 <form role="form" id="actualizar" method="post">
-	<h2>Editando Especialidad: <?php echo $r["Nom_Especialidad"];?> </h2>
+	<h2>Editando Especialidad: <?php echo $r["Id"];?> </h2>
 	<div class="form-group">
-		<label for="Nombre">Nombre</label>
-		<input type="text" class="form-control" value="<?php echo $r["Nom_Especialidad"]; ?>" name="Nombre">
+		<label for="nombre">Nombre</label>
+		<input type="text" class="form-control" name="Nombre" value="<?php echo $r["Nombre"]; ?>">
 	</div>
 	<div class="form-group">
 		<label for="Apellido1">Cupo</label>
-		<input type="text" class="form-control" value="<?php echo  $r["Cupo_Especialidad"]; ?>" name="Apellido1">
+		<input type="text" class="form-control" name="Cupo" value="<?php echo $r["Cupo"]; ?>">
 	</div>
+	<input type="hidden" name="Id" value="<?php echo $r['Id']; ?>">
 	<button type="submit" class="btn btn-default">
 		Actualizar
 	</button>

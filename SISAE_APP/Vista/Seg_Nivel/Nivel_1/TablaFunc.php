@@ -20,13 +20,13 @@ if($total>$por_pagina):?>
 
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
-  <th>Cedula</th>
+  <th>Cédula</th>
   <th>Nombre</th>
   <th>1° Apellido</th>
   <th>2° Apellido</th>
-  <th>Direccion</th> 
-  <th>Genero</th>
-  <th>Telefono</th>
+  <th>Dirección</th>  
+  <th>Género</th>
+  <th>Teléfono</th>
   <th>Email</th>
   <th>Clave</th>
   <th>Fecha Nacimiento </th>

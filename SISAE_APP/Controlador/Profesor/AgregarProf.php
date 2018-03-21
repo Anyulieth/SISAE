@@ -14,13 +14,16 @@ if (!empty($_POST)) {
  			$ap1 = $_POST['Apellido1'];
  			$ap2 = $_POST['Apellido2'];
  			$dir = $_POST['direccion'];
- 			$sex = $_POST['genero'];
+ 			$sex = $_POST['genero']; 
  			$tel = $_POST['telefono'];
  			$ema = $_POST['email'];
 
 			$prof = new ProfCl03();
 			$reg = $prof->ProfCl03_AddProf($ced,$fec,$cla,$est,$nom,$ap1,$ap2,$dir,$sex,$tel,$ema);
-			print $reg;
+			if ($reg) 
+			{
+				print $reg;
+			}
 		}
 	}
 }

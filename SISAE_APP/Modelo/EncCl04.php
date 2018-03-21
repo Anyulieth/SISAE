@@ -41,7 +41,6 @@ class EncCl04 extends UsuCl01
 		'".$PStCl01_Apellido2."','".$PStCl01_Direccion."','".$PCrCl01_Sexo."','".$PStCl01_Telefono."',
 		'".$PStCl01_Email."','".$PStEncCl04_Clave."');";
 		$add = $con->query($sql);
-		$add = $con->query($sql);
 		if($add){
 		return $add;
 	    }
@@ -100,22 +99,12 @@ class EncCl04 extends UsuCl01
 	return $cant["cantidad"];
  	}
 
-	/*public function convertToEncCl04($result)
+	public function EncCl04_ListaEst($PStEncCl04_IdEncargado)
 	{
-		$EncCl04 = new EncCl04();
-		while ($row = mysqli_fetch_array($result)) 
-		{
-			$EncCl04->setPStCPStEncCl04_IdEncargado('PStEncCl04_IdEncargado',$row['Cedula']);
-			$EncCl04->setPStCl01_Nombre('PStCl01_Nombre',$row['Nombre']);
-			$EncCl04->setPStCl01_Apellido1('PStCl01_Apellido1',$row['Apellido1']);
-			$EncCl04->setPStCl01_Apellido2('PStCl01_Apellido2',$row['Apellido2']);
-			$EncCl04->setPStCl01_Direccion('PStCl01_Direccion',$row['Direccion']);
-			$EncCl04->setPStCl01_Telefono('PCrCl01_Sexo',$row['Genero']);
-			$EncCl04->setPStCl01_Telefono('PStCl01_Telefono',$row['Telefono']);
-			$EncCl04->setPStCl01_Email('PStCl01_Email',$row['Email']);
-			$EncCl04->setPStEncCl04_Clave('PStEncCl04_Clave',$row['Clave']);
-		}
-		return $EncCl04;
-	}*/
+		$con = new conexion();
+		$sql = "CALL PaEstEncTb07_Ver($PStEncCl04_IdEncargado);";
+		$result = $con->query($sql);
+		return $result;
+	}
 } 
 ?>

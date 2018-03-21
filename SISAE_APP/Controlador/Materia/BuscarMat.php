@@ -35,9 +35,10 @@ require_once '../../Modelo/MateriaCl16.php';
 <tr>
 	<td><?php echo $r["Id"]; ?></td>
 	<td><?php echo $r["Nombre"]; ?></td>
-	<td style="width:280px;">
-    <a data-id="<?php echo $r["Id"]; ?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
-    <a href="#" id="bor-<?php echo $r["Id"]; ?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
+  <td style="width:210px;">
+    <a data-id="<?php echo $r["Id"];?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
+    <a href="#" id="bor-<?php echo $r["Id"];?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
+    <a href="#" data-id="<?php echo $r["Id"];?>" style="width:60px" class="btn btn-asig btn-sm btn-success">Asignar</a>
     <script>
       $('#bor-'+<?php echo $r['Id']?>).click(function(e){
        e.preventDefault();
@@ -67,7 +68,6 @@ require_once '../../Modelo/MateriaCl16.php';
     if(data!=1){swal('Ups...', 'Algo salió mal!', 'error')}
     else{
     $('#tabla').html('');
-    CargarTabla(<?php echo $pagina; ?>);
     swal('Eliminado!','El registro fue eliminado.','success')    
           } 
       }
@@ -75,7 +75,6 @@ require_once '../../Modelo/MateriaCl16.php';
    });
   });
     </script>
-      <a href="#" data-id="<?php echo $r["Id"];?>" style="width:130px" class="btn btn-asig btn-md btn-success">Asignar Profesor</a>
   </td>
 </tr>
  <?php
@@ -91,20 +90,20 @@ require_once '../../Modelo/MateriaCl16.php';
 ?>
 
 <script>
-	$(".btn-edit").click(function() {
-		id = $(this).data("id");
-      $.get("Controlador/Materia/Formulario_Editar_Mat.php","idm=" + id,function(data){
-        $("#form-Editar").html(data);
-		});
-		$('#Modal_Editar').modal('show');
-	});
+	$(".btn-edit").click(function(){
+      id = $(this).data("id");
+      $.get("Controlador/Materia/Formulario_Editar_Mat.php","idm="+id,function(data){
+        $("#form-Editar").html(data); 
+      });
+      $('#Modal_Editar').modal('show');      
+    }); 
 
-  $(".btn-pag").click(function(e){
+$(".btn-pag").click(function(e){
   pg = $(this).data("id");
   CargarTabla(pg);
 });
 
-  $(".btn-asig").click(function(){
+$(".btn-asig").click(function(){
   idma = $(this).data("id");
    $.get("Controlador/Materia/Tabla_Asignar_Prof.php","idm="+idma,function(data){
         $("#tabla-asignar").html(data); 
@@ -122,6 +121,20 @@ require_once '../../Modelo/MateriaCl16.php';
         </div>
         <div class="modal-body">
         <div id="form-Editar"></div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="Modal_Asigna" role="dialog" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Asignar Profesor a Materia</h4>
+        </div>
+        <div class="modal-body">
+        <div id="tabla-asignar"></div>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

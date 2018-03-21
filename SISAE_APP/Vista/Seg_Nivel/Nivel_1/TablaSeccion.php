@@ -20,9 +20,9 @@ if($total>$por_pagina):?>
 
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
-  <th>Id Seccion</th>
+  <th>Id Sección</th>
   <th>Grado</th>
-  <th>Numero de grupo</th>
+  <th>Número de grupo</th>
   <th>Cupo</th>
   <th>Opciones</th>
 </thead>
@@ -34,9 +34,10 @@ if($total>$por_pagina):?>
   <td><?php echo $r["Grado"]; ?></td>
   <td><?php echo $r["Num_grupo"]; ?></td>
   <td><?php echo $r["cupo"]; ?></td>  
-  <td style="width:260px;">
+  <td style="width:150px;"> 
     <a data-id="<?php echo $r["ID_Seccion"];?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
     <a href="#" id="bor-<?php echo $r["ID_Seccion"];?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
+    <!--<a href="#" data-id="<?php echo $r["ID_Seccion"];?>" class="btn btn-ver btn-md btn-info" style="width:40px;">Ver</a>-->
     <script>
     $('#bor-'+<?php echo $r['ID_Seccion']?>).click(function(e){
       e.preventDefault();
@@ -74,8 +75,6 @@ if($total>$por_pagina):?>
    });
   });
 </script>
-    <a href="#" data-id="<?php echo $r["ID_Seccion"];?>" class="btn btn-agreS btn-md btn-success" style="width:65px;">Asignar</a>
-    <a href="#" data-id="<?php echo $r["ID_Seccion"];?>" class="btn btn-ver btn-md btn-info" style="width:40px;">Ver</a>
    </td>
 </tr>
  <?php
@@ -97,14 +96,8 @@ $(".btn-pag").click(function(e){
   pg = $(this).data("id");
   CargarTabla(pg);
 });
+ 
 
-$(".btn-agreS").click(function(){
-  ids = $(this).data("id");
-   $.get("Controlador/Profesor/Tabla_Asignar.php","Id_sec="+ids,function(data){
-        $("#tabla-sec").html(data); 
-      });
-      $('#Modal_Asigna').modal('show'); 
-});
 
 $(".btn-ver").click(function(){
   ids = $(this).data("id");
@@ -124,20 +117,6 @@ $(".btn-ver").click(function(){
         </div>
         <div class="modal-body">
         <div id="form-Editar"></div>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
-  <div class="modal fade" id="Modal_Asigna" role="dialog" >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Asignar Profesor a sección</h4>
-        </div>
-        <div class="modal-body">
-        <div id="tabla-sec"></div>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
