@@ -68,7 +68,7 @@ class GradoCl12 extends conexion
 		}
 	}
 	
-	public function GradoCl12_BuscaGra($PInCl12_IdGrado)
+	public function GradoCl12_BuscaGraD($PInCl12_IdGrado)
 	{
 		$con = new conexion();
 		$sql = "CALL PaGradoTb13_BuscarGradoD('".$PInCl12_IdGrado."');";
@@ -103,5 +103,13 @@ class GradoCl12 extends conexion
 	$cant = $consulta -> fetch_array();
 	return $cant["cantidad"];
  	}
+
+ 	public function GradoCl12_Prof($PStProfCl03_IdProfesor)
+	{
+		$con = new conexion();
+		$sql = "CALL PaGradoTb13_Prof('".$PStProfCl03_IdProfesor."');";
+		$result = $con->query($sql);
+		return $result;
+	}
 }
 ?>

@@ -29,7 +29,7 @@
 						<div class="modal-body">
 							<form role="form" id="agregar" method="post">
 								<div class="form-group">
-									<label for="Cedula">Cedula</label>
+									<label for="Cedula">Cédula</label>
 									<input type="text" class="form-control" name="Cedula">
 								</div>
 								<div class="form-group">
@@ -49,7 +49,7 @@
 									<input type="text" class="form-control" name="Direccion">
 								</div>
 								<div class="form-group">
-									<label for="Genero">Genero</label>
+									<label for="Genero">Género</label>
 									<label>
 										<input type="radio" name="Genero" value="F">
 										Femenino</label>
@@ -58,11 +58,11 @@
 										Masculino</label>
 								</div>
 								<div class="form-group">
-									<label for="Telefono">Telefono</label>
+									<label for="Telefono">Teléfono</label>
 									<input type="text" class="form-control" name="Telefono" >
 								</div>
 								<div class="form-group">
-									<label for="Email">Correo electronico</label>
+									<label for="Email">Correo electrónico</label>
 									<input type="text" class="form-control" name="Email" >
 								</div>
 								<div class="form-group">

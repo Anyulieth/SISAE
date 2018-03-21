@@ -2,11 +2,11 @@
 require_once '../../Modelo/GradoCl12.php';
 
 if(!empty($_POST)){
-	if(isset($_POST["idgrado"]) && isset($_POST['nombre']) && isset($_POST['idbachi'])) 
+	if(isset($_POST["id"]) && isset($_POST['nombre']) && isset($_POST['idbachi'])) 
 	{
-		if($_POST['idgrado']!=""  && $_POST['nombre']!="" && $_POST['idbachi']!="") 
+		if($_POST['id']!=""  && $_POST['nombre']!="" && $_POST['idbachi']!="") 
 		{	
-			$id = $_POST['idgrado'];	
+			$id = $_POST['id'];	
 			$nom = $_POST['nombre'];
 			$bac = $_POST['idbachi'];
 

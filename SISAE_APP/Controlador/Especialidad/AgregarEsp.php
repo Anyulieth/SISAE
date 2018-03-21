@@ -10,9 +10,9 @@ if (!empty($_POST)) {
 			$cupo = $_POST['Cupo'];
 			$esp = new EspecialidadCl15();
 			$result = $esp->EspecialidadCl15_AddEsp($nom,$cupo); 
-			if ($reg) 
+			if ($result) 
 			{
-				print $reg;
+				print $result;
 			}
 		}
 	}

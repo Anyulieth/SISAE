@@ -22,9 +22,9 @@ if($total>$por_pagina):?>
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
 	<th>Id</th>
-	<th>Nombre</th>
+	<th>Materia</th>
   <th>Opciones</th>
-</thead>
+</thead> 
 <tbody>
   <?php 
   while ($r = $result->fetch_array()) {
@@ -32,9 +32,10 @@ if($total>$por_pagina):?>
 <tr>
 	<td><?php echo $r["Id"]; ?></td>
 	<td><?php echo $r["Nombre"]; ?></td>
-  <td style="width:280px;">
+  <td style="width:210px;">
     <a data-id="<?php echo $r["Id"];?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
     <a href="#" id="bor-<?php echo $r["Id"];?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
+    <a href="#" data-id="<?php echo $r["Id"];?>" style="width:60px" class="btn btn-asig btn-sm btn-success">Asignar</a>
     <script>
     $('#bor-'+<?php echo $r['Id']?>).click(function(e){
        e.preventDefault();
@@ -72,7 +73,6 @@ if($total>$por_pagina):?>
    });
   });
     </script>
-      <a href="#" data-id="<?php echo $r["Id"];?>" style="width:130px" class="btn btn-asig btn-md btn-success">Asignar Profesor</a>
    </td>
 </tr>
  <?php
@@ -123,7 +123,7 @@ $(".btn-asig").click(function(){
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Asignar Profesor</h4>
+          <h4 class="modal-title">Asignar Profesor a Materia</h4>
         </div>
         <div class="modal-body">
         <div id="tabla-asignar"></div>

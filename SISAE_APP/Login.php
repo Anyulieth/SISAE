@@ -18,9 +18,11 @@ session_destroy();
 	<body>
 		<div class="container" style="text-align:center;">
 			<div class="login">
-				<h1>Login</h1>
+				<h1>LOGIN</h1>
 				<form method="post" action="index.php" id="log">
-					<input type="text" name="u" placeholder="Usuario" required="required" />
+					<!--<label for="u"><span class="glyphicon glyphicon-user"></span> Usuario</label>-->
+					<input type="text" name="u" placeholder="Usuario" required="required"/>
+					<!--<label for="p"><span class="glyphicon glyphicon-eye-open"></span> Contraseña</label>-->
 					<input type="password" name="p" placeholder="Contraseña" required="required" />
 					<hr>
 					<button type="submit" class="btn btn-primary">

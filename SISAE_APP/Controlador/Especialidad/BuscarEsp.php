@@ -4,7 +4,7 @@ require_once '../../Modelo/EspecialidadCl15.php';
 $busq =$_GET['busqueda'];
 $por_pagina = 10;
 $inicio = 0;
-$esp = new EspecialidadCl15.php(); 
+$esp = new EspecialidadCl15(); 
 $result = $esp->EspecialidadCl15_BuscaEsp($busq);
 $total = count($result);
 $total_botones = ceil($total/$por_pagina);
@@ -25,12 +25,14 @@ if($result){
 <label style="float:right;margin-right:8px;">Total <?php echo $total;?></label>
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
-  <th>Nombre</th>
+  <th>Id</th>
+  <th>Especialidad</th>
   <th>Cupo</th>
-  <th></th>
+  <th>Opciones</th> 
 </thead>
 <?php foreach ($result as $r){ ?>
 <tr>
+  <td><?php echo $r["Id"]; ?></td>
   <td><?php echo $r["Nombre"]; ?></td>
   <td><?php echo $r["Cupo"]; ?></td>
   <td style="width:150px;">
@@ -64,8 +66,6 @@ if($result){
           if(data!=1){swal('Ups...', 'Algo salió mal!', 'error')}
             else{
     $('#tabla').html('');
-    CargarTabla(<?php echo $pagina; ?>
-    );
     swal('Eliminado!', 'El registro fue eliminado', 'success');
     }
     }

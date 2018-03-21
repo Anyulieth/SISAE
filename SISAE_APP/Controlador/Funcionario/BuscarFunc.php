@@ -26,18 +26,18 @@ if($result){
 
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
-  <th>Cedula</th>
+  <th>Cédula</th>
   <th>Nombre</th>
   <th>1° Apellido</th>
   <th>2° Apellido</th>
-  <th>Direccion</th>
-  <th>Genero</th>
-  <th>Telefono</th>
+  <th>Dirección</th>
+  <th>Género</th>
+  <th>Teléfono</th>
   <th>Email</th>
   <th>Clave</th>
   <th>Fecha Nacimiento </th>
   <th>Estado</th>
-  <th></th>
+  <th>Opciones</th>
 </thead>
 <tbody>
 <?php foreach ($result as $r){ ?>
@@ -85,7 +85,6 @@ if($result){
     if(data!=1){swal('Ups...', 'Algo salió mal!', 'error')}
     else{
     $('#tabla').html('');
-    CargarTabla(<?php echo $pagina; ?>);
     swal('Eliminado!','El registro fue eliminado.','success')    
           } 
       }

@@ -28,7 +28,7 @@ if($total>$por_pagina):?>
 </thead>
 <?php while ($r=$result->fetch_array()){
 ?>
-<tr>
+<tr> 
   <td><?php echo $r["id_grado"]; ?></td>
   <td><?php echo $r["Nombre"]; ?></td>
   <td><?php echo $r["Bachiller"]; ?></td>

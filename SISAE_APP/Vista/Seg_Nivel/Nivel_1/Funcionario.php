@@ -27,7 +27,7 @@
         <div class="modal-body">
 <form role="form" id="agregar" method="post">
   <div class="form-group">
-    <label for="cedula">Cedula</label>
+    <label for="cedula">Cédula</label>
     <input type="text" class="form-control" name="cedula">
   </div>
   <div class="form-group">
@@ -47,16 +47,16 @@
     <input type="text" class="form-control" name="direccion">
   </div>
   <div class="form-group">
-    <label for="Genero">Genero</label>
+    <label for="Genero">Género</label>
     <label><input type="radio" name="genero" value="" id="F"> Femenino</label>
     <label><input type="radio" name="genero" value="" id="M"> Masculino</label>
   </div>
   <div class="form-group">
-    <label for="Telefono">Telefono</label>
+    <label for="Telefono">Teléfono</label>
     <input type="text" class="form-control" name="telefono" >
   </div>
   <div class="form-group">
-    <label for="email">Correo electronico</label>
+    <label for="email">Correo electrónico</label>
     <input type="email" class="form-control" name="email" >
   </div>
   <div class="form-group">
@@ -95,7 +95,7 @@
 	$('#agregar').submit(function(e){
   e.preventDefault();
   $.post('Controlador/Funcionario/AgregarFun.php',$('#agregar').serialize(),function(data){
-    if(data!=1){
+    if(!data){
       swal('Ups...', 'Algo salió mal!', 'error');
     }else{
   $('#agregar')[0].reset();

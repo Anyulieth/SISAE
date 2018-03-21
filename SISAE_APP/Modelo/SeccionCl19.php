@@ -95,10 +95,10 @@ class SeccionCl19 extends conexion
 		return $result;
 	}
 	
-	public function SeccionCl19_ListaNumSec()
+	public function SeccionCl19_CargarSec($gra)
 	{
 		$con = new conexion();
-		$sql = "CALL PaSeccionTb20_ListaNumSec();";
+		$sql = "CALL PaSeccionTb20_SecGra('".$gra."');";
 		$result = $con->query($sql);
 		return $result;
 	}

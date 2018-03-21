@@ -27,7 +27,7 @@ require_once '../../Modelo/HorarioCl27.php';
 <thead>
 <thead>
   <th>Id</th>
-  <th>Dia</th>
+  <th>Día</th>
   <th>Hora Inicio</th>
   <th>Hora Fin</th>
   <th>Opciones</th>
@@ -38,9 +38,11 @@ require_once '../../Modelo/HorarioCl27.php';
   <td><?php echo $r["Dia"]; ?></td>
   <td><?php echo $r["Hora_Inicio"]; ?></td>
   <td><?php echo $r["Hora_Fin"]; ?></td>
-  <td style="width:280px;">
-    <a data-id="<?php echo $r["Id"]; ?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
-    <a href="#" id="bor-<?php echo $r["Id"]; ?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
+  <td style="width:270px;">
+    <a data-id="<?php echo $r["Id"];?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
+    <a href="#" id="bor-<?php echo $r["Id"];?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
+    <a href="#" data-id="<?php echo $r["Id"];?>" style="width:60px" class="btn btn-asig btn-sm btn-success">Asignar</a>
+     <a href="#" data-id="<?php echo $r["Id"];?>" style="width:60px" class="btn btn-Ver btn-sm btn-info">Ver</a>
     <script>
       $('#bor-'+<?php echo $r['Id']?>).click(function(e){
        e.preventDefault();
@@ -70,7 +72,6 @@ require_once '../../Modelo/HorarioCl27.php';
     if(data!=1){swal('Ups...', 'Algo salió mal!', 'error')}
     else{
     $('#tabla').html('');
-    CargarTabla(<?php echo $pagina; ?>);
     swal('Eliminado!','El registro fue eliminado.','success')    
               } 
       }
@@ -78,8 +79,7 @@ require_once '../../Modelo/HorarioCl27.php';
    });
   });
     </script>
-     <a href="#" data-id="<?php echo $r["Id"];?>" style="width:130px" class="btn btn-asig btn-md btn-success">Asignar Horario</a>
-     </td>
+      </td>
 </tr>
  <?php
                }?>       
@@ -110,10 +110,10 @@ $(".btn-pag").click(function(e){
 $(".btn-asig").click(function(){
   idH = $(this).data("id");
    $.get("Controlador/Horarios/Tabla_Asigna_ProfHora.php","idH="+idH,function(data){
-        $("#tabla-asignar").html(data); 
-      });
-      $('#Modal_Asigna').modal('show'); 
-});
+      $("#tabla-matri").html(data);
+    });
+    $('#Modal_Matri').modal('show');
+}); 
 </script>
 
 <div class="modal fade" id="Modal_Editar" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -130,7 +130,7 @@ $(".btn-asig").click(function(){
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
-  <div class="modal fade" id="Modal_Asigna" role="dialog" >
+  <div class="modal fade" id="Modal_Matri" role="dialog" >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -138,8 +138,10 @@ $(".btn-asig").click(function(){
           <h4 class="modal-title">Asignar Horario a Profesor</h4>
         </div>
         <div class="modal-body">
-        <div id="tabla-asignar"></div>
-        </div>
-      </div><!-- /.modal-content -->
+          <div id="tabla-matri"></div>
+        </div><div class="modal-footer">
+        <button type="button" class="btn btn-primary guardar" data-dismiss="modal">Guardar</button>
+      </div>
+      </div><!-- /.modal-content -->  
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->

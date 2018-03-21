@@ -1,6 +1,6 @@
 <?php
 require_once '../../Modelo/SeccionCl19.php';
-$busq =$_GET['id_sec'];
+$busq =$_GET['Id_sec'];
 $sec = new SeccionCl19(); 
  $result = $sec->SeccionCl19_BuscaSec($busq);
 if($result){

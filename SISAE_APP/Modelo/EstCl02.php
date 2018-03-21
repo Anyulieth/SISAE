@@ -60,24 +60,22 @@ class EstCl02 extends UsuCl01
 		return $this->PStCl03_IdEspecialidad;
 	}
 
-	public function EstCl02_AddEst($PStCl03_IdEst,$PDtCl03_FechaNac,$PStCl03_Adecuacion,$PStCl03_Estado,$PStCl03_IdEspecialidad,
-		$PStCl01_Nombre,$PStCl01_Apellido1,$PStCl01_Apellido2,$PStCl01_Direccion,$PCrCl01_Sexo,$PStCl01_Telefono,$PStCl01_Email)
+	public function EstCl02_AddEst($PStCl03_IdEst,$PDtCl03_FechaNac,$PStCl03_Adecuacion,$PStCl03_Estado,$PStCl01_Nombre,$PStCl01_Apellido1, $PStCl01_Apellido2,$PStCl01_Direccion,$PCrCl01_Sexo,$PStCl01_Telefono,$PStCl01_Email)
 	{
 		$con = new conexion();
-		$sql = "CALL PaEstTb03_GuardarEst('".$PStCl03_IdEst."','".$PDtCl03_FechaNac."','".$PStCl03_Adecuacion."',
-		'".$PStCl03_Estado."','".$PStCl03_IdEspecialidad."','".$PStCl01_Nombre."','".$PStCl01_Apellido1."',
-		'".$PStCl01_Apellido2."','".$PStCl01_Direccion."','".$PCrCl01_Sexo."','".$PStCl01_Telefono."','".$PStCl01_Email."');";
+		$sql = "CALL PaEstTb03_GuardarEst('".$PStCl03_IdEst."',
+		'".$PDtCl03_FechaNac."','".$PStCl03_Adecuacion."','".$PStCl03_Estado."','".$PStCl01_Nombre."','".$PStCl01_Apellido1."','".$PStCl01_Apellido2."','".$PStCl01_Direccion."','".$PCrCl01_Sexo."','".$PStCl01_Telefono."','".$PStCl01_Email."');";
 		$add = $con->query($sql);
 		if($add){
 		return $add;
 	    }
 	}
 
-	public function EstCl02_EditEst($PStCl03_IdEst,$PDtCl03_FechaNac,$PStCl03_IdEspecialidad,$PStCl01_Nombre,$PStCl01_Apellido1,
-		$PStCl01_Apellido2,$PStCl01_Direccion,$PStCl01_Telefono,$PStCl01_Email)
+	public function EstCl02_EditEst($PStCl03_IdEst,$PDtCl03_FechaNac,$PStCl01_Nombre,$PStCl01_Apellido1,$PStCl01_Apellido2,$PStCl01_Direccion,$PStCl01_Telefono, $PStCl01_Email)
 	{
 		$con = new conexion();
-		$sql = "CALL PaEstTb03_ActualizarEst('".$PStCl03_IdEst."','".$PDtCl03_FechaNac."','".$PStCl03_IdEspecialidad."','".$PStCl01_Nombre."','".$PStCl01_Apellido1."','".$PStCl01_Apellido2."','".$PStCl01_Direccion."','".$PStCl01_Telefono."','".$PStCl01_Email."';);";
+		$sql = "CALL PaEstTb03_ActualizarEst('".$PStCl03_IdEst."','".$PDtCl03_FechaNac."','".$PStCl01_Nombre."','".$PStCl01_Apellido1."','".$PStCl01_Apellido2."','".$PStCl01_Direccion."','".$PStCl01_Telefono."',
+		'".$PStCl01_Email."');";
 		$edit = $con->query($sql);
 		return $edit;
 	}
@@ -148,5 +146,36 @@ class EstCl02 extends UsuCl01
 		 return $r;
 		}
 	}
+
+	function EstCl02_ListaPeriodo() 
+	{
+		$con = new conexion();
+		$sql = "CALL PaPeriodoTb34_Listar_Todos();";
+		$result = $con->query($sql);
+		return $result;
+	}
+
+	public function EstCl02_ListaMatri($PStCl03_IdEst)
+	{
+		$con = new conexion();
+		$sql = "CALL PaEstTb03_ListarMatri('".$PStCl03_IdEst."');";
+		$result = $con->query($sql);
+		$r = $result->fetch_all(MYSQLI_ASSOC);
+		if ($r) 
+		{
+		 return $r;
+		}
+	}
+
+		/*public function EstCl02_MatriEst($PInMateria,$PInPeriodo,$PStCl03_IdEst,$InGrado,$PInSeccion)
+	{
+		$con = new conexion();
+		$sql = "CALL PaEstTb03_Matricula('".$PInMateria."','".$PInPeriodo."','".$PStCl03_IdEst."',
+		'".$InGrado."','".$PInSeccion."');";
+		$add = $con->query($sql);
+		if($add){
+		return $add;
+	    }
+	}*/
 }
 ?>

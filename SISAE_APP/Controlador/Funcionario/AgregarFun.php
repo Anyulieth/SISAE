@@ -21,8 +21,11 @@ if(!empty($_POST)){
  			
 			$fun = new FunCl05();
 			$reg = $fun->FunCl05_AddFun($ced,$cla,$fenac,$est,$nom,$ap1,$ap2,$dir,$sex,$tel,$ema);
-			print $reg;
+			if ($reg) 
+			{
+				print $reg;
+			}
 		}
-	}
+	} 
 }
 ?>

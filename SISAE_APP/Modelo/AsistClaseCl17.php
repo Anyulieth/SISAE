@@ -77,9 +77,9 @@ class AsistClaseCl17 extends conexion
 		return $result;
 	}
 
-	public function AsistClaseCl17_BuscaFechaEst($Fecha,$Id_Sec){
+	public function AsistClaseCl17_BuscaFechaEst($Fecha,$Id_Est){
 		$con = new conexion();
-		$sql = "call PaAsistEstTb23_BuscarFechaEst('".$Fecha."','".$Id_Sec."')";
+		$sql = "call PaAsistEstTb23_BuscarFechaEst('".$Fecha."','".$Id_Est."')";
 		$result = $con->query($sql);
 		return $result;
 	}

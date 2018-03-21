@@ -1,4 +1,3 @@
-
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -30,12 +29,12 @@
 						<div class="modal-body">
 							<form role="form" id="agregar" method="post">
 								<div class="form-group">
-									<label for="cedula">Cedula</label>
-									<input type="text" class="form-control" name="cedula">
+									<label for="Cedula">Cédula</label>
+									<input type="text" class="form-control" name="Cedula">
 								</div>
 								<div class="form-group">
-									<label for="nombre">Nombre</label>
-									<input type="text" class="form-control" name="nombre">
+									<label for="Nombre">Nombre</label>
+									<input type="text" class="form-control" name="Nombre">
 								</div>
 								<div class="form-group">
 									<label for="Apellido1">1° Apellido</label>
@@ -47,34 +46,34 @@
 								</div>
 								<div class="form-group">
 									<label for="Direccion">Domicilio</label>
-									<input type="text" class="form-control" name="direccion">
+									<input type="text" class="form-control" name="Direccion">
 								</div>
 								<div class="form-group">
 									<label for="Genero">Género</label>
 									<label>
-										<input type="radio" name="genero" value="F">
+										<input type="radio" name="Genero" value="F">
 										Femenino</label>
 									<label>
-										<input type="radio" name="genero" value="M">
+										<input type="radio" name="Genero" value="M">
 										Masculino</label>
 								</div>
 								<div class="form-group">
 									<label for="Telefono">Teléfono</label>
-									<input type="text" class="form-control" name="telefono">
+									<input type="text" class="form-control" name="Telefono">
 								</div>
 								<div class="form-group">
-									<label for="email">Correo electrónico</label>
-									<input type="text" class="form-control" name="email">
+									<label for="Email">Correo electrónico</label>
+									<input type="text" class="form-control" name="Email">
 								</div>
 								<div class="form-group">
-									<label for="fecha_nac">Fecha de Nacimiento</label>
+									<label for="Fecha_nac">Fecha de Nacimiento</label>
 									<div class='input-group date' id='fecha'>
-										<input type='date' class="form-control" name="fecha_nac"/>
+										<input type='date' class="form-control" name="Fecha_nac"/>
 										<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="Adecuacion">Adecuacion: </label>
+									<label for="Adecuacion">Adecuación: </label>
 									<select name="Adecuacion">
 										<option value="No">No</option>
 										<option value="No_Significativa">No Significativa</option>
@@ -85,25 +84,12 @@
 								<div class="form-group">
 										<label for="Estado">Estado</label>
 										<label>
-											<input type="radio" name="estado" value="A">
+											<input type="radio" name="Estado" value="A">
 											Activo</label>
 										<label>
-											<input type="radio" name="estado" value="I">
+											<input type="radio" name="Estado" value="I">
 											Inactivo</label>
 									</div>
-								<div class="form-group">
-									<label for="Id_Especialidad">Especialidad</label>
-									<select name="Id_Especialidad">
-										<?php
-										require_once '../../../Modelo/EspecialidadCl15.php';
-										$esp = new EspecialidadCl15();
-										$query = $esp -> EspecialidadCl15_ListaTodo();
-										while ($valores = mysqli_fetch_array($query)) {
-											echo '<option value="' . $valores["Id"] . '">' . $valores["Nombre"] . '</option>';
-										}
-										?>
-									</select>
-								</div>
 								<div class="modal-footer">
 									<button type="submit" class="btn btn-success">
 										Agregar
@@ -125,7 +111,7 @@
 			$('#agregar').submit(function(e) {
 				e.preventDefault();
 				$.post('Controlador/Estudiante/AgregarEst.php', $('#agregar').serialize(), function(data) {
-					if (data != 1) {
+					if (!data) {
 						swal('Ups...', 'Algo salió mal!', 'error');
 					} else {
 						$('#agregar')[0].reset();
@@ -158,7 +144,7 @@
 
 			function bus() {
 				var par = {
-					'busqueda' : $('#busc').val()
+					'busqueda' : $('#busc').val(),
 				};
 				$.ajax({
 					url : "Controlador/Estudiante/BuscarEst.php",

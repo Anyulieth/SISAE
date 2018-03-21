@@ -1,15 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<!--
+      <form class="form-inline" role="search" id="buscar" style="float:left;">
+        <div class="form-group">
+          <input type="text" name="busqueda" class="form-control" placeholder="Buscar" onkeyup="bus();" id="busc">
+        </div>
+        <button type="submit" class="btn btn-default">
+          &nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;
+        </button>
+      </form> -->
+</body>
+</html>
+
+
 <?php require_once '../../Modelo/EstCl02.php';
 $est = new EstCl02();
 $result = $est->EstCl02_ListaAsignacion();
-$iden= $_GET['ced'];
+$iden= $_GET['ced']; 
 if($result->num_rows>0):?>
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead> 
-	<th>Cedula</th>
+	<th>Cédula</th>
 	<th>Nombre</th>
   <th>1° Apellido</th>
   <th>2° Apellido</th>
-	<th></th>
+	<th>Opciones</th>
 </thead>
 <?php while ($r=$result->fetch_array()):?>
 <tr>
@@ -36,8 +55,21 @@ $.ajax({
        $('#Modal_Asigna').modal('hide');
        $('body').removeClass('modal-open');
        $('.modal-backdrop').remove();
-       alert(data);
+       swal('Agregado!', 'El registro fue agregado.', 'success');
     }
 });
 });
+
+      function bus() {
+        var par = {
+          'busqueda' : $('#busc').val(), "idenc":"<?php echo $iden;?>"
+        };
+        $.ajax({
+          url : "Controlador/Estudiante/Buscar.php",
+          data : par,
+          success : function(data) {
+            $('#tabla-asignar').html(data);
+          }
+        }) 
+      }
 </script>

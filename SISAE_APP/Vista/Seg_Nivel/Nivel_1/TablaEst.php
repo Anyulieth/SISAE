@@ -20,14 +20,13 @@ if($total>$por_pagina):?>
 
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
-  <th>Cedula</th>
+  <th>Cédula</th>
   <th>Nombre</th>
   <th>1° Apellido</th>
   <th>2° Apellido</th>
-  <th>Especialidad</th>
-  <th>Direccion</th>
-  <th>Genero</th>
-  <th>Telefono</th>
+  <th>Dirección</th>
+  <th>Género</th>
+  <th>Teléfono</th>
   <th>Email</th>
   <th>Fecha Nacimiento </th>
   <th>Estado</th>
@@ -40,16 +39,17 @@ if($total>$por_pagina):?>
   <td><?php echo $r["Nombre"]; ?></td>
   <td><?php echo $r["Apellido1"]; ?></td>
   <td><?php echo $r["Apellido2"]; ?></td>
-  <td><?php echo $r["Especialidad"]; ?></td>
   <td><?php echo $r["Direccion"]; ?></td>
   <td><?php echo $r["Genero"]; ?></td>
   <td><?php echo $r["Telefono"]; ?></td>
   <td><?php echo $r["Email"]; ?></td>
   <td><?php echo $r["FechaNac"]; ?></td>
   <td><?php echo $r["Estado"]; ?></td>
-  <td style="width:230px;">
-    <a data-id="<?php echo $r["Cedula"]; ?>" class="btn btn-edit btn-sm btn-warning" style="width:50px">Editar</a>
-    <a href="#" id="bor-<?php echo $r["Cedula"]; ?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
+  <td style="width:160px;"> 
+    <a data-id="<?php echo $r["Cedula"]; ?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
+    <a href="#" id="bor-<?php echo $r["Cedula"]; ?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a><br><br>
+    <a href="#" data-id="<?php echo $r["Cedula"]; ?>" style="width:70px" class="btn btn-matri btn-sm btn-success">Matrícula</a>
+    <a href="#" data-id="<?php echo $r["Cedula"]; ?>" style="width:60px" class="btn btn-Ver btn-sm btn-info">Ver</a>
     <script>
     	$('#bor-'+<?php echo $r['Cedula']?>).click(function(e){
       e.preventDefault();
@@ -87,7 +87,6 @@ if($total>$por_pagina):?>
 		});
 		});
 </script> 
-<a href="#" data-id="<?php echo $r["Cedula"]; ?>" style="width:90px" class="btn btn-matri btn-md btn-success">Matricular</a>
       </td>
 </tr>
 <?php } ?>
@@ -114,6 +113,14 @@ if($total>$por_pagina):?>
     });
     $('#Modal_Matri').modal('show');
   });
+
+    $(".btn-Ver").click(function() {
+    id = $(this).data("id");
+    $.get("Controlador/Estudiante/Ver.php", "ced=" + id, function(data) { 
+      $("#tabla-ver").html(data);
+    });
+    $('#Modal_Ver').modal('show');
+  });
 </script>
 
 <div class="modal fade" id="Modal_Editar" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -135,13 +142,29 @@ if($total>$por_pagina):?>
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Matrícula</h4>
+          <h4 class="modal-title">Matrícula Estudiante</h4>
         </div>
         <div class="modal-body">
           <div id="tabla-matri"></div>
         </div><div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+     <button type="button" class="btn btn-primary guardar" data-dismiss="modal">Guardar</button>
       </div>
-      </div><!-- /.modal-content --> 
+      </div><!-- /.modal-content -->  
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+    <div class="modal fade" id="Modal_Ver" role="dialog" >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Matrícula del estudiante</h4>
+        </div>
+        <div class="modal-body"> 
+        <div id="tabla-ver"></div>
+        </div><div class="modal-footer">
+     <button type="button" class="btn btn-primary aceptar" data-dismiss="modal">Aceptar</button>
+      </div>
+      </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->

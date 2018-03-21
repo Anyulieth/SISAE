@@ -37,7 +37,7 @@ if($result){
   <td><?php echo $r["Grado"]; ?></td>
   <td><?php echo $r["Num_grupo"]; ?></td>
   <td><?php echo $r["cupo"]; ?></td>  
-  <td style="width:260px;">
+  <td style="width:150px;"> 
     <a data-id="<?php echo $r["ID_Seccion"];?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
     <a href="#" id="bor-<?php echo $r["ID_Seccion"];?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
     <script>
@@ -69,7 +69,7 @@ if($result){
     if(data!=1){swal('Ups...', 'Algo salió mal!', 'error')}
     else{
     $('#tabla').html('');
-    CargarTabla(<?php echo $pagina; ?>);
+    //CargarTabla(<?php //echo $pagina; ?>);
     swal('Eliminado!','El registro fue eliminado.','success')    
           } 
       }
@@ -77,8 +77,6 @@ if($result){
    });
   });
 </script>
-    <a href="#" data-id="<?php echo $r["ID_Seccion"];?>" class="btn btn-agreS btn-md btn-success" style="width:65px;">Asignar</a>
-    <a href="#" data-id="<?php echo $r["ID_Seccion"];?>" class="btn btn-ver btn-md btn-info" style="width:40px;">Ver</a>
    </td>
 </tr>
  <?php } ?>       

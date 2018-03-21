@@ -32,18 +32,19 @@ $busq =$_GET['idH'];
 }?>
 
 <script>
-	$("#actualizar").submit(function(e) {
+		$("#actualizar").submit(function(e) {
 		e.preventDefault();
 		$.post("./Controlador/Horarios/ActualizarHo.php", $("#actualizar").serialize(), function(data) {
-			if(data!=1){swal('Ups...', 'Algo salió mal!', 'error');}
-			else{$('#Modal_Editar').modal('hide');
+		if(data!=1){swal('Ups...', 'Algo salió mal!', 'error');}
+		else{
+		$('#Modal_Editar').modal('hide');
 		$('body').removeClass('modal-open');
-		$('body').removeAttr("style");
+		$('body').removeAttr("style"); 
 		$('.modal-backdrop').remove();
-		$('#tabla').html('');
+		$('#tabla').html('');	
 		CargarTabla(1);
 		swal('Editado!','El registro fue modificado.','success');
-	}
-		});	
+		}
+		});		  
 	});
 </script>

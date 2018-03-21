@@ -2,7 +2,7 @@
 require_once '../../Modelo/GradoCl12.php';
 $busq =$_GET['id'];
  $gra = new GradoCl12();
-  $result = $gra->GradoCl12_BuscaGra($busq);
+  $result = $gra->GradoCl12_BuscaGraD($busq);
   if($result){
 ?>
 
@@ -16,8 +16,20 @@ $busq =$_GET['id'];
 	</div>
 	<div class="form-group">
 		<label for="idbachi">Bachiller</label>
-		<input type="text" class="form-control" name="idbachi" value="<?php  echo $r["Bachiller"]; ?>">
-	</div>	
+		<select name="idbachi">
+			<?php
+		require_once '../../Modelo/BachillerCl13.php';
+		$bac = new BachillerCl13();
+        $query = $bac -> BachillerCl13_ListaTodo();
+        while ($row = mysqli_fetch_array($query)) {
+		echo '<option value="' . $row["Id"] . '" ';
+		if($row["Id"] == $r["idBachiller"])
+		echo 'selected';
+		echo '>' . $row["Bachiller"] . '</option>';
+			}
+			?>
+		</select>
+	</div>
 	<input type="hidden" name="id" value="<?php echo  $r["id_grado"]; ?>">
 	<button type="submit" class="btn btn-default">
 		Actualizar

@@ -20,16 +20,19 @@ if($total>$por_pagina):?>
 
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
-  <th>Nombre</th>
+  <th>Id</th>
+  <th>Especialidad</th>
   <th>Cupo</th>
+  <th>Opciones</th> 
  </thead>
 <?php while ($r=$result->fetch_array()){
 ?>
 <tr>
+  <td><?php echo $r["Id"]; ?></td>
   <td><?php echo $r["Nombre"]; ?></td>
   <td><?php echo $r["Cupo"]; ?></td>
-  <td style="width:200px;">
-    <a data-id="<?php echo $r["Id"]; ?>" class="btn btn-edit btn-sm btn-warning" style="width:50px">Editar</a>
+  <td style="width:150px;">
+    <a data-id="<?php echo $r["Id"]; ?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
     <a href="#" id="bor-<?php echo $r["Id"]; ?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
     <script>
     	$('#bor-'+<?php echo $r['Id']?>).click(function(e){
@@ -68,7 +71,7 @@ if($total>$por_pagina):?>
 		});
 		});
 </script> 
-      </td>
+   </td>
 </tr>
 <?php } ?>
 </table>

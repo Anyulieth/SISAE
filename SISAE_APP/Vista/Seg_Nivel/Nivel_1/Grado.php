@@ -32,14 +32,14 @@
     <input type="text" class="form-control" name="nombre">
   </div>
   <div class="form-group">
-    <label for="idbachi">Id Bachiller</label>
-    <select class="form-control" name="Grado">
+    <label for="idbachi">Bachiller</label>
+    <select class="form-control" name="idbachi">
    <?php
    require_once '../../../Modelo/BachillerCl13.php';
                     $bac = new BachillerCl13();
                     $query = $bac -> BachillerCl13_ListaTodo();
                     while ($valores = mysqli_fetch_array($query)) {
-                      echo '<option value="' . $valores["id"] . '">' . $valores["Bachiller"] . '</option>';
+                      echo '<option value="' . $valores["Id"] . '">' . $valores["Bachiller"] . '</option>';
                     }
                     ?>               
   </select>
@@ -63,7 +63,7 @@
   $('#agregar').submit(function(e) {
         e.preventDefault();
         $.post('Controlador/Grado/AgregarGrado.php', $('#agregar').serialize(), function(data) {
-          if (data != 1) {
+          if (!data) {
             swal('Ups...', 'Algo salió mal!', 'error');
           } else {
             $('#agregar')[0].reset();

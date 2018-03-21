@@ -22,7 +22,7 @@ if($total>$por_pagina):?>
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
   <th>Id</th>
-  <th>Nombre</th>  
+  <th>Bachiller</th>  
   <th>Opciones</th>
 </thead>
 <?php while ($r=$result->fetch_array()){

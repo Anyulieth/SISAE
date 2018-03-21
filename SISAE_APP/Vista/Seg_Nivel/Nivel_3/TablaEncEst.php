@@ -7,17 +7,14 @@ $cont = 0;
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
   <th>Cedula</th>
-  <th>Nombre</th>
-  <th>1° Apellido</th>
-  <th>2° Apellido</th>
+  <th>Nombre Completo</th>
   <th>Direccion</th>
   <th>Genero</th>
   <th>Telefono</th>
   <th>Email</th>
   <th>Fecha Nacimiento </th>
   <th>Adecuacion</th>
-  <th>Estado</th>-
-  <th></th>
+  <th>Estado</th>
 </thead>
 <tbody>
   <?php 
@@ -25,9 +22,7 @@ $cont = 0;
   ?>
 <tr>
   <td><?php echo $r["Cedula"]; ?></td>
-  <td><?php echo $r["Nombre"]; ?></td>
-  <td><?php echo $r["Apellido1"]; ?></td>
-  <td><?php echo $r["Apellido2"]; ?></td>
+  <td><?php echo $r["Nombre Completo"]; ?></td>
   <td><?php echo $r["Direccion"]; ?></td>
   <td><?php echo $r["Genero"]; ?></td>
   <td><?php echo $r["Telefono"]; ?></td>

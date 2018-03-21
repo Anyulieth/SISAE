@@ -5,7 +5,7 @@ require_once '../../Modelo/GradoCl12.php';
   $por_pagina = 10;
   $inicio = 0;
 $gra = new GradoCl12(); 
-  $result = $gra->GradoCl12_BuscaGra($busq);
+  $result = $gra->GradoCl12_BuscaGraD($busq);
   $total = count($result);
   $total_botones = ceil($total/$por_pagina);
   if($result){ 
@@ -28,8 +28,9 @@ $gra = new GradoCl12();
 <thead>
 <thead>
   <th>Id Grado</th>
-  <th>Nombre</th>
+  <th>Grado</th>
   <th>Bachiller</th>
+  <th>Opciones</th>
 <tbody>
 <?php foreach ($result as $r){ ?>
 <tr>
@@ -68,7 +69,6 @@ $gra = new GradoCl12();
     if(data!=1){swal('Ups...', 'Algo salió mal!', 'error')}
     else{
     $('#tabla').html('');
-    CargarTabla(<?php echo $pagina; ?>);
     swal('Eliminado!','El registro fue eliminado.','success')    
           } 
       }

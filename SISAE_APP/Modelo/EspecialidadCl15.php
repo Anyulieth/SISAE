@@ -45,8 +45,9 @@ class EspecialidadCl15 extends conexion
 		$con = new conexion();
 		$sql = "CALL PaEspecialidadTb16_GuardarEspecialidad('".$PStCl15_Nombre."','".$PInCl15_Cupo."');";
 		$add = $con->query($sql);
-		$r= $add->execute();
-
+		if($add){
+		return $add;
+	    }
 		if($r)
 		{
 		 print $r;

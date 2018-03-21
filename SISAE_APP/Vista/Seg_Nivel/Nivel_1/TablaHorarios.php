@@ -22,12 +22,12 @@ if($total>$por_pagina):?>
 <table class="table table-bordered table-hover" style="font-size:13px;">
 <thead>
 	<th>Id</th>
-	<th>Dia</th>
+	<th>Día</th>
 	<th>Hora Inicio</th>
 	<th>Hora Fin</th>
   <th>Opciones</th>
 </thead>
-<tbody>
+<tbody> 
   <?php 
   while ($r = $result->fetch_array()) {
   ?>
@@ -36,9 +36,11 @@ if($total>$por_pagina):?>
 	<td><?php echo $r["Dia"]; ?></td>
 	<td><?php echo $r["Hora_Inicio"]; ?></td>
 	<td><?php echo $r["Hora_Fin"]; ?></td>
-  <td style="width:280px;">
+  <td style="width:270px;">
     <a data-id="<?php echo $r["Id"];?>" class="btn btn-edit btn-sm btn-warning" style="width:60px">Editar</a>
     <a href="#" id="bor-<?php echo $r["Id"];?>" class="btn btn-sm btn-danger" style="width:60px">Eliminar</a>
+    <a href="#" data-id="<?php echo $r["Id"];?>" style="width:60px" class="btn btn-asig btn-sm btn-success">Asignar</a>
+     <a href="#" data-id="<?php echo $r["Id"];?>" style="width:60px" class="btn btn-Ver btn-sm btn-info">Ver</a>
     <script>
     $('#bor-'+<?php echo $r['Id']?>).click(function(e){
        e.preventDefault();
@@ -76,7 +78,6 @@ if($total>$por_pagina):?>
    });
   });
     </script>
-      <a href="#" data-id="<?php echo $r["Id"];?>" style="width:130px" class="btn btn-asig btn-md btn-success">Asignar Horario</a>
    </td>
 </tr>
  <?php
@@ -105,7 +106,7 @@ $(".btn-asig").click(function(){
       $("#tabla-matri").html(data);
     });
     $('#Modal_Matri').modal('show');
-});
+}); 
 </script>
 
 <div class="modal fade" id="Modal_Editar" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -132,7 +133,7 @@ $(".btn-asig").click(function(){
         <div class="modal-body">
           <div id="tabla-matri"></div>
         </div><div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+        <button type="button" class="btn btn-primary guardar" data-dismiss="modal">Guardar</button>
       </div>
       </div><!-- /.modal-content -->  
     </div><!-- /.modal-dialog -->
