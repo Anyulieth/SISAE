@@ -43,5 +43,5 @@ $result = $est->EstCl02_ListaMatri($idest);
 </div>
 <?php endforeach ?>     
 <?php
-}
+} else {echo 'No cuenta con matrícula';}
 ?>
