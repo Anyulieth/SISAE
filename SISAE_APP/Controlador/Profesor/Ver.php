@@ -10,7 +10,7 @@ $result = $prof->ProfCl03_ListaMatri($idprof);
 	 <div class="panel panel-default">
 	 	<div class="panel-heading">Profesor: <?php echo $r["Cedula"];?></div>
 	 	<div class="panel-body">
-<form role="form" id="MatriProf" method="post">
+<form role="form"  method="post">
 	<div class="form-group">
 		<label for="nombre">Nombre Completo</label>
 		<input type="text" class="form-control" name="nombre" value="<?php echo $r["Profesor"]; ?>" readonly>

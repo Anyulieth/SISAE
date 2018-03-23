@@ -86,7 +86,8 @@ $.ajax({
 }
 
 function grado(prof){  
-	var gra= { 'idG':$('select[id=idGra]').val()};
+var gra= { 'idG':$('select[id=idGra]').val() };
+	console.log(gra);
    $.ajax({
 	url:'Controlador/Profesor/CargarGrado.php',
 	data:prof,
@@ -95,34 +96,12 @@ function grado(prof){
 		secciones(prof, gra);
 	}
 })/*.done(function(){
+		
   secciones(prof,gra);
-  			console.log("grado:"+gra); 
+  			console.log("grado:"+gra);
 
-});*/
+});*/ 
 }
-
-$("select[id=idGra]").change(function(prof){
-	var gra= { 'id':$('select[id=idGra]').val()};
-	console.log(gra);
-	$.ajax({
-	url:'Controlador/Horarios/CargarSeccionProf.php',
-	data:prof, gra,
-	success:function(data){
-		$('#idSec').html(data);
-	}
-});
-});
-/*
-$('#idGra').change(function(){
-var param = {'idGra':$('#idGra').val()};
-$.ajax({
-	url:'Controlador/Horarios/CargarSeccionProf.php',
-	data:param,
-	success:function(data){
-		$('#idSec').html(data);
-	}
-});
-});*/
 
 function materias(prof){
 $.ajax({
@@ -143,6 +122,18 @@ $(":radio[name='idP']").change(function(event) {
 	success:function(data){
 		$('#idMat').html(data);
 		materias(prof);
+	}
+});
+});
+
+$("select[id=idGra]").change(function(){
+	var gra= { 'idG':$('select[id=idGra]').val(), 'ced':$(':radio[name=idP]').val()};
+	console.log(gra);
+	$.ajax({
+	url:'Controlador/Horarios/CargarSeccionProf.php',
+	data:gra,
+	success:function(data){
+		$('#idSec').html(data);
 	}
 });
 });
