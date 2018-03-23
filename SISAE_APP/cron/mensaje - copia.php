@@ -44,13 +44,8 @@ $mail->Username = "chepe352013@gmail.com";
 $mail->Password = "deusexmachine"; 
  
 // Creamos la sentencias SQL 
-			
-//$result = $db->query("SELECT * FROM personas");
- 
-// Iniciamos el "bucle" para enviar multiples correos. 
- 
-while($row = $result->fetch_assoc()) { 
-    //obtiene las varibales
+while($row=mysqli_fetch_array($result)){
+            
          $CedEst=$row['CedulaEst'];
          $NomEst=$row['NombreEst'];
          $ApEst1=$row['Apellido1'];
@@ -60,21 +55,26 @@ while($row = $result->fetch_assoc()) {
          $ApEnc1=$row['Apellido1Enc'];
          $ApEnc2=$row['Apellido2Enc'];
          $Email=$row['CorrEnc'];
-    
-    
+}
+
+//$result = $db->query("SELECT * FROM personas");
+ 
+// Iniciamos el "bucle" para enviar multiples correos. 
+ 
+while($row = $result->fetch_assoc()) { 
     //Añadimos la direccion de quien envia el corre, en este caso Codejobs, primero el correo, luego el nombre de quien lo envia. 
  
  
     $mail->setFrom('chepe352013@gmail.com', 'José Molina Cascante'); 
-    $mail->addAddress('chepe352014@gmail.com', 'Madona'); 
+    $mail->addAddress($Email, $NomEnc); 
  
     //La linea de asunto 
-    $mail->Subject = "Se le notifica que el estudiante <?php echo $NomEst; ?> no está en clases!"; 
+    $mail->Subject = "Se le notifica que el estudiante <?php echo $row['NomEst']; ?> no está en clases!"; 
  
     // La mejor forma de enviar un correo, es creando un HTML e insertandolo de la siguiente forma, PHPMailer permite insertar, imagenes, css, etc. (No se recomienda el uso de Javascript) 
  
     //$mail->msgHTML(file_get_contents('contenido.html'), dirname(__FILE__)); 
-    $mail->Body = "El estudiante <?php echo $NomEst; ?> <?php echo $ApeEst1; ?> no se encuentra en la clase correspondiente agradezco su verificación." 
+    $mail->Body = "El estudiante <?php echo $row['NomEst']; ?> <?php echo $row['ApeEst1']; ?> no se encuentra en la clase correspondiente agradezco su verificación." 
  
     // Enviamos el Mensaje 
     $mail->send(); 
