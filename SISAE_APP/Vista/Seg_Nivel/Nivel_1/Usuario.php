@@ -10,15 +10,6 @@
   <body>
     <div class="container">
       <h1 class="page-header" style="background-color:blue;color:white;">Envío de comunicados a encargados</h1>
-      <form class="form-inline" role="search" id="buscar" style="float:left;">
-        <!-- <div class="form-group">
-          <input type="text" name="busqueda" class="form-control" placeholder="Buscar" id="busc" onkeyup="bus();">
-        </div>
-        <button type="submit" class="btn btn-default">
-          &nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;
-        </button>
-        <a data-toggle="modal" href="#Modal" class="btn btn-default">Agregar</a> -->
-      </form>
 
       <div class="panel-group">
    <div class="panel panel-default">
@@ -47,27 +38,14 @@
     <script type="text/javascript">
       $('#enviar').submit(function(e) {
         e.preventDefault();
-        $.post('Controlador/Profesor/EnviarCorreo.php', $('#enviar').serialize(), function(data) {
-          if (data != 1) {
+        $.post('EnviarCorreo.php', $('#enviar').serialize(), function(data) {
+          if (!data) {
             swal('Ups...', 'Algo salió mal!', 'error');
           } else {
-            swal('Agregado!', 'El registro fue agregado.', 'success')
+            swal('Enviado!', 'El correo fue enviado.', 'success')
           }
-        });
+        }); 
       });
-
-    /*function bus() {
-        var par = {
-          'busqueda' : $('#busc').val()
-        };
-        $.ajax({
-          url : "Controlador/Encargado/BuscarEnc.php",
-          data : par,
-          success : function(data) {
-            $('#tabla').html(data);
-          }
-        })
-      }*/
     </script>
   </body>
 </html>

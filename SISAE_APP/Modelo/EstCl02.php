@@ -167,6 +167,18 @@ class EstCl02 extends UsuCl01
 		}
 	}
 
+	public function EstCl02_ListaEmailEnc($PStCl03_IdEst)
+	{
+		$con = new conexion();
+		$sql = "CALL PaEstTb03_BuscaEmailEnc('".$PStCl03_IdEst."');";
+		$result = $con->query($sql);
+		$r = $result->fetch_all(MYSQLI_ASSOC);
+		if ($r) 
+		{
+		 return $r;
+		}
+	}
+
 		/*public function EstCl02_MatriEst($PInMateria,$PInPeriodo,$PStCl03_IdEst,$InGrado,$PInSeccion)
 	{
 		$con = new conexion();

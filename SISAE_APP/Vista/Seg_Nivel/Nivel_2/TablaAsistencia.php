@@ -14,6 +14,7 @@ $cont = 0;
   <th>1° Apellido</th>
   <th>2° Apellido</th>
   <th>Cédula</th>
+  <th>Comunicado</th>
 </thead>
 <?php while ($r=$resultado->fetch_array()):?>
 <tr>
@@ -25,6 +26,18 @@ $cont = 0;
   <td><?php echo $r["Apellido1"]; ?></td>
   <td><?php echo $r["Apellido2"]; ?></td>
   <td><?php echo $r["Cedula"]; ?></td>
+  <td style="width:50px;">
+    <a href="#" data-id="<?php echo $r["Cedula"];?>" style="width:80px" class="btn btn-correo btn-sm btn-success">Encargado</a>
+    <script>
+$(".btn-correo").click(function(){
+  id = $(this).data("id");
+   $.get("Vista/Seg_Nivel/Nivel_2/CorreoProf.php","ced="+id,function(data){
+        $("#tabla-correo").html(data); 
+      });
+      $('#Modal_Correo').modal('show'); 
+});
+</script>
+  </td>
 </tr>
 <?php endwhile;?>
 </table>
@@ -56,7 +69,29 @@ $cont = 0;
               $('#tabla').html('');
             }
             }
-            });
-        });
-  });
+            })/*.done(function(){
+              var idp = {'idM':<?php echo $mater;?>, 'idS':$id_sec };
+$.ajax({      
+      url:"Controlador/cron2/Index.php",
+        data: idp,
+        success:function(data){ 
+        }
+}); 
+    swal('Agregado!', 'El registro fue agregado.', 'success');
+        });*/
+  }); });
 </script>
+
+  <div class="modal fade" id="Modal_Correo" role="dialog" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Enviar Comunicado a Encargado de Familia</h4>
+        </div>
+        <div class="modal-body">
+        <div id="tabla-correo"></div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
