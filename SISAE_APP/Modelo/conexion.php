@@ -2,8 +2,8 @@
 class conexion extends mysqli{
 	private $host = "localhost";
 	private  $usuario = "root";
-	private $clave = "";
-	private $db = "sisae";
+	private $clave = "root";
+	private $db = "sis";
 
 public function __construct()
 { 

@@ -159,5 +159,17 @@ class ProfCl03 extends UsuCl01
 		 return $r;
 		}
 	}
+
+	public function ProfCl03_ListaEmail($PStProfCl03_IdProfesor)
+	{
+		$con = new conexion();
+		$sql = "CALL PaCorreoProfTb36_ListarEmail('".$PStProfCl03_IdProfesor."');";
+		$result = $con->query($sql);
+		$r = $result->fetch_all(MYSQLI_ASSOC);
+		if ($r) 
+		{
+		 return $r;
+		}
+	}
 }
 ?>
