@@ -9,7 +9,7 @@ $Hora = Date('G:i:s');
 $asis = new AsistClaseCl17();
 for($i=0;$i<count($arr);$i++) {
 list($est,$ced)=explode(':',$arr[$i]);
-$result = $asis->AsistClaseCl17_AddAsis($fecha,$Hora,$est,$idma,$ced);
+$result = $asis->AsistClaseCl17_AddAsis2($fecha,$Hora,$est,$idma,$ced);
 if($result!=1){break;}	
 }
 print $result;

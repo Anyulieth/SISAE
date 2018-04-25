@@ -58,7 +58,8 @@ class AsistClaseCl17 extends conexion {
 		if ($add) {
 			return $add;
 		}
-	}
+	}	
+   
 
 	public function AsistClaseCl17_BuscaFecha($Fecha, $Id_Sec, $Id_Mater) {
 		$con = new conexion();
@@ -66,6 +67,7 @@ class AsistClaseCl17 extends conexion {
 		$result = $con -> query($sql);
 		return $result;
 	}
+   
 
 	public function AsistClaseCl17_BuscaFechaEst($Fecha, $Id_Est) {
 		$con = new conexion();

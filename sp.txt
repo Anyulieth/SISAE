@@ -1,0 +1,60 @@
+DROP PROCEDURE IF EXISTS PaEstTb03_VerificarAsis;
+DELIMITER $
+CREATE PROCEDURE PaEstTb03_VerificarAsis(in id_sec varchar(20), in id_mat int)
+BEGIN
+select e.VcUsuTb01_Cedula as 'CedulaEst',
+e.VcUsuTb01_Nombre as 'NombreEst',e.VcUsuTb01_Ape1 as 'Apellido1',
+e.VcUsuTb01_Ape2 as 'Apellido2',p.VcUsuTb01_Cedula as 'CedulaEnc',
+p.VcUsuTb01_Nombre as 'NombreEnc',p.VcUsuTb01_Ape1 as 'Apellido1Enc',
+p.VcUsuTb01_Ape2 as 'Apellido2Enc',p.VcUsuTb01_Email as 'CorrEnc' 
+from usutb01 as e inner 
+join asistesttb23 on asistesttb23.VcEstTb03_IdEstudiante = e.VcUsuTb01_Cedula 
+join asistclasetb18 on asistclasetb18.InAsistClaseTb18_IdAsistClase = asistesttb23.InAsistClaseTb18_IdAsistClase 
+join inscmateriatb11 on inscmateriatb11.VcEstTb03_IdEstudiante = e.VcUsuTb01_Cedula 
+join secesttb28 on secesttb28.VcEstTb03_IdEstudiante = e.VcUsuTb01_Cedula 
+join estenctb07 on estenctb07.VcEstTb03_IdEstudiante = e.VcUsuTb01_Cedula 
+join usutb01 as p on p.VcUsuTb01_Cedula = estenctb07.VcEncTb05_IdEncargado 
+where secesttb28.InSeccionTb20_IdSeccion = id_sec 
+and inscmateriatb11.InMateriaTb17_IdMateria = id_mat 
+and asistclasetb18.VcAsistClaseTb18_Estado = 'Ausente';
+END $
+
+
+DELIMITER $
+CREATE PROCEDURE PaEstTb03_VerificarAsis(in id_sec varchar(20), in id_mat int)
+BEGIN
+SELECT sleep(40);
+select e.VcUsuTb01_Cedula as 'CedulaEst',
+e.VcUsuTb01_Nombre as 'NombreEst',e.VcUsuTb01_Ape1 as 'Apellido1',
+e.VcUsuTb01_Ape2 as 'Apellido2',p.VcUsuTb01_Cedula as 'CedulaEnc',
+p.VcUsuTb01_Nombre as 'NombreEnc',p.VcUsuTb01_Ape1 as 'Apellido1Enc',
+p.VcUsuTb01_Ape2 as 'Apellido2Enc',p.VcUsuTb01_Email as 'CorrEnc' 
+from usutb01 as e inner 
+join asistesttb23 on asistesttb23.VcEstTb03_IdEstudiante = e.VcUsuTb01_Cedula 
+join asistclasetb18 on asistclasetb18.InAsistClaseTb18_IdAsistClase = asistesttb23.InAsistClaseTb18_IdAsistClase 
+join inscmateriatb11 on inscmateriatb11.VcEstTb03_IdEstudiante = e.VcUsuTb01_Cedula 
+join secesttb28 on secesttb28.VcEstTb03_IdEstudiante = e.VcUsuTb01_Cedula 
+join estenctb07 on estenctb07.VcEstTb03_IdEstudiante = e.VcUsuTb01_Cedula 
+join usutb01 as p on p.VcUsuTb01_Cedula = estenctb07.VcEncTb05_IdEncargado 
+where secesttb28.InSeccionTb20_IdSeccion = id_sec 
+and inscmateriatb11.InMateriaTb17_IdMateria = id_mat 
+and asistclasetb18.VcAsistClaseTb18_Estado = 'Ausente';
+END $
+
+begin
+	SELECT sleep(5);
+	insert into AsistClaseTb182 (DtAsistClaseTb18_Fecha, TmAsistClaseTb18_Hora, VcAsistClaseTb18_Estado, InMateriaTb17_IdMateria)
+    values (Fec, Hora, Estado, IdMa);
+end
+
+https://www.swapbytes.com/category/mysql/page/3/
+
+
+
+
+
+
+
+102410145 	HARRY 	JENKINS 	CHAVARRIA 	Santa Clara 	F 	60918664 	fina@outlook.com
+
+1 Sociales 	2 español 
