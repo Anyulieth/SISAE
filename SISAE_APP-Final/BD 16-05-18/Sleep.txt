@@ -1,0 +1,15 @@
+
+------1---------
+begin
+	insert into AsistClaseTb18 (DtAsistClaseTb18_Fecha, TmAsistClaseTb18_Hora, VcAsistClaseTb18_Estado, InMateriaTb17_IdMateria)
+    values (Fec, Hora, Estado, IdMa);
+    CALL PaAsistClaseTb18_GuardarAsistClase2 (Fec, Hora, Estado, IdMa);
+end
+
+------2---------
+BEGIN
+	SELECT sleep(15);
+	INSERT INTO AsistClaseTb182 (DtAsistClaseTb18_Fecha, TmAsistClaseTb18_Hora, VcAsistClaseTb18_Estado, InMateriaTb17_IdMateria)
+    VALUES (CURDATE(), curTime(), Estado, IdMa);
+END
+
